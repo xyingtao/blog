@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xyingtao.gitee.io/2020/09/07/RabbitMQ/</loc>
+    <loc>https://xyingtao.gitee.io/2020/09/08/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/2020/09/08/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>https://xyingtao.gitee.io/2020/09/07/RabbitMQ/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
@@ -179,14 +179,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/RabbitMQ/</loc>
+    <loc>https://xyingtao.gitee.io/tags/Redis/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/Redis/</loc>
+    <loc>https://xyingtao.gitee.io/tags/RabbitMQ/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -314,14 +314,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/RabbitMQ/</loc>
+    <loc>https://xyingtao.gitee.io/categories/Redis/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/Redis/</loc>
+    <loc>https://xyingtao.gitee.io/categories/RabbitMQ/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
