@@ -179,14 +179,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/RabbitMQ/</loc>
+    <loc>https://xyingtao.gitee.io/tags/Redis/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/Redis/</loc>
+    <loc>https://xyingtao.gitee.io/tags/RabbitMQ/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -221,13 +221,6 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-09-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xyingtao.gitee.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
@@ -242,7 +235,7 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>https://xyingtao.gitee.io/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -250,6 +243,13 @@
   
   <url>
     <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -314,14 +314,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/RabbitMQ/</loc>
+    <loc>https://xyingtao.gitee.io/categories/Redis/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/Redis/</loc>
+    <loc>https://xyingtao.gitee.io/categories/RabbitMQ/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
