@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xyingtao.gitee.io/posts/c41e9d72/</loc>
+    
+    <lastmod>2020-09-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/posts/af9dc3a7/</loc>
+    
+    <lastmod>2020-09-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xyingtao.gitee.io/posts/e3ba8d56/</loc>
     
     <lastmod>2020-09-09</lastmod>
@@ -114,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/posts/af9dc3a7/</loc>
-    
-    <lastmod>2020-09-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xyingtao.gitee.io/about/index.html</loc>
     
     <lastmod>2020-09-08</lastmod>
@@ -207,6 +214,13 @@
   </url>
   
   <url>
+    <loc>https://xyingtao.gitee.io/tags/%E9%94%81/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xyingtao.gitee.io/tags/RabbitMQ/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -284,14 +298,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
+    <loc>https://xyingtao.gitee.io/tags/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
