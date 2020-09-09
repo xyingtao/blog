@@ -270,13 +270,6 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2020-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xyingtao.gitee.io/tags/%E5%85%B6%E5%AE%83/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -285,6 +278,13 @@
   
   <url>
     <loc>https://xyingtao.gitee.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2020-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
