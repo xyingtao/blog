@@ -2696,6 +2696,7 @@ blockquote footer cite:before {
 }
 #aside_content .card-info #card-info-btn span {
   padding-left: 0.5rem;
+  border-radius: 5px;
 }
 #aside_content .card-content {
   padding: 1rem 1.2rem;
