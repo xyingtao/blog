@@ -4583,15 +4583,17 @@ img {
 #rightside > div > button,
 #rightside > div > a {
   display: block;
-  margin-bottom: 2px;
-  width: 30px;
-  height: 30px;
+  margin-bottom: 4px;
+  width: 35px;
+  height: 35px;
   background-color: var(--btn-bg);
   color: var(--btn-color);
   text-align: center;
   font-size: 16px;
+  line-height: 35px;
+  margin-bottom: 4px;
+  margin-right: 4px;
   cursor: pointer;
-  margin-bottom: 70px;
   border-radius: 3px;
 }
 #rightside > div > button:hover,
