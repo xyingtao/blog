@@ -437,6 +437,7 @@ button {
   -o-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
+  border-radius: 5px;
 }
 img[src=''],
 img:not([src]) {
@@ -4706,9 +4707,9 @@ img {
   transition: all 0.2s ease-in-out;
 }
 #sidebar .sidebar-toc .toc-link.active {
-  border-right-color: #0d97f1;
   background: #49b1f5;
   color: #fff;
+  border-radius: 5px;
 }
 #sidebar .sidebar-toc__progress {
   position: relative;
