@@ -104,7 +104,7 @@ window.addEventListener('load',()=> {preloader.endLoading()})</script><div class
   return setting
 }
 
-var guestInfo = requestSetting(['nick','mail','link'],'昵称,邮箱,主页')
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
 var requiredFields = requestSetting(['nick','mail','link'],'nick,mail')
 let friends = '7315a0d35ab8b843c540cfe782e8314e'.split(',')
 let master = 'f7cc4a399aff34484f1e5c909ac5423d'.split(',')
@@ -118,7 +118,7 @@ function loadValine () {
       appKey: 'gc77gzBd21meJRdoWRpmlYoj',
       placeholder: '留下你的评论~ 樱桃会尽快回复',
       avatar: 'monsterid',
-      meta: '昵称,邮箱,主页'.split(','),
+      meta: 'nick,mail,link'.split(','),
       pageSize: '10',
       lang: 'zh-CN',
       recordIP: true,
@@ -216,4 +216,4 @@ document.addEventListener('pjax:send', function () {
   //reset readmode
   $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
 
-})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({pluginModelPath:"assets/",model:{jsonPath:"/live2dw/assets/hijiki.model.json"},display:{position:"right",width:150,height:300},mobile:{show:!0},log:!1,pluginJsPath:"lib/",pluginRootPath:"live2dw/",tagMode:!1})</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
