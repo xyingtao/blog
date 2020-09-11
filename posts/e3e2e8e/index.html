@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', panguFn)</script><script src="/js/
 
   }
 }
-window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>var requestSetting = function (from,set) {
   var from = from
   var setting = set.split(',').filter(function(item){
   return from.indexOf(item) > -1
@@ -110,28 +110,43 @@ let friends = '7315a0d35ab8b843c540cfe782e8314e'.split(',')
 let master = 'f7cc4a399aff34484f1e5c909ac5423d'.split(',')
 let tagMeta = '博主,小伙伴,访客'.split(',')
 
-window.valine = new Valine({
-  el:'#vcomment',
-  appId: 'PeD37wudqdzbv04uJPPgSrd6-gzGzoHsz',
-  appKey: 'gc77gzBd21meJRdoWRpmlYoj',
-  notify: false,
-  verify: false,
-  placeholder: '留下你的评论~ 樱桃会尽快回复',
-  avatar: 'monsterid',
-  meta: guestInfo,
-  pageSize: '10',
-  lang: 'zh-CN',
-  recordIP: 'true',
-  serverURLs: '',
-  emojiCDN: '',
-  emojiMaps: "",
-  enableQQ: true,
-  requiredFields: requiredFields,
-  master: master,
-  friends: friends,
-  tagMeta: tagMeta,
-  metaPlaceholder: {"nick":"昵称/QQ号(必填)","mail":"邮箱(必填)","link":"网址(https://)"}
-});</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script data-pjax src="https://cdn.jsdelivr.net/gh/moelody/cdn@latest/js/butterfly/src/fish.min.js"></script><div class="aplayer no-destroy" data-id="5225697049" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listfolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script src="/js/third-party/click_heart.js" async></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/SerokSSR/cdn/meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'PeD37wudqdzbv04uJPPgSrd6-gzGzoHsz',
+      appKey: 'gc77gzBd21meJRdoWRpmlYoj',
+      placeholder: '留下你的评论~ 樱桃会尽快回复',
+      avatar: 'monsterid',
+      meta: '昵称,邮箱,主页'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      master: master,
+      friends: friends,
+      tagMeta: tagMeta,
+      metaPlaceholder: {"nick":"昵称/QQ号(必填)","mail":"邮箱(必填)","link":"网址(https://)"}
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script data-pjax src="https://cdn.jsdelivr.net/gh/moelody/cdn@latest/js/butterfly/src/fish.min.js"></script><div class="aplayer no-destroy" data-id="5225697049" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listfolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script src="/js/third-party/click_heart.js" async></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/SerokSSR/cdn/meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
   'title',
   'meta[name=description]',
   '#config_change',
