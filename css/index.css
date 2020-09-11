@@ -4080,6 +4080,7 @@ _:future,
   overflow: hidden;
   margin-top: 1rem;
   width: 100%;
+  border-radius: 8px;
 }
 #pagination .pagination {
   text-align: center;
@@ -4413,6 +4414,7 @@ img {
   height: 200px;
   background: #000;
   vertical-align: bottom;
+  border-radius: 8px;
 }
 .relatedPosts > .relatedPosts-list > div:hover .cover {
   opacity: 0.8;
