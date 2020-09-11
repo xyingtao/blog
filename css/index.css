@@ -4080,7 +4080,6 @@ _:future,
   overflow: hidden;
   margin-top: 1rem;
   width: 100%;
-  border-radius: 20px;
 }
 #pagination .pagination {
   text-align: center;
@@ -4093,6 +4092,7 @@ _:future,
   text-align: center;
   line-height: 1.5rem;
   cursor: pointer;
+  border-radius: 3px;
 }
 #pagination .page-number.current {
   background: #49b1f5;
@@ -4589,6 +4589,7 @@ img {
   text-align: center;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 3px;
 }
 #rightside > div > button:hover,
 #rightside > div > a:hover {
