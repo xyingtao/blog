@@ -4487,6 +4487,7 @@ img {
   -o-transition: all 0.4s;
   -ms-transition: all 0.4s;
   transition: all 0.4s;
+  border-radius: 4px;
 }
 .post-reward .reward-button:hover {
   -webkit-box-shadow: inset 9em 0 0 0 var(--btn-hover-color);
@@ -4539,12 +4540,12 @@ img {
   vertical-align: top;
 }
 .post-reward .reward-button .reward-main .reward-all .reward-item img {
-  width: 130px;
-  height: 130px;
+  width: 200px;
+  height: 200px;
 }
 .post-reward .reward-button .reward-main .reward-all .reward-item .post-qr-code-desc {
   padding-top: 0.4rem;
-  width: 130px;
+  width: 200px;
   color: #858585;
 }
 #rightside {
@@ -4583,7 +4584,7 @@ img {
 #rightside > div > button,
 #rightside > div > a {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   width: 35px;
   height: 35px;
   background-color: var(--btn-bg);
