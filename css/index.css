@@ -2607,7 +2607,7 @@ blockquote footer cite:before {
 #aside_content .card-widget {
   overflow: hidden;
   margin-top: 1rem;
-  border-radius: 8px;
+  border-radius: 5px;
   background: var(--card-bg);
   -webkit-box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
   box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
@@ -2692,6 +2692,7 @@ blockquote footer cite:before {
   color: var(--btn-color);
   text-align: center;
   line-height: 2.4;
+  border-radius: 5px;
 }
 #aside_content .card-info #card-info-btn span {
   padding-left: 0.5rem;
@@ -4592,8 +4593,6 @@ img {
   text-align: center;
   font-size: 16px;
   line-height: 35px;
-  margin-bottom: 4px;
-  margin-right: 4px;
   cursor: pointer;
   border-radius: 3px;
 }
