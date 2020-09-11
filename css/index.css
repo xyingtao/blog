@@ -407,6 +407,7 @@ button {
   bottom: 0;
   left: 0;
   z-index: -1;
+  border-radius: 5px;
   background: var(--btn-hover-color);
   content: '';
   -webkit-transition: -webkit-transform 0.5s ease-out;
@@ -2696,7 +2697,6 @@ blockquote footer cite:before {
 }
 #aside_content .card-info #card-info-btn span {
   padding-left: 0.5rem;
-  border-radius: 5px;
 }
 #aside_content .card-content {
   padding: 1rem 1.2rem;
