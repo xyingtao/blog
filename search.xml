@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>SpringCloud相关问题</title>
+      <link href="posts/350366fd/"/>
+      <url>posts/350366fd/</url>
+      
+        <content type="html"><![CDATA[<h1 id="springcloud"><a class="markdownIt-Anchor" href="#springcloud"></a> SpringCloud</h1><h2 id="什么是springcloud"><a class="markdownIt-Anchor" href="#什么是springcloud"></a> 什么是SpringCloud?</h2><p>Spring cloud 流应用程序启动器是基于Spring Boot的Spring 集成应用程序,提供与外部系统的集成.Spring cloud Task,一个生命周期短暂的微服务框架,用于快速构建执行有限数据处理的应用程序</p><h2 id="什么是微服务"><a class="markdownIt-Anchor" href="#什么是微服务"></a> 什么是微服务?</h2><p>微服务架构是一种架构模式或者说是一种架构风格，它提倡将单一应用程序划分为一组小的<strong>服务</strong>，每个服务运行在其独立的自己的进程中，服务之间相互协调、互相配合，为用户提供最终价值。服务之间采用<strong>轻量级的通信机制</strong>互相沟通（通常是基于HTTP的RESTful API）,每个服务都围绕着具体的业务进行构建，并且能够被独立的构建在生产环境、类生产环境等。另外，应避免统一的、集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具对其进行构建，可以有一个非常轻量级的集中式管理来协调这些服务，<strong>可以使用不同的语言来编写服务</strong>，也<strong>可以使用不同的数据存储</strong> .</p><h2 id="springcloud有什么优势"><a class="markdownIt-Anchor" href="#springcloud有什么优势"></a> SpringCloud有什么优势?</h2><p>使用 Spring Boot 开发分布式微服务时，我们面临以下问题<br>（1）与分布式系统相关的复杂性-这种开销包括网络问题，延迟开销，带宽问题，安全问题。<br>（2）服务发现-服务发现工具管理群集中的流程和服务如何查找和互相交谈。它涉及一个服务目录，在该目录中注册服务，然后能够查找并连接到该目录中的服务。<br>（3）冗余-分布式系统中的冗余问题。<br>（4）负载平衡 --负载平衡改善跨多个计算资源的工作负荷，诸如计算机，计算机集群，网络链路，中央处理单元，或磁盘驱动器的分布。<br>（5）性能-问题 由于各种运营开销导致的性能问题。<br>（6）部署复杂性-Devops 技能的要求。</p><blockquote><p>Devops是什么?</p><p>DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。</p></blockquote><h2 id="什么是服务熔断服务降级"><a class="markdownIt-Anchor" href="#什么是服务熔断服务降级"></a> 什么是服务熔断?服务降级?</h2><p>熔断机制是应对<strong>雪崩效应</strong>的一种微服务链路保护机制。当某个微服务不可用或者响应时间太长时，会进行服务降级，进而熔断该节点微服务的调用，快速返回“错误”的响应信息。当检测到该节点微服务调用响应正常后恢复调用链路。在SpringCloud框架里熔断机制通过<strong>Hystrix</strong>实现，Hystrix会监控微服务间调用的状况，当失败的调用到一定阈值，缺省是5秒内调用20次，如果失败，就会启动熔断机制 .</p><p>服务降级，一般是从整体负荷考虑。就是当某个服务熔断之后，服务器将不再被调用，此时客户端可以自己准备一个本地的fallback回调，返回一个缺省值。这样做，虽然水平下降，但好歹可用，比直接挂掉强。</p><p><strong>Hystrix相关注解</strong><br><strong>@EnableHystrix</strong>：开启熔断<br><strong>@HystrixCommand(fallbackMethod=”XXX”)</strong>：声明一个失败回滚处理函数XXX，当被注解的方法执行<br>超时（默认是1000毫秒），就会执行fallback函数，返回错误提示</p><h2 id="eureka和zookeeper都可以提供服务注册与发现的功能请说说两个的区别"><a class="markdownIt-Anchor" href="#eureka和zookeeper都可以提供服务注册与发现的功能请说说两个的区别"></a> Eureka和zookeeper都可以提供服务注册与发现的功能，请说说两个的区别？</h2><p>Zookeeper保证了CP（C：一致性，P：分区容错性），Eureka保证了AP（A：高可用）</p><ol><li>当向注册中心查询服务列表时，我们可以容忍注册中心返回的是几分钟以前的信息，但不能容忍直接down掉不可用。也就是说，服务注册功能对高可用性要求比较高，但zk会出现这样一种情况，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新选leader。问题在于，选取leader时间过长，30 ~ 120s，且选取期间zk集群都不可用，这样就会导致选取期间注册服务瘫痪。在云部署的环境下，因网络问题使得zk集群失去master节点是较大概率会发生的事，虽然服务能够恢复，但是漫长的选取时间导致的注册长期不可用是不能容忍的。</li><li>Eureka保证了可用性，Eureka各个节点是平等的，几个节点挂掉不会影响正常节点的工作，剩余的节点仍然可以提供注册和查询服务。而Eureka的客户端向某个Eureka注册或发现时发生连接失败，则会自动切换到其他节点，只要有一台Eureka还在，就能保证注册服务可用，只是查到的信息可能不是最新的。除此之外，Eureka还有自我保护机制，如果在15分钟内超过85%的节点没有正常的心跳，那么Eureka就认为客户端与注册中心发生了网络故障，此时会出现以下几种情况：<br>①、Eureka不在从注册列表中移除因为长时间没有收到心跳而应该过期的服务。<br>②、Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点上（即保证当前节点<br>仍然可用）<br>③、当网络稳定时，当前实例新的注册信息会被同步到其他节点。<br>因此，Eureka可以很好的应对因网络故障导致部分节点失去联系的情况，而不会像Zookeeper那样使整个微服务瘫痪</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringCloud </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringCloud </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Nginx(一)-快速入门</title>
       <link href="posts/40339b69/"/>
       <url>posts/40339b69/</url>
@@ -44,7 +69,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -75,7 +100,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -206,7 +231,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -314,7 +339,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -455,7 +480,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -582,7 +607,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -611,7 +636,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
@@ -640,7 +665,7 @@
       
       <categories>
           
-          <category> [object Object] </category>
+          <category> 算法 </category>
           
       </categories>
       
