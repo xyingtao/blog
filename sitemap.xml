@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xyingtao.gitee.io/posts/669168dd/</loc>
+    <loc>https://xyingtao.gitee.io/messageboard/index.html</loc>
+    
+    <lastmod>2020-09-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/tags/index.html</loc>
+    
+    <lastmod>2020-09-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/categories/index.html</loc>
     
     <lastmod>2020-09-15</lastmod>
     
@@ -10,6 +24,13 @@
   
   <url>
     <loc>https://xyingtao.gitee.io/about/index.html</loc>
+    
+    <lastmod>2020-09-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/posts/669168dd/</loc>
     
     <lastmod>2020-09-15</lastmod>
     
@@ -295,27 +316,6 @@
     
   </url>
   
-  <url>
-    <loc>https://xyingtao.gitee.io/messageboard/index.html</loc>
-    
-    <lastmod>2020-09-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xyingtao.gitee.io/tags/index.html</loc>
-    
-    <lastmod>2020-09-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xyingtao.gitee.io/categories/index.html</loc>
-    
-    <lastmod>2020-09-07</lastmod>
-    
-  </url>
-  
 
   <url>
     <loc>https://xyingtao.gitee.io/</loc>
@@ -326,13 +326,6 @@
 
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/Java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2020-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xyingtao.gitee.io/tags/Java/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -341,6 +334,13 @@
   
   <url>
     <loc>https://xyingtao.gitee.io/tags/%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2020-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/tags/Java%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -445,14 +445,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/SpringCloud/</loc>
+    <loc>https://xyingtao.gitee.io/tags/%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E9%A1%B9%E7%9B%AE/</loc>
+    <loc>https://xyingtao.gitee.io/tags/SpringCloud/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -501,6 +501,13 @@
   </url>
   
   <url>
+    <loc>https://xyingtao.gitee.io/tags/%E5%85%B6%E5%AE%83%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xyingtao.gitee.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -509,13 +516,6 @@
   
   <url>
     <loc>https://xyingtao.gitee.io/tags/%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2020-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xyingtao.gitee.io/tags/%E5%85%B6%E5%AE%83%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -578,20 +578,6 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2020-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xyingtao.gitee.io/tags/%E6%9F%A5%E6%89%BE/</loc>
-    <lastmod>2020-09-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xyingtao.gitee.io/tags/%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -606,6 +592,13 @@
   </url>
   
   <url>
+    <loc>https://xyingtao.gitee.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2020-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xyingtao.gitee.io/tags/%E4%B8%AD%E5%BF%83%E6%8B%93%E5%B1%95%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
@@ -613,7 +606,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</loc>
+    <loc>https://xyingtao.gitee.io/tags/%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2020-09-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xyingtao.gitee.io/tags/%E6%9F%A5%E6%89%BE/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -755,14 +755,14 @@
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/SpringCloud/</loc>
+    <loc>https://xyingtao.gitee.io/categories/%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xyingtao.gitee.io/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <loc>https://xyingtao.gitee.io/categories/SpringCloud/</loc>
     <lastmod>2020-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
