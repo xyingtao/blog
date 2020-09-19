@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xyingtao.top/posts/167fb41b/</loc>
+    
+    <lastmod>2020-09-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/about/index.html</loc>
+    
+    <lastmod>2020-09-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xyingtao.top/posts/360c21de/</loc>
     
     <lastmod>2020-09-19</lastmod>
@@ -24,13 +38,6 @@
   
   <url>
     <loc>http://xyingtao.top/posts/4a5705df/</loc>
-    
-    <lastmod>2020-09-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/about/index.html</loc>
     
     <lastmod>2020-09-16</lastmod>
     
@@ -662,6 +669,13 @@
   </url>
   
   <url>
+    <loc>http://xyingtao.top/tags/AS-400/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xyingtao.top/tags/Linux/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
@@ -819,6 +833,13 @@
   
   <url>
     <loc>http://xyingtao.top/categories/Nginx/</loc>
+    <lastmod>2020-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/categories/AS-400/</loc>
     <lastmod>2020-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
