@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://xyingtao.top/posts/167fb41b/</loc>
+    <loc>http://xyingtao.top/messageboard/index.html</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -10,6 +10,20 @@
   
   <url>
     <loc>http://xyingtao.top/posts/6e639b06/</loc>
+    
+    <lastmod>2020-09-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/about/index.html</loc>
+    
+    <lastmod>2020-09-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/posts/167fb41b/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -33,13 +47,6 @@
     <loc>http://xyingtao.top/posts/60ccc137/</loc>
     
     <lastmod>2020-09-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/about/index.html</loc>
-    
-    <lastmod>2020-09-19</lastmod>
     
   </url>
   
@@ -68,13 +75,6 @@
     <loc>http://xyingtao.top/posts/4a5705df/</loc>
     
     <lastmod>2020-09-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/messageboard/index.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
     
   </url>
   
@@ -396,6 +396,13 @@
   </url>
   
   <url>
+    <loc>http://xyingtao.top/tags/%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xyingtao.top/tags/SpringBoot/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -404,20 +411,6 @@
   
   <url>
     <loc>http://xyingtao.top/tags/SpringCloud/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/tags/%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/tags/%E5%85%B6%E5%AE%83%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -438,7 +431,7 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/tags/AS-400/</loc>
+    <loc>http://xyingtao.top/tags/%E5%85%B6%E5%AE%83%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,7 +466,7 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/tags/MyBatis/</loc>
+    <loc>http://xyingtao.top/tags/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -495,6 +488,13 @@
   
   <url>
     <loc>http://xyingtao.top/tags/%E9%94%81/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/MyBatis/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -783,6 +783,13 @@
   </url>
   
   <url>
+    <loc>http://xyingtao.top/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xyingtao.top/categories/SpringBoot/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -797,21 +804,7 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xyingtao.top/categories/%E5%85%B6%E5%AE%83/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/categories/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -825,7 +818,7 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/MyBatis/</loc>
+    <loc>http://xyingtao.top/categories/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -833,6 +826,13 @@
   
   <url>
     <loc>http://xyingtao.top/categories/MySQL/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/categories/MyBatis/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
