@@ -2,7 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://xyingtao.top/messageboard/index.html</loc>
+    <loc>http://xyingtao.top/about/index.html</loc>
+    
+    <lastmod>2020-09-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/posts/a0ae3de1/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -16,7 +23,7 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/about/index.html</loc>
+    <loc>http://xyingtao.top/messageboard/index.html</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -24,13 +31,6 @@
   
   <url>
     <loc>http://xyingtao.top/posts/167fb41b/</loc>
-    
-    <lastmod>2020-09-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/posts/a0ae3de1/</loc>
     
     <lastmod>2020-09-22</lastmod>
     
@@ -396,13 +396,6 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/tags/%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xyingtao.top/tags/SpringBoot/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -411,6 +404,13 @@
   
   <url>
     <loc>http://xyingtao.top/tags/SpringCloud/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -432,6 +432,13 @@
   
   <url>
     <loc>http://xyingtao.top/tags/%E5%85%B6%E5%AE%83%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -460,13 +467,6 @@
   
   <url>
     <loc>http://xyingtao.top/tags/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/tags/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -571,27 +571,6 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/tags/%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xyingtao.top/tags/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xyingtao.top/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -670,6 +649,27 @@
   
   <url>
     <loc>http://xyingtao.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/%E9%93%BE%E8%A1%A8/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xyingtao.top/tags/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -783,13 +783,6 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2020-09-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xyingtao.top/categories/SpringBoot/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -804,6 +797,13 @@
   </url>
   
   <url>
+    <loc>http://xyingtao.top/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2020-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xyingtao.top/categories/%E5%85%B6%E5%AE%83/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
@@ -811,14 +811,14 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/Java/</loc>
+    <loc>http://xyingtao.top/categories/AS-400/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/AS-400/</loc>
+    <loc>http://xyingtao.top/categories/Java/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -860,14 +860,14 @@
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>http://xyingtao.top/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xyingtao.top/categories/%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://xyingtao.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-09-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
