@@ -6,7 +6,7 @@
   <link href="http://xyingtao.top/atom.xml" rel="self"/>
   
   <link href="http://xyingtao.top/"/>
-  <updated>2020-09-22T16:33:34.522Z</updated>
+  <updated>2020-09-23T12:50:33.463Z</updated>
   <id>http://xyingtao.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AS/400(二)</title>
+    <link href="http://xyingtao.top/posts/6b557ec5/"/>
+    <id>http://xyingtao.top/posts/6b557ec5/</id>
+    <published>2020-09-23T13:48:00.000Z</published>
+    <updated>2020-09-23T12:50:33.463Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="as400二"><a class="markdownIt-Anchor" href="#as400二"></a> AS400(二)</h1><h2 id="pf引用"><a class="markdownIt-Anchor" href="#pf引用"></a> PF引用</h2><p>REFFLD : 引用其它文件里面的字段</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A          R CSCUSTR1                  TEXT(&#39;Customer Information&#39;)</span><br><span class="line">A            C1CTNM         2A         TEXT(&#39;Country Code&#39;)</span><br><span class="line">A                                      COLHDG(&#39;CTY&#39; &#39;CODE&#39;)</span><br><span class="line">A            C1CSBK    R               COLHDG(&#39;CSBK&#39;)</span><br></pre></td></tr></table></figure><p>R后面的字段 需要和 pf文件的R相同</p><ol><li>REFFLD（&amp;FMT/&amp;FLD)</li><li>REFFLD  (&amp;FLD &amp;FILE)</li><li>REFFLD  (&amp;FLD &amp;LIB/&amp;FILE)</li><li>REFFLD  (&amp;FMT/&amp;FLD &amp;LIB/&amp;FILE)</li><li>REFFLD  (&amp;FLD *SRC)</li></ol><h2 id="logical-file"><a class="markdownIt-Anchor" href="#logical-file"></a> <strong>Logical File</strong></h2><p>pfile(pf文件名)  R字段要和pf的字段一致(如果只显示部分字段要改变R)</p><p>只显示pf里面的多少个列 文件就</p><p>k 字段名</p><p>k 字段名</p><p>…</p><p>不写默认全显示</p><p>筛选 只显示N</p><p>S &lt;筛选的字段名&gt;   COMP(EQ ‘N’)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A                                      UNIQUE                       </span><br><span class="line">A          R CBSXYTR                   PFILE(CBSPF01)                    A          K C1CTNM                                                 </span><br><span class="line">A          K C1CSBK                                                </span><br><span class="line">A          K C1CSBR                                                 </span><br><span class="line">A          S C1CTNM                    COMP(EQ &#39;GZ&#39;)               </span><br></pre></td></tr></table></figure><p>Operations on logical file will impact its physical file.</p><p>A logical file may contain both multiple members and record format.</p><p>一个逻辑文件可以引用1-32个文件</p><h3 id="筛选字段"><a class="markdownIt-Anchor" href="#筛选字段"></a> 筛选字段</h3><ol><li><p><strong>Name Type</strong></p><p>blank-field,   R-record format,   K-key field</p><p>S-select, O-omit,  J-start a join</p></li><li><p><strong>Name</strong> valid &amp; meaningful name（&lt;10digits）</p><p>*NONE-key field is not defined</p></li><li><p><strong>Usage</strong></p><p>blank/B-Both input &amp; output</p><p>I-input only</p><p>N-Not display</p><p>VALUES(&amp;VAL1 &amp;VAL2 …)</p><p>COMP(XX &amp;VAL) XX-GT, GE, EQ, NE, LE, LT</p><p>RANGE（&amp;LOVAL &amp;HIVAL）</p><p>ALL</p></li></ol><h4 id="useful-keyword"><a class="markdownIt-Anchor" href="#useful-keyword"></a> <strong>Useful keyword</strong></h4><ul><li><p><strong>File level keyword</strong></p><p>UNIQUE</p></li><li><p><strong>Record format level keyword</strong></p><p>PFILE(&amp;PFL1 &amp;PFL2 …)-specify the referred physical files</p><p>TEXT</p></li><li><p><strong>Selection level keyword</strong></p><p>VALUES(&amp;VAL1 &amp;VAL2 …)</p><p>COMP(XX &amp;VAL) XX-GT, GE, EQ, NE, LE, LT</p><p>RANGE（&amp;LOVAL &amp;HIVAL）</p><p>ALL</p></li></ul><h4 id="selection-level-keyword"><a class="markdownIt-Anchor" href="#selection-level-keyword"></a> <strong>Selection level keyword</strong></h4><ol><li>records <strong>match both</strong> condition1 &amp; condition2</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">S  FLD1   CONDITION1</span><br><span class="line"></span><br><span class="line">   FLD2   CONDITION2</span><br></pre></td></tr></table></figure><ol start="2"><li>records <strong>match</strong> at least condition1 or condition2</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">S  FLD1   CONDITION1</span><br><span class="line"></span><br><span class="line">S  FLD2   CONDITION2</span><br></pre></td></tr></table></figure><ol start="3"><li>records <strong>do not match</strong> condition1(<strong>Omit</strong>)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O FLD1   CONDITION1</span><br></pre></td></tr></table></figure><ol start="4"><li>More condition groups</li></ol><h4 id="相关命令"><a class="markdownIt-Anchor" href="#相关命令"></a> 相关命令</h4><p><strong>DSPDBR</strong> - enquiry related logical files for a physical file</p><p><strong>DSPFD</strong> – enquiry file information, especially, we can enquiry</p><p>related Physical files for a Logical file via this command</p><h2 id="runqry查询"><a class="markdownIt-Anchor" href="#runqry查询"></a> RUNQRY查询</h2><p><code>RUNQRY *n LF01</code></p><p>f4最后一项 改成yes 可以筛选</p><p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200923142254106.png" alt="image-20200923142254106" /></p><h2 id="wrksplf-编译日志查询"><a class="markdownIt-Anchor" href="#wrksplf-编译日志查询"></a> WRKSPLF 编译日志查询</h2><p><strong>shift+f6 到底端</strong></p><p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200923170857559.png" alt="image-20200923170857559" /></p><h2 id="备份数据"><a class="markdownIt-Anchor" href="#备份数据"></a> 备份数据</h2><ol><li><p>strsql</p></li><li><p>select * from xxx</p></li><li><p>shift + f1</p></li><li><p>change session attribute</p></li><li><p>select output  3</p></li><li><p>output file</p><p>file导出名称 带上@ 后缀表示 备份文件</p><p>library 备份所属的库名称</p><p>回到sql页面</p></li><li><p>select * from 库名/</p><p>下次设置为1</p></li></ol><h2 id="操作pf和lf"><a class="markdownIt-Anchor" href="#操作pf和lf"></a> 操作pf和lf</h2><p><strong>Insert records</strong></p><p>UPDDTA</p><p>SQL</p><p>Via program (RPGLE: WRITE)</p><p><strong>Delete records</strong></p><p>UPDDTA, CLRPFM</p><p>SQL</p><p>Via program (RPGLE: DELETE)</p><p><strong>Enquiry records</strong></p><p>DSPPFM,</p><p>RUNQRY,WRKQRY</p><p>SQL</p><p>Via program (RPGLE: READ)</p><p><strong>Change records</strong></p><p>UPDDTA</p><p>SQL</p><p>Via program (RPGLE: UPDATE)</p><p><strong>Change file attribute</strong></p><p>CHGPF</p><p>ADDPFM</p><p>RMVM</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;as400二&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#as400二&quot;&gt;&lt;/a&gt; AS400(二)&lt;/h1&gt;
+&lt;h2 id=&quot;pf引用&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#pf引用&quot;&gt;&lt;/a&gt; </summary>
+      
+    
+    
+    
+    <category term="AS/400" scheme="http://xyingtao.top/categories/AS-400/"/>
+    
+    
+    <category term="AS/400" scheme="http://xyingtao.top/tags/AS-400/"/>
+    
+  </entry>
   
   <entry>
     <title>IBM_i的体系结构</title>
@@ -533,33 +558,6 @@
     <category term="排序" scheme="http://xyingtao.top/tags/%E6%8E%92%E5%BA%8F/"/>
     
     <category term="查找" scheme="http://xyingtao.top/tags/%E6%9F%A5%E6%89%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法-复杂度分析</title>
-    <link href="http://xyingtao.top/posts/b63fea97/"/>
-    <id>http://xyingtao.top/posts/b63fea97/</id>
-    <published>2020-09-11T13:00:00.000Z</published>
-    <updated>2020-09-14T07:25:35.841Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="算法-复杂度分析"><a class="markdownIt-Anchor" href="#算法-复杂度分析"></a> 算法-复杂度分析</h1><h2 id="什么是大o"><a class="markdownIt-Anchor" href="#什么是大o"></a> 什么是大O</h2><ul><li>n表示数据规模</li><li>O(f(n))表示运行算法所需要执行的指令数,和f(n)成正比</li></ul><table><thead><tr><th>算法</th><th>时间复杂度</th><th>执行指令数</th></tr></thead><tbody><tr><td>寻找数组中最大值</td><td>O(logn)</td><td>a*logn</td></tr><tr><td>二分查找法</td><td>O(n)</td><td>b*n</td></tr><tr><td>归并排序算法</td><td>O(nlogn)</td><td>c*nlogn</td></tr><tr><td>选择排序法</td><td>O(n^2)</td><td>d*n^2</td></tr></tbody></table><p><strong>大O表达的是一个上界</strong></p><p>在n相同时:</p><p>O(nlogn+n)=O(nlogn)</p><p>O(nlogn+n<sup>2)=O(n</sup>2)</p><blockquote><p>一个时间复杂度的问题</p><p>有一个字符串数组,将数组中的每一个字符串按照字母序排序;之后再将整个字符串数组按照字典序排序.问整个操作的时间复杂度?</p></blockquote><p><strong>错误</strong>  O(n*nlogn+nlogn)=<s>O(n^2logn)</s></p><p><strong>分析</strong>: 假设最长的字符串长度为s;数组中有n个字符串</p><p>​对每个字符串排序: O(slogs)</p><p>​将数组中的每一个字符串按照字母序排序: O(n*slog(s))</p><p>​将整个字符串数组按照字典序排序: O(s*nlog(n))</p><p><strong>正确</strong>: O(n*slog(s))+O(s*nlog(n))=O(n*slogs+s*nlogn)=O(n*s*(logs+logn))</p><h2 id="时间复杂度"><a class="markdownIt-Anchor" href="#时间复杂度"></a> 时间复杂度</h2><ul><li><p>一般情况下,算法中的基本操作语句的重复执行次数是问题规模n的某个函数,T(n)表示,若有某个辅助函数f(n),使得n趋近无穷大的时候,T(n)/f(n)的极限值是不等于零的常数,则称f(n)是T(n)的数量级函数,T(n)=O(f(n)),称O(f(n))为算法的渐进时间复杂度,简称<code>时间复杂度</code></p></li><li><p>T(n)不同 时间复杂度可能相同</p></li><li><p>计算时间复杂度的方法</p><ul><li>用常数1代替运行时间所有加法常数</li><li>保留最高阶项</li><li>去除最高阶的系数</li></ul><p>常见的算法时间复杂度由小到大依次为：<strong>Ο(1)＜Ο(log*2n*)＜Ο(n)＜Ο(nlog*2n*)＜Ο(*n*2)＜Ο(*n*3)＜…＜Ο(*2*n)＜Ο(n!)</strong></p></li></ul><h2 id="最坏情况与平均情况"><a class="markdownIt-Anchor" href="#最坏情况与平均情况"></a> 最坏情况与平均情况</h2><p>我们查找一个有n个随机数字数组中的某个数字，最好的情况是第一个数字就是，那么算法的时间复杂度为O(1)，但也有可能这个数字就在最后一个位置，那么时间复杂度为O(n)。<br />**平均运行时间 ** 是期望的运行时间。<br />**最坏运行时间 ** 是一种保证。在应用中，这是一种最重要的需求，通常除非特别指定，我们提到的运行时间都是最坏情况的运行时间。</p><h2 id="数据规模的概念"><a class="markdownIt-Anchor" href="#数据规模的概念"></a> 数据规模的概念</h2><p>如果要在1s之内解决问题</p><p>O(n^2)的算法 可以处理大约10^4 级别的数据</p><p>O(n)的算法 可以处理大约10^8 级别的数据</p><p>O(nlogn)的算法 可以处理大约10^7 级别的数据</p><h2 id="空间复杂度"><a class="markdownIt-Anchor" href="#空间复杂度"></a> 空间复杂度</h2><p>空间复杂度(Space Complexity)是对一个算法在运行过程中临时占用存储空间大小的量度，记做S(n)=O(f(n))</p><h2 id="时间复杂度空间复杂度的关系"><a class="markdownIt-Anchor" href="#时间复杂度空间复杂度的关系"></a> 时间复杂度空间复杂度的关系</h2><p>对于一个算法，时间复杂度和空间复杂度往往是相互影响的。当追求一个较好的时间复杂度时，可能会使空间复杂度的性能变差，即可能导致占用较多的存储空间；反之，当追求一个较好的空间复杂度时，可能会使时间复杂度的性能变差，即可能导致占用较长的运行时间。</p><p>另外，算法的所有性能之间都存在着或多或少的相互影响。因此，当设计一个算法(特别是大型算法)时，要综合考虑算法的各项性能，算法的使用频率，算法处理的数据量的大小，算法描述语言的特性，算法运行的机器系统环境等各方面因素，才能够设计出比较好的算法。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;算法-复杂度分析&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#算法-复杂度分析&quot;&gt;&lt;/a&gt; 算法-复杂度分析&lt;/h1&gt;
-&lt;h2 id=&quot;什么是大o&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#什么是大o&quot;</summary>
-      
-    
-    
-    
-    <category term="算法" scheme="http://xyingtao.top/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="时间复杂度" scheme="http://xyingtao.top/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
-    <category term="空间复杂度" scheme="http://xyingtao.top/tags/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
     
   </entry>
   
