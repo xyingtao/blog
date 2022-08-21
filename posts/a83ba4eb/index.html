@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RPG-F行说明 | 樱桃小窝</title><meta name="keywords" content="AS/400"><meta name="author" content="樱桃先生"><meta name="copyright" content="樱桃先生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RPG(二)F行说明首位填上F，然后按F4，会出现如下内容：    Filename:需要声明的文件名，必须顶格，文件名必须唯一，也就是程序中对同样的文件名不能声明两次。   File Type:声明文件的处理类型。必须填写。允许的选项有：I： 输入型，即只读文件，对声明的文件只取其记录的值，不对记录进行修改U： 修改型，即对声明的文件进行修改操作（删除记录属于修改操作的一种）O： 输出型，即只写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RPG-F行说明">
+<meta property="og:url" content="http://example.com/posts/a83ba4eb/index.html">
+<meta property="og:site_name" content="樱桃小窝">
+<meta property="og:description" content="RPG(二)F行说明首位填上F，然后按F4，会出现如下内容：    Filename:需要声明的文件名，必须顶格，文件名必须唯一，也就是程序中对同样的文件名不能声明两次。   File Type:声明文件的处理类型。必须填写。允许的选项有：I： 输入型，即只读文件，对声明的文件只取其记录的值，不对记录进行修改U： 修改型，即对声明的文件进行修改操作（删除记录属于修改操作的一种）O： 输出型，即只写">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg">
+<meta property="article:published_time" content="2020-09-27T12:48:00.000Z">
+<meta property="article:modified_time" content="2020-10-08T14:03:10.000Z">
+<meta property="article:author" content="樱桃先生">
+<meta property="article:tag" content="AS&#x2F;400">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg"><link rel="shortcut icon" href="/img/cherry.jpeg"><link rel="canonical" href="http://example.com/posts/a83ba4eb/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RPG-F行说明',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-10-08 22:03:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">75</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">樱桃小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RPG-F行说明</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-27T12:48:00.000Z" title="发表于 2020-09-27 20:48:00">2020-09-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-08T14:03:10.000Z" title="更新于 2020-10-08 22:03:10">2020-10-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/AS-400/">AS/400</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RPG-F行说明"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="RPG-二"><a href="#RPG-二" class="headerlink" title="RPG(二)"></a>RPG(二)</h1><h2 id="F行说明"><a href="#F行说明" class="headerlink" title="F行说明"></a>F行说明</h2><p>首位填上F，然后按F4，会出现如下内容：  </p>
+<p><img src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200925141121727.png" alt="image-20200925141121727"></p>
+<h3 id="Filename"><a href="#Filename" class="headerlink" title="Filename:"></a>Filename:</h3><p>需要声明的文件名，必须<strong>顶格</strong>，文件名必须<strong>唯一</strong>，也就是程序中对同样的文件名不能声明两次。  </p>
+<h3 id="File-Type"><a href="#File-Type" class="headerlink" title="File Type:"></a>File Type:</h3><p>声明文件的处理类型。必须填写。允许的选项有：<br><code>I</code>： 输入型，即只读文件，对声明的文件只取其记录的值，不对记录进行修改<br><code>U</code>： 修改型，即对声明的文件进行修改操作（删除记录属于修改操作的一种）<br><code>O</code>： 输出型，即只写，对声明的文件只进行写操作。<br><code>C</code>： 混合型，用于对屏幕文件的定义。（混合型，即输入/输出型，以屏幕文件为例，也就是读取屏幕文件的一些输入字段信息，同时也可以输出一些字段的值到屏幕文件中，但不能对屏幕文件自身进行修改，所以与上面的U 是有区别的）    </p>
+<h3 id="File-Designation"><a href="#File-Designation" class="headerlink" title="File Designation:"></a>File Designation:</h3><p>文件的指定方式，允许的选项有：<br>当“File Type”为I，U，C 时，这里填“F”(百分之90都是f)<br>当“File Type ”为O 时，这里不填写 </p>
+<h3 id="End-of-File"><a href="#End-of-File" class="headerlink" title="End of File:"></a>End of File:</h3><p>程序结束前，对记录的处理方式。可以不填，或填“E”。似乎不填，表示在程序结束前，要处理所有文件的所有记录（含LF）；填E，表示只处理这个文件的所有记录.总之，此项一般是不填  </p>
+<h3 id="File-Addtion"><a href="#File-Addtion" class="headerlink" title="File Addtion:"></a>File Addtion:</h3><p>是否会<strong>增加文件中的记录</strong>，即是否会对文件进行写操作。<br>可以不填，或填“A”<br>当File Type 为“O”时，系统自动默认此项为“A”，不必填写；<br>当File Type 为“I”，或“U”时，这项内容可以填“A”，也可以不填。不填，即表示不会增<br>加文件中的记录，也就是没有写操作；填“A”时，即表示会增加文件中的记录，也就是会对文件进行写操作。  </p>
+<h3 id="Sequence"><a href="#Sequence" class="headerlink" title="Sequence:"></a>Sequence:</h3><p>针对cycle 使用的，表示排序顺序。<br>当定义为非cycle 文件时，即“File Designation”项非“P”、“S”时，此项必须为空；<br>当定义为cycle 文件时，即“File Designation”项为“P”、或“S”时，此项可填空、A、D。<br>A 表示升序，D 表示降序。<br>因为CYCLE 现在已不常用，所以<strong>通常不填</strong>。  </p>
+<h3 id="File-Format"><a href="#File-Format" class="headerlink" title="File Format:"></a>File Format:</h3><p>文件格式，不能为空，允许的值有：<br>E： 声明的文件，是外部描述的文件（即文件在程序运行之前就已存在）<br>F： 声明的文件，是一个程序描述文件<br>这里通常填“E”，即为外部描述文件  </p>
+<h3 id="Record-Length"><a href="#Record-Length" class="headerlink" title="Record Length"></a>Record Length</h3><p>“File Format”为“F”时，才需要填写。<br><strong>通常不填</strong></p>
+<h3 id="Limit-Processing"><a href="#Limit-Processing" class="headerlink" title="Limit Processing"></a>Limit Processing</h3><p>通常不填。</p>
+<h3 id="Length-of-Key-Field"><a href="#Length-of-Key-Field" class="headerlink" title="Length of Key Field"></a>Length of Key Field</h3><p>查询时，索引键值的长度<br>如果“File Format”项等于“E”，即外部描述文件时，此项不填<br>如果“File Format”项等于“F”，便不需要按KEY 值查询时，此项也不填<br>如果“File Format”项等于“F”，需要按KEY 值查询时，此项填写KEY 值的长度  </p>
+<p>因为一般都使用外部描述文件，所以这里一般都不填写。</p>
+<h3 id="Record-Address-Type"><a href="#Record-Address-Type" class="headerlink" title="Record Address Type"></a>Record Address Type</h3><p>记录<strong>寻址类型</strong>，好象是对文件键值的描述。允许的值如下：<br>空：<strong>不使用KEY 值，在程序段中，不会对文件的查询定位操作</strong>，如“SETLL”、“CHAIN”操作<br>码都不会用的时，该项填空。<br><code>K</code>： 使用KEY 值，即表示会对声明的文件进行查询定位操作，此时声明的文件必须有键值，即<br>必须为逻辑文件（LF 文件），或在生成文件时，已加入了KEY 值。<br>（下面的选项应该是程序描述文件才会使用）<br><code>A</code>： KEY 值为字符型<br><code>D</code>：KEY 值为日期型<br><code>F</code>：KEY 值为数字型<br><code>G</code>：KEY 值为非英文字符<br><code>P</code>：KEY 值为压缩型数字<br><code>T</code>：KEY 值为时间型<br><code>Z</code>：KEY 值为timestamp<br>总之，如果要按照键值对声明的文件进行查询定位操作（即程序中使用了CHAIN、SETLL 操作码，<br>则此项需要填写“K”；如不需要进行查询操作，则不填。），此项填“K”时，声明的文件必须含<br>有KEY 值。</p>
+<h3 id="File-Organization"><a href="#File-Organization" class="headerlink" title="File Organization"></a>File Organization</h3><p><strong>一般不填</strong></p>
+<h3 id="Device"><a href="#Device" class="headerlink" title="Device"></a>Device</h3><p>声明文件的存放位置，必须填写，允许的值有：<br><code>DISK</code>： 磁盘文件，即文件存储在磁盘上，最常见的；<br><code>PRINTER</code>： 打印文件，提供打印输出描述，以及对打印设备访问。打印报表用这个；<br><code>WORKSTN</code>： workstation，工作站，显示文件。屏幕文件(DSPF)的定义用这个值</p>
+<h3 id="Keyword"><a href="#Keyword" class="headerlink" title="Keyword"></a>Keyword</h3><p>可以不填，常用的值有（这里只列出几个常用的）：<br><code>COMMIT</code><br>该文件记录的数据操作进行日志处理  事务  strcmtctr cmt<br><code>RENAME</code><br>对文件记录格式名进行重命名。比如说程序中需要同时声明PFFHSL1，PFFHSL2这两个逻辑<br>文件。这两个逻辑文件的记录格式名都是一样（通常和PF 一样，即都为FMTFHS；不过也可以定<br>义成不同。如果不同，当然就不需要使用RENAME 键字了）。那么，为了能让系统区分，就必须<br>对其中一个的记录格式名进行重命名。RENAME的语法：RENAME（旧记录格式名：新记录格名），  </p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FPFFHSL1 IF E DISK  </span><br><span class="line">FPFFHSL2 IF E DISK RENAME(FMTFHS：FMTFHS2)</span><br></pre></td></tr></table></figure>
+
+<p>新记录格式可以自由定义，只要在该程序中无同名的即可。RENAME 并不会真正的更改文<br>件的记录格式名，仅是在当前运行程序中进行重命名。对同时运行的其它程序无影响<br><code>USROPN</code><br>        对于声明的文件，由用户自行打开。如果不填写此关键字，系统将会在程序最最开始（执行第一句C 行语句前），自动执行“OPEN 文件” 的操作，在程序结束后，自动执行“CLOSE文件”的操作。而填写此关键字之后，OPEN，CLOSE 的操作将由用户在C 行程序段中，自行处理。如果用户未执行OPEN 操作，就执行CHAIN、READ、SETLL 等语句，在编译程序时就会报错。程序在结束之前，必须关闭所有已打开的文件，所以用起来会比较繁琐。USROPN 常作用于对文件的解锁，在同一程序中打开同一文件的不同MEMBER 等，属于一个较高级的用法，可在实际操作中慢慢体会。OPEN，CLOSE 的操作码，对应的是文件名，不是记录格式名。即<br>C OPEN PFFHSL1<br>C CLOSE PFFHSL1<br>而不是<br>C OPEN FMTFHS</p>
+<h3 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h3><p>注释说明。源自RPG，在RPG 中是有作用的，可以对程序作简短的说明，但在RPGLE<br>中，其实已经没有作用了，此项不用填。（填了也没用）  </p>
+<h3 id="常用例子"><a href="#常用例子" class="headerlink" title="常用例子"></a>常用例子</h3><p>对文件进行只读的声明：<br>FPFFHS IF E DISK</p>
+<p>对文件进行修改的声明：<br>FPFFHS UF E DISK</p>
+<p>对文件进行只写的声明：<br>FPFFHS O E DISK</p>
+<p>对文件进行修改，以及增加记录的操作：<br>FPFFHS UF A E DISK</p>
+<p>对文件进行查询，增加记录的操作，并对文件进行查询操作：<br>FPFFHSL1 IF A E K DISK</p>
+<p>声明两个记录格式相同的文件，并对其中之一进行重命名<br>FPFFHSL1 IF E K DISK<br>FPFFHSL2 IF E K DISK RENAME(FMTFHS:FMTFHS2)</p>
+<p>注：在声明时，两个文件不一定要上下紧接着；随便改哪一个文件对应的记录格式<br>都可以；新旧记录格式名用冒号隔开，新记录格式名可自行定义，无规则。<br>对文件的修改操作进行日志处理：<br>FPFFHSL2 UF E K DISK COMMIT  </p>
+<p>cycle 类文件的声明：<br>FPFFHSL2 IP E K DISK<br>这样文件声明为P 之后，程序中不需要写循环读文件，也不需要写RETURN，设指示器INLR，<br>也就是<br>FPFFHSL2 IP E K DISK<br>C READ 记录格式名<br>等价于<br>FPFFHSL2 IF E K DISK<br>C DOW 1 = 1<br>C READ 记录格式名 EQ 指示器<br>C IF EQ指示器=’1’<br>C LEAVE<br>C ENDIF<br>C ENDDO<br>C RETURN  </p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AS-400/">AS/400</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/b6df285e/"><img class="prev-cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">RPG操作码汇总</div></div></a></div><div class="next-post pull-right"><a href="/posts/6b2345a3/"><img class="next-cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RPG入门</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/6e639b06/" title="AS400(一)"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="title">AS400(一)</div></div></a></div><div><a href="/posts/881792ef/" title="10.22笔记"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="title">10.22笔记</div></div></a></div><div><a href="/posts/6b557ec5/" title="AS&#x2F;400(二)"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-23</div><div class="title">AS&#x2F;400(二)</div></div></a></div><div><a href="/posts/b9ff8872/" title="10.21笔记"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="title">10.21笔记</div></div></a></div><div><a href="/posts/9421881e/" title="AS&#x2F;400事务和日志"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-12</div><div class="title">AS&#x2F;400事务和日志</div></div></a></div><div><a href="/posts/a0ae3de1/" title="IBM_i的体系结构"><img class="cover" src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="title">IBM_i的体系结构</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">樱桃先生</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">75</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>关注</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临樱桃小窝🍒</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RPG-%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">RPG(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#F%E8%A1%8C%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">F行说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Filename"><span class="toc-number">1.1.1.</span> <span class="toc-text">Filename:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Type"><span class="toc-number">1.1.2.</span> <span class="toc-text">File Type:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Designation"><span class="toc-number">1.1.3.</span> <span class="toc-text">File Designation:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#End-of-File"><span class="toc-number">1.1.4.</span> <span class="toc-text">End of File:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Addtion"><span class="toc-number">1.1.5.</span> <span class="toc-text">File Addtion:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequence"><span class="toc-number">1.1.6.</span> <span class="toc-text">Sequence:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Format"><span class="toc-number">1.1.7.</span> <span class="toc-text">File Format:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Record-Length"><span class="toc-number">1.1.8.</span> <span class="toc-text">Record Length</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limit-Processing"><span class="toc-number">1.1.9.</span> <span class="toc-text">Limit Processing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Length-of-Key-Field"><span class="toc-number">1.1.10.</span> <span class="toc-text">Length of Key Field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Record-Address-Type"><span class="toc-number">1.1.11.</span> <span class="toc-text">Record Address Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Organization"><span class="toc-number">1.1.12.</span> <span class="toc-text">File Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device"><span class="toc-number">1.1.13.</span> <span class="toc-text">Device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keyword"><span class="toc-number">1.1.14.</span> <span class="toc-text">Keyword</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comment"><span class="toc-number">1.1.15.</span> <span class="toc-text">Comment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BE%8B%E5%AD%90"><span class="toc-number">1.1.16.</span> <span class="toc-text">常用例子</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/36794/" title="信用卡业务汇总"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="信用卡业务汇总"/></a><div class="content"><a class="title" href="/posts/36794/" title="信用卡业务汇总">信用卡业务汇总</a><time datetime="2022-08-21T13:43:00.000Z" title="发表于 2022-08-21 21:43:00">2022-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d5253164/" title="重排序"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重排序"/></a><div class="content"><a class="title" href="/posts/d5253164/" title="重排序">重排序</a><time datetime="2021-04-01T15:28:00.000Z" title="发表于 2021-04-01 23:28:00">2021-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/72f47432/" title="垃圾回收"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="垃圾回收"/></a><div class="content"><a class="title" href="/posts/72f47432/" title="垃圾回收">垃圾回收</a><time datetime="2021-03-28T06:50:00.000Z" title="发表于 2021-03-28 14:50:00">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/223a19f9/" title="对象实例化和内存布局"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对象实例化和内存布局"/></a><div class="content"><a class="title" href="/posts/223a19f9/" title="对象实例化和内存布局">对象实例化和内存布局</a><time datetime="2021-03-28T04:58:00.000Z" title="发表于 2021-03-28 12:58:00">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/39230a67/" title="String相关"><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/Java.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="String相关"/></a><div class="content"><a class="title" href="/posts/39230a67/" title="String相关">String相关</a><time datetime="2021-03-26T14:45:00.000Z" title="发表于 2021-03-26 22:45:00">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 樱桃先生</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
