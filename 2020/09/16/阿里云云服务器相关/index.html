@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>阿里云云服务器相关 | 樱桃小窝</title><meta name="keywords" content="其它"><meta name="author" content="樱桃先生"><meta name="copyright" content="樱桃先生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="云服务器 有事情落下之后,就会有新的折腾,生命不息,折腾不止….  白嫖一下服务器(或者第一年96) 配置安全组规则由于阿里云是默认不授权80端口的访问的，所以我们要手动配置。 打开阿里云服务器管理控制台-&gt;点击左侧安全组-&gt;点击右侧的配置规则-&gt;点击添加安全组规则  实例列表重置实例密码 按照习惯使用xshell连接 安装nginx我们需要nginx作为我们的服务器，所以我们首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云云服务器相关">
+<meta property="og:url" content="http://example.com/2020/09/16/%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="樱桃小窝">
+<meta property="og:description" content="云服务器 有事情落下之后,就会有新的折腾,生命不息,折腾不止….  白嫖一下服务器(或者第一年96) 配置安全组规则由于阿里云是默认不授权80端口的访问的，所以我们要手动配置。 打开阿里云服务器管理控制台-&gt;点击左侧安全组-&gt;点击右侧的配置规则-&gt;点击添加安全组规则  实例列表重置实例密码 按照习惯使用xshell连接 安装nginx我们需要nginx作为我们的服务器，所以我们首">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2020-09-16T02:20:00.000Z">
+<meta property="article:modified_time" content="2020-09-28T23:29:04.000Z">
+<meta property="article:author" content="樱桃先生">
+<meta property="article:tag" content="其它">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/cherry.jpeg"><link rel="canonical" href="http://example.com/2020/09/16/%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '阿里云云服务器相关',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-09-29 07:29:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">樱桃小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其它</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">阿里云云服务器相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-16T02:20:00.000Z" title="发表于 2020-09-16 10:20:00">2020-09-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-28T23:29:04.000Z" title="更新于 2020-09-29 07:29:04">2020-09-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">云服务器</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="阿里云云服务器相关"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="云服务器"><a href="#云服务器" class="headerlink" title="云服务器"></a>云服务器</h1><blockquote>
+<p>有事情落下之后,就会有新的折腾,生命不息,折腾不止….</p>
+</blockquote>
+<h2 id="白嫖一下服务器-或者第一年96"><a href="#白嫖一下服务器-或者第一年96" class="headerlink" title="白嫖一下服务器(或者第一年96)"></a>白嫖一下服务器(或者第一年96)</h2><p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/image-20200916102304166.png" alt="image-20200916102304166"></p>
+<h2 id="配置安全组规则"><a href="#配置安全组规则" class="headerlink" title="配置安全组规则"></a>配置安全组规则</h2><p>由于阿里云是默认不授权80端口的访问的，所以我们要手动配置。</p>
+<p>打开阿里云服务器管理控制台-&gt;点击左侧安全组-&gt;点击右侧的配置规则-&gt;点击添加安全组规则</p>
+<p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/image-20200916102731010.png" alt="image-20200916102731010"></p>
+<h2 id="实例列表重置实例密码"><a href="#实例列表重置实例密码" class="headerlink" title="实例列表重置实例密码"></a>实例列表重置实例密码</h2><p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/image-20200916103745491.png" alt="image-20200916103745491"></p>
+<h2 id="按照习惯使用xshell连接"><a href="#按照习惯使用xshell连接" class="headerlink" title="按照习惯使用xshell连接"></a>按照习惯使用xshell连接</h2><p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/image-20200916103849255.png" alt="image-20200916103849255"></p>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>我们需要nginx作为我们的服务器，所以我们首先要安装nginx。可以使用yum命令直接进行安装。<br> 安装执行命令如下<br> <code>yum install -y nginx</code></p>
+<p>启动服务器：<br> <code>systemctl start nginx</code><br> <code>systemctl enable nginx</code></p>
+<h2 id="配置服务器路由"><a href="#配置服务器路由" class="headerlink" title="配置服务器路由"></a>配置服务器路由</h2><p>安装并启动服务器后，我们就完成了第一步，现在我们可以尝试使用自己的电脑去访问服务器的公网IP。公网IP可以打开一个nginx的默认网页。这就成功了第一步。</p>
+<p>阿里云默认的库下载的是fedora版本的nginx，所以我们应该配置的是位于 <strong>etc/nginx/</strong> 下的 <strong>nginx.conf</strong> 。</p>
+<p>先创建一个新的文件，然后采用include的方式，将这个文件包含进nginx.conf中。</p>
+<p>操作如下：<br> 在/etc/nginx/目录下创建一个文件夹 叫 <strong>vhost</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx</span><br><span class="line">mkdir vhost</span><br><span class="line">cd vhost</span><br><span class="line">vim blog.conf</span><br></pre></td></tr></table></figure>
+
+<p>编辑 blog.conf文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">	listen    80;</span><br><span class="line">	root /home/www/website;这里填博客目录存放的地址</span><br><span class="line">	server_name 这里填域名如(www.baidu.com) 如果暂时没有域名就填阿里云的公网ip，以后有了再改回来;</span><br><span class="line">	location /&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存并退出<br> <code>:wq</code></p>
+<p>打开/etc/nginx/目录下的nginx.conf文件<br> <code>vi /etc/nginx/nginx.conf</code></p>
+<p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/20190815132229194.png" alt="配置nginx"><br> 如果以后还想添加新的网站，也可以在vhost目录下新建一个conf配置文件。</p>
+<p>在刚才我们自己写的blog.conf配置文件中root的路径相应路径建立博客的目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line">mkdir www</span><br><span class="line">cd www</span><br><span class="line">mkdir website</span><br><span class="line">cd /home</span><br><span class="line">chmod -R 777 ./www</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p> 安装nodejs有很多种方式，我这边就说一种</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://rpm.nodesource.com/setup_10.x | bash -</span><br><span class="line">yum install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后执行 node -v 和 npm -v 如果打印版本号则安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# node -v</span><br><span class="line">v10.9.0</span><br><span class="line">[root@localhost /]# npm -v</span><br><span class="line">6.2.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Git及配置仓库"><a href="#安装Git及配置仓库" class="headerlink" title="安装Git及配置仓库"></a>安装Git及配置仓库</h2><p> 这一部分主要目的是让我们个人的电脑可以通过ssh方式连接到云服务器，然后我们就可以通过命令行方式将我们的博客Po到服务器上。操作如下：<br> 安装git:<br><code>yum install git</code></p>
+<p>配置git用户<br> <code>adduser git</code></p>
+<p>修改用户权限:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>找到这个位置添加下面这句话<br> <code>git ALL=(ALL) ALL</code><br> <img src="https://gitee.com/xyingtao/blogimage/raw/master/img/20190815132257287.png" alt="在这里插入图片描述"><br> 保存退出后 将sudoers文件权限改回原样<br> <code>chmod 400 /etc/sudoers</code></p>
+<p>设置git用户的密码<br> <code>sudo passwd git</code></p>
+<p>切换到git用户，然后在~目录下创建.ssh文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh</span><br><span class="line">cd .ssh</span><br></pre></td></tr></table></figure>
+
+<p><strong>生成公钥密钥文件</strong>(这一步很重要，也是我踩过的坑)<br><code>ssh-keygen</code><br> 此时在目录下就会有两个文件，分别是<br><code>id_rsa 和 id_rsa.pub</code><br> 其中 <strong>id_rsa.pub</strong> 就是公钥文件 我们复制一份<br><code>cp id_rsa.pub authorized_keys</code><br> 这样目录下就会有一个authorized_keys文件，它和id_rsa.pub一模一样。<br> 最后我们修改它的权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line">chmod 700 ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<p>然后我们在<strong>自己的电脑上自己的电脑上自己的电脑上</strong>（重要的事说三遍），打开cmd，使用ssh方式连接我们的云服务器。<br> <img src="https://gitee.com/xyingtao/blogimage/raw/master/img/20190815132324323.png" alt="在这里插入图片描述"><br> 最后提示<br> <code>Welcome to Alibaba Cloud Elastic Compute Service !</code><br> 说明登录成功了。</p>
+<p>现在我们要创建一个git的仓库，并且新建一个post-receive文件，操作如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">git init --bare blog.git</span><br><span class="line">vi ~/blog.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<p> 输入以下内容：<br><code>git --work-tree=/home/www/website --git-dir=/home/git/blog.git checkout -f</code><br> 保存退出并授予该文件可执行权限<br><code>chmod +x ~/blog.git/hooks/post-receive</code><br> 至此我们就完成了所有关于服务器端的配置</p>
+<h2 id="配置-config-yml完成服务器的部署"><a href="#配置-config-yml完成服务器的部署" class="headerlink" title="配置_config.yml完成服务器的部署"></a>配置_config.yml完成服务器的部署</h2><p>在刚才生成hexo的目录下，找到_config.yml，打开它。<br> 找到deploy 做如下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@这里改为服务器公网IP:/home/git/blog.git       </span><br><span class="line">branch: master                           </span><br></pre></td></tr></table></figure>
+
+<h1 id="域名和服务器绑定"><a href="#域名和服务器绑定" class="headerlink" title="域名和服务器绑定"></a>域名和服务器绑定</h1><p>在域名列表 选择解析-新手引导</p>
+<p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/image-20200916155336789.png" alt="image-20200916155336789"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B6%E5%AE%83/">其它</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" target="_blank"><img class="post-qr-code-img" src="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/17/JVM/%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">执行引擎</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/13/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%80%A7/"><img class="next-cover" src="https://gitee.com/xyingtao/blogimage/raw/master/img/分布式.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">接口幂等性问题</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">樱桃先生</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>关注</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临樱桃小窝🍒</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">云服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BD%E5%AB%96%E4%B8%80%E4%B8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8-%E6%88%96%E8%80%85%E7%AC%AC%E4%B8%80%E5%B9%B496"><span class="toc-number">1.1.</span> <span class="toc-text">白嫖一下服务器(或者第一年96)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E7%BB%84%E8%A7%84%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">配置安全组规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%97%E8%A1%A8%E9%87%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">实例列表重置实例密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E4%B9%A0%E6%83%AF%E4%BD%BF%E7%94%A8xshell%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text">按照习惯使用xshell连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nginx"><span class="toc-number">1.5.</span> <span class="toc-text">安装nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B7%AF%E7%94%B1"><span class="toc-number">1.6.</span> <span class="toc-text">配置服务器路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Node-js"><span class="toc-number">1.7.</span> <span class="toc-text">安装Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Git%E5%8F%8A%E9%85%8D%E7%BD%AE%E4%BB%93%E5%BA%93"><span class="toc-number">1.8.</span> <span class="toc-text">安装Git及配置仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-config-yml%E5%AE%8C%E6%88%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%83%A8%E7%BD%B2"><span class="toc-number">1.9.</span> <span class="toc-text">配置_config.yml完成服务器的部署</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%91%E5%AE%9A"><span class="toc-number">2.</span> <span class="toc-text">域名和服务器绑定</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/%E9%87%8D%E6%8E%92%E5%BA%8F/" title="重排序"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重排序"/></a><div class="content"><a class="title" href="/2021/04/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/%E9%87%8D%E6%8E%92%E5%BA%8F/" title="重排序">重排序</a><time datetime="2021-04-01T15:28:00.000Z" title="发表于 2021-04-01 23:28:00">2021-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/28/JVM/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="垃圾回收"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="垃圾回收"/></a><div class="content"><a class="title" href="/2021/03/28/JVM/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="垃圾回收">垃圾回收</a><time datetime="2021-03-28T06:50:00.000Z" title="发表于 2021-03-28 14:50:00">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/28/JVM/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96/" title="对象实例化和内存布局"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对象实例化和内存布局"/></a><div class="content"><a class="title" href="/2021/03/28/JVM/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96/" title="对象实例化和内存布局">对象实例化和内存布局</a><time datetime="2021-03-28T04:58:00.000Z" title="发表于 2021-03-28 12:58:00">2021-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/Java/String%E7%9B%B8%E5%85%B3/" title="String相关"><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/Java.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="String相关"/></a><div class="content"><a class="title" href="/2021/03/26/Java/String%E7%9B%B8%E5%85%B3/" title="String相关">String相关</a><time datetime="2021-03-26T14:45:00.000Z" title="发表于 2021-03-26 22:45:00">2021-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%92%8C%E7%BD%91%E7%BB%9C/Http/" title="Http"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Http"/></a><div class="content"><a class="title" href="/2021/03/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E5%92%8C%E7%BD%91%E7%BB%9C/Http/" title="Http">Http</a><time datetime="2021-03-25T16:39:00.000Z" title="发表于 2021-03-26 00:39:00">2021-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 樱桃先生</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
