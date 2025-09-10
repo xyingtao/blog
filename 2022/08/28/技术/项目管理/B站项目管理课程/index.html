@@ -1,35 +1,461 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>项目管理笔记 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是项目？What is project? The Project Management Institute defines it as a  “Temporary endeavor undertaken to create a unique product service or result”  项目管理协会将其定义为“为创造独特的产品、服务、或者结果而进行的临时努力” 换句话说： 它是一个临">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目管理笔记">
+<meta property="og:url" content="http://example.com/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是项目？What is project? The Project Management Institute defines it as a  “Temporary endeavor undertaken to create a unique product service or result”  项目管理协会将其定义为“为创造独特的产品、服务、或者结果而进行的临时努力” 换句话说： 它是一个临">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png">
+<meta property="article:published_time" content="2022-08-28T04:30:00.000Z">
+<meta property="article:modified_time" content="2023-05-02T06:29:00.380Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "项目管理笔记",
+  "url": "http://example.com/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/",
+  "image": "https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png",
+  "datePublished": "2022-08-28T04:30:00.000Z",
+  "dateModified": "2023-05-02T06:29:00.380Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-    article#article-container.container.post-content
-      if theme.noticeOutdate.enable && page.noticeOutdate !== false
-        include includes/post/outdate-notice.pug
-      else
-        !=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (page.tags.length > 0 && theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '项目管理笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">项目管理笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">项目管理笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-08-28T04:30:00.000Z" title="Created 2022-08-28 12:30:00">2022-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-02T06:29:00.380Z" title="Updated 2023-05-02 14:29:00">2023-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="什么是项目？What-is-project"><a href="#什么是项目？What-is-project" class="headerlink" title="什么是项目？What is project?"></a>什么是项目？What is project?</h1><blockquote>
+<p>The Project Management Institute defines it as a </p>
+<p>“Temporary endeavor undertaken to create a unique product service or result”</p>
+</blockquote>
+<p>项目管理协会将其定义为“为创造独特的产品、服务、或者结果而进行的临时努力”</p>
+<p>换句话说： <code>它是一个临时性的举措，是为了实现一个特定目标而商定的计划和执行</code></p>
+<p>项目是为完成某一独特的产品和服务所做的一次性努力。如果不是一次性，那就是运营（Operation）。</p>
+<blockquote>
+<p>例子：</p>
+<ul>
+<li>建造一座工厂</li>
+<li>长城、金字塔</li>
+<li>组织一次旅游、家庭聚会</li>
+</ul>
+</blockquote>
+<h1 id="什么是项目管理？"><a href="#什么是项目管理？" class="headerlink" title="什么是项目管理？"></a>什么是项目管理？</h1><p>项目管理就是运用各种知识、技能、手段和技术到项目活动中，以达到项目要求</p>
+<h2 id="项目管理的三重约束"><a href="#项目管理的三重约束" class="headerlink" title="项目管理的三重约束"></a>项目管理的三重约束</h2><p><strong>时间范围</strong>和<strong>成本</strong>是相互依赖的，一旦确定它们之后， 它们中的一个发生变化，就会引发其他一个或两个的变化</p>
+<blockquote>
+<p>例如： </p>
+<p>假设你需要将你的项目结束日期提前，你讲需要通过更多的支出来增加你的资源投入，或者生产更少的产品输出，或者两者都有</p>
+</blockquote>
+<h2 id="时间-Time"><a href="#时间-Time" class="headerlink" title="时间 Time"></a>时间 Time</h2><p><strong>Temporary</strong> (complex) initiative 临时性举措</p>
+<p>不同于商业运作，项目有一个预先的开始和结束日期；像市场营销这些重复的活动没有结束日期。</p>
+<p>项目有着严格的截止时间</p>
+<h2 id="范围-Goal"><a href="#范围-Goal" class="headerlink" title="范围 Goal"></a>范围 Goal</h2><p>You can think of it as the <strong>output</strong> of a project </p>
+<p>可以把它看作一个项目的产出。可以是一个产品、一项服务、一个结果。</p>
+<p>The output together with the work done to create it is called <strong>Project Scope</strong>. The scope of each project is <strong>unique</strong></p>
+<p>产出和为创造它所做的工作一起被称为项目范围。每个项目的项目范围是独一无二的。</p>
+<p>如果工作和产出是一样的，那么这将不是一个项目，项目范围不会是统一的，它将是一个常规的商业流程</p>
+<h2 id="成本-Cost"><a href="#成本-Cost" class="headerlink" title="成本 Cost"></a>成本 Cost</h2><p>The <strong>resources</strong> specifically dedicated to accomplishing the goal</p>
+<p>专门用于完成目标的资源</p>
+<h1 id="为什么公司要执行项目-Why-do-companies-execute-projects"><a href="#为什么公司要执行项目-Why-do-companies-execute-projects" class="headerlink" title="为什么公司要执行项目 Why do companies execute projects?"></a>为什么公司要执行项目 Why do companies execute projects?</h1><p>所有的公司和组织都有目标：</p>
+<ol>
+<li>常规工作 Daily work goals</li>
+<li>战略性 Stategic goals<ul>
+<li>战略性决策有助于公司实现其愿望</li>
+</ul>
+</li>
+</ol>
+<h3 id="公司如何将这些额外的努力转化为预期的效益和目标呢？-How-do-companies-transform-these-extra-efforts-into-the-desired-benefits-and-goals"><a href="#公司如何将这些额外的努力转化为预期的效益和目标呢？-How-do-companies-transform-these-extra-efforts-into-the-desired-benefits-and-goals" class="headerlink" title="公司如何将这些额外的努力转化为预期的效益和目标呢？ How do companies transform these extra efforts into the desired benefits and goals?"></a>公司如何将这些额外的努力转化为预期的效益和目标呢？ How do companies transform these extra efforts into the desired benefits and goals?</h3><p><strong>Projects</strong></p>
+<p>A project must relate to a BUSINESS STRATEGY</p>
+<p>项目是一种特殊类型的投资</p>
+<p>投入 Resources:</p>
+<ul>
+<li><p>财政资源-商品和服务的需要 Financial resources</p>
+</li>
+<li><p>组织资源-来自不同部门的专家和专业人员以及任何可能需要的设备 Organizational resources</p>
+</li>
+<li><p>时间 Time</p>
+</li>
+</ul>
+<p>收益 Benefits:</p>
+<ul>
+<li>财务-收入增加 Financial</li>
+<li>运营方面-更有效的流程 Operational</li>
+<li>客户-满足关键客户或者社会的需求而采取的措施 Customer related</li>
+<li>非营利性-环境、社会福利、教育慈善 Non-profit</li>
+</ul>
+<p><img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2016.44.07.png" alt="截屏2022-08-27 16.44.07"></p>
+<h1 id="是什么创造了项目的需求-What-create-the-demand-of-a-project-in-the-first-place"><a href="#是什么创造了项目的需求-What-create-the-demand-of-a-project-in-the-first-place" class="headerlink" title="是什么创造了项目的需求 What create the demand of a project in the first place?"></a>是什么创造了项目的需求 What create the demand of a project in the first place?</h1><p>关键的触发因素 Key triggers that will jump start a business into executing a project:</p>
+<ul>
+<li><p>市场需要 Marked Need</p>
+<p>当你的公司想要开发一个产品来解决他们客户的需求或者跟上竞争的步伐</p>
+<p>eg：银行需要开发移动银行，太晚引入将失去客户</p>
+</li>
+<li><p>业务需要 Business Need</p>
+<p>降低成本、优化流程、扩大客户群</p>
+</li>
+<li><p>技术的进步 Technological Advancement</p>
+<p>eg：自动化</p>
+</li>
+<li><p>客户要求 Customer Request</p>
+<p>eg：关键客户的定制化要求</p>
+</li>
+<li><p>法律要求 Legal Requirements</p>
+<p>公司必须执行</p>
+</li>
+<li><p>社会需求 Social Needs</p>
+<p>政府需要做的事情</p>
+</li>
+<li><p>生态需求 Ecological Considerations</p>
+<p>公司有义务改善工业流程以减少碳排放</p>
+</li>
+</ul>
+<p>需求将需要有一个项目提案，而提案的拥有者将需要把它提交给争夺组织的有限资源。管理层将审查这些项目，并决定哪些项目要执行，哪些要放弃，哪些要推迟。 <strong>紧迫性</strong>是选择项目的一个关键因素</p>
+<h2 id="项目选择Project-selection"><a href="#项目选择Project-selection" class="headerlink" title="项目选择Project selection"></a>项目选择Project selection</h2><p>高层管理的重要工作 Essential task for top managerment</p>
+<p>他们必须选择能给公司带来最大价值的项目，财务和非财务</p>
+<p>In the eyes of the board of directors, projects are <strong>investment</strong>:</p>
+<p>They use resources again, financial and otherwise, with the objective of seeing a worth while return</p>
+<p>在董事会眼里，项目就是投资，他们再次使用资源目的就是看到一个有价值的回报</p>
+<p>当董事会收到可能的项目时，他们通常会选择其中的几个项目，并将其纳入一个项目组合。然后董事会将开始涉足所谓的项目组合管理。这是一个对项目进行优先排序的过程，以及对大型项目组合的管理和控制。</p>
+<p>基本上，目标是实现结果，并以最佳的方式组合各项目资源。项目就是投资，而对于任何投资，初步分析都需要谨慎进行。项目会消耗大量的资源、资金、时间、精力和注意力。因此，如果它们与企业战略不一致，那么它们就是一种巨大的浪费，导致许多利益相关者失望。最严重的后果就是破产。</p>
+<h1 id="什么是项目经理"><a href="#什么是项目经理" class="headerlink" title="什么是项目经理?"></a>什么是项目经理?</h1><p>当已经有了项目，并且已经被董事会选定为当前的倡议，就需要一个人确保项目的执行是成功的。这个人就是项目经理。他们将对项目的成功负责。</p>
+<p>The project managerment is the CEO of the project. They will be accountable for the project’s success</p>
+<p>当项目经理担任一个项目的项目经理时，他就默示了同意在三大约束条件下工作并且仍然达到现在的目标。</p>
+<h2 id="如果时间和预算不足怎么办？-What-if-the-time-frame-and-budget-are-insufficient"><a href="#如果时间和预算不足怎么办？-What-if-the-time-frame-and-budget-are-insufficient" class="headerlink" title="如果时间和预算不足怎么办？ What if the time frame and budget are insufficient?"></a>如果时间和预算不足怎么办？ What if the time frame and budget are insufficient?</h2><p>A project manager can’t shoot themselves in the foot and take on a project that is unlikely to be successful.</p>
+<p>项目经理不能自投罗网接手一个不可能完成的项目。因此当项目管理的三重约束被设置时，它必须是现实的。项目经理有责任对项目进行评估，并认为这些约束条件是否实用。如果不切实际，他们必须像提出项目的人说明原因，并就额外的时间、资源或对项目的调整进行协商。当然，项目经理有权利在设定条件和现实的期望值差距过大的时候，拒绝领导的一个项目。</p>
+<p>现实生活中，时间和资源通常只够完成目标。项目经理的工作是最好的利用他们。这不是一件容易的事情</p>
+<p>Is the project manager’s duty to assess a project and deem the constraints practical or otherwise and if otherwise, they must demonstrate why to whoever proposed and negotiate for additional time, resources or an adjustment to the goal itself. </p>
+<h2 id="什么是负责-What-does-it-mean-to-be-accountable"><a href="#什么是负责-What-does-it-mean-to-be-accountable" class="headerlink" title="什么是负责 What does it mean to be accountable?"></a>什么是负责 What does it mean to be accountable?</h2><p>致力于实现某种结果，然后兑现这一承诺。</p>
+<p>Project maganers are accountable not only for their own tasks but also all the tasks that other parties must  work on and complete</p>
+<h1 id="What-are-the-skills-and-the-knowledge-a-project-management-should-have"><a href="#What-are-the-skills-and-the-knowledge-a-project-management-should-have" class="headerlink" title="What are the skills and the knowledge a project management should have?"></a>What are the skills and the knowledge a project management should have?</h1><p> Project manager: 项目代言人 The face of the project &amp; 任何问题或关注的联络点 The point of contact</p>
+<ol>
+<li><p>硬技能 Technical skills and knowledge <img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2017.23.03.png" alt="截屏2022-08-27 17.23.03"></p>
+<ul>
+<li>项目管理三角约束</li>
+<li>理论框架： 包括关键定义和项目生命周期中的五个阶段</li>
+<li>应用关键项目管理工具和文件的能力：项目章程、项目计划、甘特图、关键路径法、项目预算、状态审查材料、风险日志等</li>
+<li>组织能力</li>
+<li>任务管理能力</li>
+<li>批判性思维： 从不太有用的信息中过滤出有用的信息的能力</li>
+<li>有效利用基础软件</li>
+</ul>
+</li>
+<li><p>软技能 Interpersonal(Soft) skills </p>
+<p><img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2017.27.41.png" alt="截屏2022-08-27 17.27.41"></p>
+<ul>
+<li>沟通：研究表明，项目经理花了大约90%的时间在沟通上</li>
+<li>团队管理</li>
+<li>领导力</li>
+<li>社会技能</li>
+</ul>
+</li>
+<li><p>Industry experience<img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2017.29.19.png" alt="截屏2022-08-27 17.29.19"></p>
+<ul>
+<li>具体业务中的经验</li>
+</ul>
+</li>
+</ol>
+<h1 id="相关专业术语介绍"><a href="#相关专业术语介绍" class="headerlink" title="相关专业术语介绍"></a>相关专业术语介绍</h1><h2 id="项目管理办公室-Project-Management-Office"><a href="#项目管理办公室-Project-Management-Office" class="headerlink" title="项目管理办公室 Project Management Office"></a>项目管理办公室 Project Management Office</h2><p>This is the name of the department responsible for managing, coordinating and consulting project related work.</p>
+<p>这是一个负责管理、协调和咨询项目相关工作的部门的名称。在PMO中，你会发现项目和项目经理、项目协调员、分析员都在工作以确保组织的项目得到妥善管理。 PMO的类型在不同公司的规模和结构上会有所不同。有的公司甚至没有PMO。</p>
+<p>主要从事项目工作的公司在结构上可以很容易的组成团队来执行项目，而工业公司很少需要PMO</p>
+<blockquote>
+<p>例如： 咨询公司几乎完全以PMO的形式组织起来。他们需要能够轻松地组建为不同客户工作的项目团队。然而一个生产钢铁的工业公司会有很好的标准化操作，不需要维持一个PMO。</p>
+</blockquote>
+<p>PMO单位的作用和重要性也可以是多样化的:</p>
+<ul>
+<li>如果一个PMO负责<code>项目选择</code>和<code>产品组合管理</code>，他们将具有战略作用。</li>
+<li>当赋予<code>领导项目管理</code>的责任时，它可以有一个更注重执行的角色,它的作用是在PMO员工提供帮助的情况下，通过报告项目进展和保持项目工作在既定的标准范围内。</li>
+</ul>
+<h2 id="项目团队-Project-Team"><a href="#项目团队-Project-Team" class="headerlink" title="项目团队 Project Team"></a>项目团队 Project Team</h2><p>每个项目都要有一个项目团队。项目团队是负责执行的专家。</p>
+<p>例如： 在软件项目中的开发人员，或在大型项目中的指定经理协调人。</p>
+<p><img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-30%2022.39.14.png" alt="截屏2022-08-30 22.39.14"></p>
+<p>实际上，创建的团队往往将来自不止一个公司的员工联系起来。这是确保项目团队有更广泛的专业知识和能力来交付一个更复杂的项目的一种方法。</p>
+<blockquote>
+<p>例如： 在一个保险软件项目中，IT专家可能会和客户组织的一些保险专业人员组成一个联合团队。</p>
+</blockquote>
+<h2 id="利益相关者-Project-stakeholders"><a href="#利益相关者-Project-stakeholders" class="headerlink" title="利益相关者 Project stakeholders"></a>利益相关者 Project stakeholders</h2><p>所有参与项目的个人或组织，可以影响到或受到项目工作和结果影响的。 这些人可以是管理层、客户、竞争者、供应商、客户，在某些情况下也可以是社会（公共基础设施项目）</p>
+<blockquote>
+<p>例如：如果你的公寓旁边正在建造一条新的地下线路，你将是一个利益相关者。你会受到工作的影响，如果有大的延误，你和你的邻居可以吸引媒体对这个问题的关注。</p>
+</blockquote>
+<p>重要的是要记住： 即使不参与项目本身，利益相关者也可以影响项目的工作。</p>
+<p>项目经理和项目团队也是利益相关者。</p>
+<h2 id="程序管理-Program-Management"><a href="#程序管理-Program-Management" class="headerlink" title="程序管理 Program Management"></a>程序管理 Program Management</h2><p>对多个项目的协调管理，这些项目有相似的特点、资源。通过把他们当作一个项目来管理实现效率和协同效应而获得优势。</p>
+<blockquote>
+<p>例如： 如果你的公司想在欧洲分支机构实施一个类似的软件，而每个国家都需要一个单独的项目。</p>
+</blockquote>
+<h2 id="项目组合管理-Project-portfolio-management"><a href="#项目组合管理-Project-portfolio-management" class="headerlink" title="项目组合管理 Project portfolio management"></a>项目组合管理 Project portfolio management</h2><p>指的是对多个项目和工程的协调管理</p>
+<h1 id="Phases-of-project-development"><a href="#Phases-of-project-development" class="headerlink" title="Phases of project development"></a>Phases of project development</h1><h2 id="项目的立项和启动（Initiation）"><a href="#项目的立项和启动（Initiation）" class="headerlink" title="项目的立项和启动（Initiation）"></a>项目的立项和启动（Initiation）</h2><p>这是项目发起人打下基础的地方</p>
+<ul>
+<li><p>他们将定义总体目标、概念或需要解决的问题</p>
+<p>They will define the overall objective or concept or the problem which needs resolving. </p>
+</li>
+<li><p>他们将提出预算和时间框架，并将所有这些放在项目商业案例和公共服务公告中，供所有有志于此的项目经理参考</p>
+<p>They will suggest a budget and the time frame and put all of this in the project business case and public service announcement for all aspiring project managers. </p>
+</li>
+<li><p>这也是选择项目经理的阶段</p>
+<p>This is also the phase where the project manager is chosen.</p>
+</li>
+</ul>
+<h3 id="项目立项和启动过程："><a href="#项目立项和启动过程：" class="headerlink" title="项目立项和启动过程："></a>项目立项和启动过程：</h3><ul>
+<li>发现机会</li>
+<li>发起项目</li>
+<li>核准和确定项目范围</li>
+<li>使项目和项目新阶段正式开始的过程</li>
+</ul>
+<h3 id="项目启动过程的内容："><a href="#项目启动过程的内容：" class="headerlink" title="项目启动过程的内容："></a>项目启动过程的内容：</h3><ul>
+<li>理解和验证业务、产品、客户或管理层的要求</li>
+<li>定义具体的、可度量的项目目标和项目成功标准</li>
+<li>明确总预算、总里程碑、主要风险</li>
+<li>识别相关方、建立初步的项目组织架构</li>
+<li>形成项目章程（立项报告或者初部范围说明书）</li>
+<li>举行开工会议、明确授权和分工接口</li>
+</ul>
+<h3 id="确定项目目标-Goal"><a href="#确定项目目标-Goal" class="headerlink" title="确定项目目标(Goal)"></a>确定项目目标(Goal)</h3><ul>
+<li>制定项目目标的SMART原则<ul>
+<li>S：简单具体的</li>
+<li>M：可测量的</li>
+<li>A：责权到位的</li>
+<li>R：合理且相关的</li>
+<li>T：有时限的</li>
+</ul>
+</li>
+<li>正式确认项目的存在</li>
+<li>规定项目目标和主要可交付成果</li>
+<li>项目经理的职权获得书面确认</li>
+<li>项目经理借以调用资源</li>
+</ul>
+<h3 id="商业案例（Business-case）"><a href="#商业案例（Business-case）" class="headerlink" title="商业案例（Business case）"></a>商业案例（Business case）</h3><h2 id="规划-Planning"><a href="#规划-Planning" class="headerlink" title="规划 Planning"></a>规划 Planning</h2><h3 id="What-is-planing"><a href="#What-is-planing" class="headerlink" title="What is planing?"></a>What is planing?</h3><p>它是一个提前分析、评估、决定和组织活动的过程</p>
+<p>能使项目成功或者失败的阶段</p>
+<p>It is the process of analyzing, evaluating , deciding and organizing activities in advance.</p>
+<blockquote>
+<p>复杂的人类活动设计两个层面的规划：</p>
+<ol>
+<li>战略性Stategic: (Should we do it?)</li>
+<li>战术性Tactical: (How do we do it? When? What resources should we spend?)</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>项目经理需要设定工作、并组织项目团队如何执行它。他们估计并定义资源和风险。研究是关键。</p>
+<p>The project manager needs to set the work and organize how the project team will execute it. They estimeate and define resources and risks. Research is key. </p>
+</li>
+<li><p>项目经理必须提出所有正确的问题，并与其他项目利益相关者合作，以找到答案。他们需要找出一些事情，比如需要进行哪些活动来创建可交付的成果和项目范围，应该给这些活动的每一项多少时间，所需的预算是多少，项目组的每个成员将做哪些活动以及更多。</p>
+<p>The project manager must ask the right questions and work with other project stakeholders to find the answers. They need to find out things like what activities need to be performed to create the deliverables and project scope, how much time should be given to each one of these activities, what is the required budget, what activities will each member of the project team do and plenty more.</p>
+</li>
+<li><p>最后，项目经理必须将所有这些发现记录到项目管理的计划中，即如何执行工作以实现目标的秘诀。这个秘诀越全面越详细越好，项目获得成功的机会就越大。规划等同于一种获胜的策略。</p>
+<p>Finally, the project manager must document all of these findings into a project management plan </p>
+<p>The Recipe for how to execute the work to achieve the goal. The better this recipe is more comprehensive, detailed, realistic, the higher the project’s chances of being a delicious success.</p>
+</li>
+</ul>
+<p>planing&#x3D;strategy for winning</p>
+<h3 id="Three-fundamental-steps-in-planning"><a href="#Three-fundamental-steps-in-planning" class="headerlink" title="Three fundamental steps in planning"></a>Three fundamental steps in planning</h3><ol>
+<li>界定目标 Define the goal</li>
+<li>评估选项 Evaluate options</li>
+<li>选择并确认实现目标的最佳方案 Choose and confirm the best option to achieve the goal</li>
+</ol>
+<h3 id="Two-main-areas-to-address-when-planning"><a href="#Two-main-areas-to-address-when-planning" class="headerlink" title="Two main areas to address when planning"></a>Two main areas to address when planning</h3><ol>
+<li><p>知道且可以控制 Knows and can control</p>
+<ul>
+<li>创建待办事项清单</li>
+<li>以最有效的方法排列项目</li>
+<li>最好的人分配到恰当的任务中</li>
+</ul>
+</li>
+<li><p>不知道且无法控制 Doesn’t know and cannot control</p>
+<p>通过 <strong>勤奋的规划</strong> 包括</p>
+<ul>
+<li>风险评估</li>
+<li>估计</li>
+<li>预测</li>
+</ul>
+<p>从而消除或减少对项目的不良影响</p>
+</li>
+</ol>
+<p>良好的规划是一个</p>
+<ol>
+<li>优化工作的绝佳机会</li>
+<li>确保每个人的期望是相同的</li>
+<li>避免代价高昂的错误</li>
+</ol>
+<p>项目经理计划的事情越多，他们成功完成项目的机会就越大</p>
+<p>Not forget to mention the people. People work so much better with direction– when they understood what to do and how and when to do it.</p>
+<blockquote>
+<p>80&#x2F;20 Rule: If more effort is expended in the planning phase, less is needed during the execution</p>
+<p>&#x3D;&gt; Planning is the most productive we can do, if done properly </p>
+</blockquote>
+<h2 id="执行阶段-Execution"><a href="#执行阶段-Execution" class="headerlink" title="执行阶段 Execution"></a>执行阶段 Execution</h2><p>项目团队开始创造可交付的成果。项目经理确定项目的顺利运行，激励团队并解决任何出现的问题。</p>
+<h2 id="检测和控制-Monitering-and-control"><a href="#检测和控制-Monitering-and-control" class="headerlink" title="检测和控制 Monitering and control"></a>检测和控制 Monitering and control</h2><ul>
+<li><p>这个阶段不是在执行之后才开始的，而是并行的</p>
+<p>This phase runs in parallel to Execution</p>
+</li>
+<li><p>项目经理开始监控和控制项目的进展</p>
+<p>The project manager performs monitoring and control activities they have developed to track the progress of the strams and ask</p>
+<ul>
+<li><p>执行是否按照我们的指定计划进行？</p>
+<p>Is the execution progressing as per the plan we created?</p>
+</li>
+<li><p>速度和质量是否符合时间框架的要求？ </p>
+<p>Is the speed and quality in line with the timeframe? </p>
+</li>
+<li><p>支出是否在预算之内？</p>
+<p>Are the expenses within the budget?</p>
+</li>
+</ul>
+<p>如果不是，有延迟、迟缓或者差距，项目经理必须识别并在为时已晚之前采取行动解决他们</p>
+<p>If not, if there are delays, slowdowns or gaps, the project manager must identify them and take action to fix them before it’s too late.</p>
+</li>
+</ul>
+<h2 id="结束阶段-Closure-phase"><a href="#结束阶段-Closure-phase" class="headerlink" title="结束阶段 Closure phase"></a>结束阶段 Closure phase</h2><ul>
+<li><p>将项目移交给为其设计的人</p>
+<p>They must hand the project over to whomever it was designed for</p>
+</li>
+<li><p>赞助人必须正式批准并签署项目，确认商定的目标已经实现</p>
+<p>The sponsor must officially approve and sign off the project confirming the agreed objective has been achieved. </p>
+</li>
+<li><p>项目组，利益相关者和项目经理坐在一起、讨论所学到的经验</p>
+<p>Then the project team, the stakeholders and the project manager sit and discuss the session learnt.</p>
+<ul>
+<li><p>哪些做得好，哪些不好</p>
+<p>What went well &amp; what didn’t </p>
+</li>
+<li><p>哪些可以在未来的项目中改进</p>
+<p>What can be improved for future projects</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>持续改进是很重要的，这就是为什么项目经理必须不断学习新的技能，并建立在他们的专业知识之上。</p>
+<p>一旦反馈被记录下来，这个过程就完成了，每个人都可以有一点休息，直到下一个项目开始。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/">http://example.com/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">项目管理</a></div><div class="post-share"><div class="social-share" data-image="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" title="项目管理笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">项目管理笔记</div></div><div class="info-2"><div class="info-item-1">敏捷宣言We are uncovering better ways of developing software by doing it and helping others do it. Through this work, we have come to value:  Work software over comprehensive documentation Individuals and interactions over processes and tools Customer collaboration over contract negotiation Responding to change over following a plan  虽然右边的项目有价值， 但是我们更重视左边的项目  什么是敏捷敏捷不是一个具体的规则、严格的方法论或者高质量的证明，它更像是一种哲学，一种思维方式，一种做特定环境下如何提高工作效率的一般准则。 敏捷引入了宣言中的价值观，可以在执行特定工作时指导团队，无论是流程还是项目。 在这个宣言的背后，有十二条敏捷原则，为这个概念提供了更多细...</div></div></div></a><a class="pagination-related" href="/2022/08/21/%E6%8A%80%E6%9C%AF/%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1/%E4%BF%A1%E7%94%A8%E5%8D%A1%E4%B8%9A%E5%8A%A1/" title="信用卡业务汇总"><img class="cover" src="https://s2.loli.net/2022/08/22/kpfRHFaCWDTNAu1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">信用卡业务汇总</div></div><div class="info-2"><div class="info-item-1">信用卡概览概览信用卡是什么？ 依据《商业银行信用卡业务监督管理办法》第七条： 信用卡是指记录持卡人账户相关信息，具备银行授信额度和透支功能，并为持卡人提供相关银行服务的各类介质  我国法律（《全国人民代表大会常务委员会关于＜ 中华人民共和国刑法＞有关信用卡规定的解释》），是指由商业银行或者其他金融机构发行的具有消费支付、信用贷款、转账结算、存取现金等全部功能或者部分功能等电子支付卡  信用卡是一种由银行或信用卡公司签发，证明持卡人信誉良好，可以在指定的商店、服务场所消费或在各地的金融机构取现，办理结算的信用凭证和支付工具。  我国目前的信用卡是由商业银行向个人或单位发行的，禁止非金融机构和非银行金融机构经营信用卡业务。   信用卡产生的过程国外信用卡发展历史 19世纪中叶，一名叫摩理斯的男子发明了一种类似金属徽章的信用筹码，以标榜“先享受后付款”的消费理念，这就是最早的信用卡。 1952年，富兰克林国民银行首先发行了银行信用卡，成为第一家发行信用卡的银行 1958年，美国运通公司推出了运通卡，美洲银行第一张现代信用卡： BankAmericard。  国内信用卡发展历史 1985...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A1%B9%E7%9B%AE%EF%BC%9FWhat-is-project"><span class="toc-number">1.</span> <span class="toc-text">什么是项目？What is project?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">什么是项目管理？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%89%E9%87%8D%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.1.</span> <span class="toc-text">项目管理的三重约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4-Time"><span class="toc-number">2.2.</span> <span class="toc-text">时间 Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4-Goal"><span class="toc-number">2.3.</span> <span class="toc-text">范围 Goal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E6%9C%AC-Cost"><span class="toc-number">2.4.</span> <span class="toc-text">成本 Cost</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%AC%E5%8F%B8%E8%A6%81%E6%89%A7%E8%A1%8C%E9%A1%B9%E7%9B%AE-Why-do-companies-execute-projects"><span class="toc-number">3.</span> <span class="toc-text">为什么公司要执行项目 Why do companies execute projects?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%8F%B8%E5%A6%82%E4%BD%95%E5%B0%86%E8%BF%99%E4%BA%9B%E9%A2%9D%E5%A4%96%E7%9A%84%E5%8A%AA%E5%8A%9B%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%A2%84%E6%9C%9F%E7%9A%84%E6%95%88%E7%9B%8A%E5%92%8C%E7%9B%AE%E6%A0%87%E5%91%A2%EF%BC%9F-How-do-companies-transform-these-extra-efforts-into-the-desired-benefits-and-goals"><span class="toc-number">3.0.1.</span> <span class="toc-text">公司如何将这些额外的努力转化为预期的效益和目标呢？ How do companies transform these extra efforts into the desired benefits and goals?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88%E5%88%9B%E9%80%A0%E4%BA%86%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%9C%80%E6%B1%82-What-create-the-demand-of-a-project-in-the-first-place"><span class="toc-number">4.</span> <span class="toc-text">是什么创造了项目的需求 What create the demand of a project in the first place?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%80%89%E6%8B%A9Project-selection"><span class="toc-number">4.1.</span> <span class="toc-text">项目选择Project selection</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">什么是项目经理?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%97%B6%E9%97%B4%E5%92%8C%E9%A2%84%E7%AE%97%E4%B8%8D%E8%B6%B3%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F-What-if-the-time-frame-and-budget-are-insufficient"><span class="toc-number">5.1.</span> <span class="toc-text">如果时间和预算不足怎么办？ What if the time frame and budget are insufficient?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B4%9F%E8%B4%A3-What-does-it-mean-to-be-accountable"><span class="toc-number">5.2.</span> <span class="toc-text">什么是负责 What does it mean to be accountable?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-the-skills-and-the-knowledge-a-project-management-should-have"><span class="toc-number">6.</span> <span class="toc-text">What are the skills and the knowledge a project management should have?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D"><span class="toc-number">7.</span> <span class="toc-text">相关专业术语介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%8A%9E%E5%85%AC%E5%AE%A4-Project-Management-Office"><span class="toc-number">7.1.</span> <span class="toc-text">项目管理办公室 Project Management Office</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9B%A2%E9%98%9F-Project-Team"><span class="toc-number">7.2.</span> <span class="toc-text">项目团队 Project Team</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%9B%8A%E7%9B%B8%E5%85%B3%E8%80%85-Project-stakeholders"><span class="toc-number">7.3.</span> <span class="toc-text">利益相关者 Project stakeholders</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86-Program-Management"><span class="toc-number">7.4.</span> <span class="toc-text">程序管理 Program Management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%84%E5%90%88%E7%AE%A1%E7%90%86-Project-portfolio-management"><span class="toc-number">7.5.</span> <span class="toc-text">项目组合管理 Project portfolio management</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Phases-of-project-development"><span class="toc-number">8.</span> <span class="toc-text">Phases of project development</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%AB%8B%E9%A1%B9%E5%92%8C%E5%90%AF%E5%8A%A8%EF%BC%88Initiation%EF%BC%89"><span class="toc-number">8.1.</span> <span class="toc-text">项目的立项和启动（Initiation）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AB%8B%E9%A1%B9%E5%92%8C%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">8.1.1.</span> <span class="toc-text">项目立项和启动过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-number">8.1.2.</span> <span class="toc-text">项目启动过程的内容：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87-Goal"><span class="toc-number">8.1.3.</span> <span class="toc-text">确定项目目标(Goal)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%86%E4%B8%9A%E6%A1%88%E4%BE%8B%EF%BC%88Business-case%EF%BC%89"><span class="toc-number">8.1.4.</span> <span class="toc-text">商业案例（Business case）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E5%88%92-Planning"><span class="toc-number">8.2.</span> <span class="toc-text">规划 Planning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-planing"><span class="toc-number">8.2.1.</span> <span class="toc-text">What is planing?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Three-fundamental-steps-in-planning"><span class="toc-number">8.2.2.</span> <span class="toc-text">Three fundamental steps in planning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-main-areas-to-address-when-planning"><span class="toc-number">8.2.3.</span> <span class="toc-text">Two main areas to address when planning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5-Execution"><span class="toc-number">8.3.</span> <span class="toc-text">执行阶段 Execution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%92%8C%E6%8E%A7%E5%88%B6-Monitering-and-control"><span class="toc-number">8.4.</span> <span class="toc-text">检测和控制 Monitering and control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E9%98%B6%E6%AE%B5-Closure-phase"><span class="toc-number">8.5.</span> <span class="toc-text">结束阶段 Closure phase</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/07/%E7%94%9F%E6%B4%BB/%E9%A1%BA%E5%BE%B7%E5%B0%8F%E8%81%9A/" title="顺德好友小聚">顺德好友小聚</a><time datetime="2023-05-07T13:56:00.000Z" title="Created 2023-05-07 21:56:00">2023-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/06/%E7%94%9F%E6%B4%BB/%E6%97%85%E6%B8%B8%E5%BD%92%E6%9D%A5%E7%9A%84%E5%91%A8%E6%9C%AB/" title="旅游归来的周末">旅游归来的周末</a><time datetime="2023-05-06T05:56:00.000Z" title="Created 2023-05-06 13:56:00">2023-05-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/02/%E7%94%9F%E6%B4%BB/%E5%B9%BF%E8%A5%BF%E4%B9%8B%E6%97%85/" title="与好友的广西之旅">与好友的广西之旅</a><time datetime="2023-05-02T04:30:00.000Z" title="Created 2023-05-02 12:30:00">2023-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/" title="项目管理笔记"><img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="Created 2022-08-28 12:30:00">2022-08-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="Created 2022-08-28 12:30:00">2022-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

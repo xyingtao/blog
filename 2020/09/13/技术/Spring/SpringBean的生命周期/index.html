@@ -1,35 +1,231 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Spring Bean的生命周期 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring Bean的生命周期生命周期的概要流程Bean的生命周期概括起来就是4个阶段  实例化(Instantiation); 属性赋值(Populate); 初始化(Initialization); 销毁(Destruction);    实例化:第1步 实例化一个Bean对象 属性赋值: 第2步 为bean设置相关属性的依赖 初始化: 第3~7步,步骤较多,其中第5,6步为初始化操作,第3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Bean的生命周期">
+<meta property="og:url" content="http://example.com/2020/09/13/%E6%8A%80%E6%9C%AF/Spring/SpringBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring Bean的生命周期生命周期的概要流程Bean的生命周期概括起来就是4个阶段  实例化(Instantiation); 属性赋值(Populate); 初始化(Initialization); 销毁(Destruction);    实例化:第1步 实例化一个Bean对象 属性赋值: 第2步 为bean设置相关属性的依赖 初始化: 第3~7步,步骤较多,其中第5,6步为初始化操作,第3">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg">
+<meta property="article:published_time" content="2020-09-13T14:28:00.000Z">
+<meta property="article:modified_time" content="2022-08-22T21:59:00.570Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Spring Bean的生命周期",
+  "url": "http://example.com/2020/09/13/%E6%8A%80%E6%9C%AF/Spring/SpringBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/",
+  "image": "https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg",
+  "datePublished": "2020-09-13T14:28:00.000Z",
+  "dateModified": "2022-08-22T21:59:00.570Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/13/%E6%8A%80%E6%9C%AF/Spring/SpringBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-    article#article-container.container.post-content
-      if theme.noticeOutdate.enable && page.noticeOutdate !== false
-        include includes/post/outdate-notice.pug
-      else
-        !=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (page.tags.length > 0 && theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Bean的生命周期',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">Spring Bean的生命周期</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Spring Bean的生命周期</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-09-13T14:28:00.000Z" title="Created 2020-09-13 22:28:00">2020-09-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-08-22T21:59:00.570Z" title="Updated 2022-08-23 05:59:00">2022-08-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/Spring/">Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h1><h2 id="生命周期的概要流程"><a href="#生命周期的概要流程" class="headerlink" title="生命周期的概要流程"></a>生命周期的概要流程</h2><p>Bean的生命周期概括起来就是4个阶段</p>
+<ol>
+<li>实例化(Instantiation);</li>
+<li>属性赋值(Populate);</li>
+<li>初始化(Initialization);</li>
+<li>销毁(Destruction);</li>
+</ol>
+<p><img src="https://gitee.com/xyingtao/blogimage/raw/master/img/640" alt="img"></p>
+<ol>
+<li><strong>实例化</strong>:第1步 实例化一个Bean对象</li>
+<li><strong>属性赋值</strong>: 第2步 为bean设置相关属性的依赖</li>
+<li><strong>初始化</strong>: 第3~7步,步骤较多,其中第5,6步为初始化操作,第3,4步为初始化之前执行,第7步在初始化后执行,该阶段初始化后执行,该阶段结束,才能被用户使用;</li>
+<li><strong>销毁</strong>: 第8,9步,第8步不是真正意义上的销毁(还没使用呢),而是先在使用前注册了销毁的相关调用接口,为了后面第9,10步真正销毁bean时再执行相应的方法.</li>
+</ol>
+<p>下面结合代码来看,在doCreateBean()方法中可以看到一次执行了这四个阶段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AbstractAutowireCapableBeanFactory.java</span></span><br><span class="line"><span class="keyword">protected</span> Object <span class="title function_">doCreateBean</span><span class="params">(<span class="keyword">final</span> String beanName, <span class="keyword">final</span> RootBeanDefinition mbd, <span class="keyword">final</span> <span class="meta">@Nullable</span> Object[] args)</span></span><br><span class="line">    <span class="keyword">throws</span> BeanCreationException &#123;</span><br><span class="line">    <span class="comment">// 1. 实例化</span></span><br><span class="line">    <span class="type">BeanWrapper</span> <span class="variable">instanceWrapper</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (instanceWrapper == <span class="literal">null</span>) &#123;</span><br><span class="line">        instanceWrapper = createBeanInstance(beanName, mbd, args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Object</span> <span class="variable">exposedObject</span> <span class="operator">=</span> bean;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 2. 属性赋值</span></span><br><span class="line">        populateBean(beanName, mbd, instanceWrapper);</span><br><span class="line">        <span class="comment">// 3. 初始化</span></span><br><span class="line">        exposedObject = initializeBean(beanName, exposedObject, mbd);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 4. 销毁-注册回调接口</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        registerDisposableBeanIfNecessary(beanName, bean, mbd);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> exposedObject;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<p>由于初始化包含了3~7步,较复杂,所以我们进到initializwBean()方法里具体看下过</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AbstractAutowireCapableBeanFactory.java</span></span><br><span class="line"><span class="keyword">protected</span> Object <span class="title function_">initializeBean</span><span class="params">(<span class="keyword">final</span> String beanName, <span class="keyword">final</span> Object bean, <span class="meta">@Nullable</span> RootBeanDefinition mbd)</span> &#123;</span><br><span class="line">    <span class="comment">// 3. 检查 Aware 相关接口并设置相关依赖</span></span><br><span class="line">    <span class="keyword">if</span> (System.getSecurityManager() != <span class="literal">null</span>) &#123;</span><br><span class="line">        AccessController.doPrivileged((PrivilegedAction&lt;Object&gt;) () -&gt; &#123;</span><br><span class="line">            invokeAwareMethods(beanName, bean);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">       &#125;, getAccessControlContext());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        invokeAwareMethods(beanName, bean);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 4. BeanPostProcessor 前置处理</span></span><br><span class="line">    <span class="type">Object</span> <span class="variable">wrappedBean</span> <span class="operator">=</span> bean;</span><br><span class="line">    <span class="keyword">if</span> (mbd == <span class="literal">null</span> || !mbd.isSynthetic()) &#123;</span><br><span class="line">        wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 5. 若实现 InitializingBean 接口，调用 afterPropertiesSet() 方法</span></span><br><span class="line">    <span class="comment">// 6. 若配置自定义的 init-method方法，则执行</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        invokeInitMethods(beanName, wrappedBean, mbd);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BeanCreationException</span>(</span><br><span class="line">            (mbd != <span class="literal">null</span> ? mbd.getResourceDescription() : <span class="literal">null</span>),</span><br><span class="line">            beanName, <span class="string">&quot;Invocation of init method failed&quot;</span>, ex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 7. BeanPostProceesor 后置处理</span></span><br><span class="line">    <span class="keyword">if</span> (mbd == <span class="literal">null</span> || !mbd.isSynthetic()) &#123;</span><br><span class="line">        wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> wrappedBean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<p>在 invokInitMethods() 方法中会检查 InitializingBean 接口和 init-method 方法，销毁的过程也与其类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DisposableBeanAdapter.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 9. 若实现 DisposableBean 接口，则执行 destory()方法</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.invokeDisposableBean) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (System.getSecurityManager() != <span class="literal">null</span>) &#123;</span><br><span class="line">                AccessController.doPrivileged((PrivilegedExceptionAction&lt;Object&gt;) () -&gt; &#123;</span><br><span class="line">                    ((DisposableBean) <span class="built_in">this</span>.bean).destroy();</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">                &#125;, <span class="built_in">this</span>.acc);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ((DisposableBean) <span class="built_in">this</span>.bean).destroy();</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 10. 若配置自定义的 detory-method 方法，则执行</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.destroyMethod != <span class="literal">null</span>) &#123;</span><br><span class="line">        invokeCustomDestroyMethod(<span class="built_in">this</span>.destroyMethod);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">this</span>.destroyMethodName != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="type">Method</span> <span class="variable">methodToInvoke</span> <span class="operator">=</span> determineDestroyMethod(<span class="built_in">this</span>.destroyMethodName);</span><br><span class="line">        <span class="keyword">if</span> (methodToInvoke != <span class="literal">null</span>) &#123;            invokeCustomDestroyMethod(ClassUtils.getInterfaceMethodIfPossible(methodToInvoke));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<p>从 Spring 的源码我们可以直观的看到其执行过程，而我们记忆其过程便可以从这 4  个阶段出发，实例化、属性赋值、初始化、销毁。其中细节较多的便是初始化，涉及了  Aware、BeanPostProcessor、InitializingBean、init-method 的概念。这些都是 Spring  提供的扩展点，其具体作用将在下一节讲述。</p>
+<h2 id="扩展点的作用"><a href="#扩展点的作用" class="headerlink" title="扩展点的作用"></a>扩展点的作用</h2><h3 id="Aware接口"><a href="#Aware接口" class="headerlink" title="Aware接口"></a>Aware接口</h3><p>若 Spring 检测到 bean 实现了 Aware 接口，则会为其注入相应的依赖。所以<strong>通过让bean 实现 Aware 接口，则能在 bean 中获得相应的 Spring 容器资源</strong>。</p>
+<p>Spring 中提供的 Aware 接口有：</p>
+<ol>
+<li>BeanNameAware：注入当前 bean 对应 beanName；</li>
+<li>BeanClassLoaderAware：注入加载当前 bean 的 ClassLoader；</li>
+<li>BeanFactoryAware：注入 当前BeanFactory容器 的引用。</li>
+</ol>
+<p>其代码实现如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AbstractAutowireCapableBeanFactory.java</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">invokeAwareMethods</span><span class="params">(<span class="keyword">final</span> String beanName, <span class="keyword">final</span> Object bean)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> Aware) &#123;</span><br><span class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> BeanNameAware) &#123;</span><br><span class="line">            ((BeanNameAware) bean).setBeanName(beanName);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> BeanClassLoaderAware) &#123;</span><br><span class="line">            ((BeanClassLoaderAware) bean).setBeanClassLoader(bcl);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> BeanFactoryAware) &#123;</span><br><span class="line">            ((BeanFactoryAware)bean).setBeanFactory(AbstractAutowireCapableBeanFactory.<span class="built_in">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是针对 BeanFactory 类型的容器，而对于 ApplicationContext 类型的容器，也提供了 Aware 接口，只不过这些 Aware 接口的注入实现，是通过 BeanPostProcessor 的方式注入的，但其作用仍是注入依赖。</p>
+<ol>
+<li>EnvironmentAware：注入 Enviroment，一般用于获取配置属性；</li>
+<li>EmbeddedValueResolverAware：注入 EmbeddedValueResolver（Spring EL解析器），一般用于参数解析；</li>
+<li>ApplicationContextAware（ResourceLoader、ApplicationEventPublisherAware、MessageSourceAware）：注入 ApplicationContext 容器本身。</li>
+</ol>
+<p>其代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ApplicationContextAwareProcessor.javaprivate void invokeAwareInterfaces(Object bean) &#123;    if (bean instanceof EnvironmentAware) &#123;        ((EnvironmentAware)bean).setEnvironment(this.applicationContext.getEnvironment());    &#125;</span></span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> EmbeddedValueResolverAware) &#123;        ((EmbeddedValueResolverAware)bean).setEmbeddedValueResolver(<span class="built_in">this</span>.embeddedValueResolver);    &#125;</span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ResourceLoaderAware) &#123;        ((ResourceLoaderAware)bean).setResourceLoader(<span class="built_in">this</span>.applicationContext);    &#125;</span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ApplicationEventPublisherAware) &#123;        ((ApplicationEventPublisherAware)bean).setApplicationEventPublisher(<span class="built_in">this</span>.applicationContext);    &#125;</span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> MessageSourceAware) &#123;        ((MessageSourceAware)bean).setMessageSource(<span class="built_in">this</span>.applicationContext);    &#125;</span><br><span class="line">    <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ApplicationContextAware) &#123;        ((ApplicationContextAware)bean).setApplicationContext(<span class="built_in">this</span>.applicationContext);    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BeanPostProcessor"><a href="#BeanPostProcessor" class="headerlink" title="BeanPostProcessor"></a>BeanPostProcessor</h3><p>BeanPostProcessor 是 Spring 为*修改 bean *提供的强大扩展点，其可作用于容器中所有 bean，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BeanPostProcessor</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化前置处理    default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;        return bean;    &#125;</span></span><br><span class="line">    <span class="comment">// 初始化后置处理    default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;        return bean;    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常用场景有：</p>
+<ol>
+<li>对于标记接口的实现类，进行自定义处理。例如3.1节中所说的ApplicationContextAwareProcessor，为其注入相应依赖；再举个例子，自定义对实现解密接口的类，将对其属性进行解密处理；</li>
+<li>为当前对象提供代理实现。例如 Spring AOP 功能，生成对象的代理类，然后返回。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// AbstractAutoProxyCreator.javapublic Object postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName) &#123;    TargetSource targetSource = getCustomTargetSource(beanClass, beanName);    if (targetSource != null) &#123;        if (StringUtils.hasLength(beanName)) &#123;            this.targetSourcedBeans.add(beanName);        &#125;        Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(beanClass, beanName, targetSource);        Object proxy = createProxy(beanClass, beanName, specificInterceptors, targetSource);        this.proxyTypes.put(cacheKey, proxy.getClass());        // 返回代理类        return proxy;    &#125;</span><br><span class="line">    return null;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="InitializingBean-和-init-method"><a href="#InitializingBean-和-init-method" class="headerlink" title="InitializingBean 和 init-method"></a>InitializingBean 和 init-method</h3><p>InitializingBean 和 init-method 是 Spring 为 <strong>bean 初始化</strong>提供的扩展点。</p>
+<p>InitializingBean接口 的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">InitializingBean</span> &#123;    <span class="keyword">void</span> <span class="title function_">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 afterPropertiesSet() 方法写初始化逻辑。</p>
+<p>指定 init-method 方法，指定初始化方法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span>       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.chaycao.Demo&quot;</span> <span class="attr">init-method</span>=<span class="string">&quot;init()&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>DisposableBean 和 destory-method 与上述类似，就不描述了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后总结下如何记忆 Spring Bean 的生命周期：</p>
+<ul>
+<li>首先是实例化、属性赋值、初始化、销毁这 4 个大阶段；</li>
+<li>再是初始化的具体操作，有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作；</li>
+<li>销毁的具体操作，有注册相关销毁回调接口，最后通过DisposableBean 和 destory-method 进行销毁。</li>
+</ul>
+<p>资料来源: java3y</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/13/%E6%8A%80%E6%9C%AF/Spring/SpringBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">http://example.com/2020/09/13/%E6%8A%80%E6%9C%AF/Spring/SpringBean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a></div><div class="post-share"><div class="social-share" data-image="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/09/13/%E6%8A%80%E6%9C%AF/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%80%A7/" title="接口幂等性问题"><img class="cover" src="https://gitee.com/xyingtao/blogimage/raw/master/img/分布式.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">接口幂等性问题</div></div><div class="info-2"><div class="info-item-1">接口幂等性订单防止重复提交 网络不好 用户点击多次 什么是幂等性用户对于同一操作发起的一次请求或者多次请求的结果是一致的 不会因为多次点击产生副作用 比如说支付场景 用户购买了商品支付扣款成功 但是返回结果的时候网络异常 这时候钱 已经扣掉了 再次点击会进行二次扣款…这就没有保证接口的幂等性 那些情况需要防止用户多次点击按钮 用户页面回退再次提交 微服务相互调用  由于网络问题导致请求失败 feign触发重试机制 其它业务情况 什么情况下需要幂等以sql为例子 查询 删除 操作大部分是天然的幂等性 因为在第一次的时候已经删除成功了 叠加状态  每次执行结果都不一样则不是幂等性 幂等性解决方案 索引 订单号 唯一 举例:五种方案令牌机制 ytmall商城项目采用这个方案  存在问题: 如果业务执行后才删令牌 令牌仍然有可能多次进入  如果先删令牌 保证获取令牌 对比 删除 必须是 原子性的  可以在redis 使用lua脚本完成这个原子操作操作 1if redis.call(&#x27;get&#x27;,KEY[1]) == ARGV[1] then return redis.c...</div></div></div></a><a class="pagination-related" href="/2020/09/13/%E6%8A%80%E6%9C%AF/Java/Java%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88%E5%AF%B9%E6%AF%94/" title="Java常见集合类型对比"><img class="cover" src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Java常见集合类型对比</div></div><div class="info-2"><div class="info-item-1">Java常见集合类型对比   List 和 Set 区别 List, Set 都是继承自 Collection 接口 List 特点：元素有放入顺序，元素可重复。Set 特点：元素无放入顺序，元素不可重复（注意：元素虽然无放入顺序，但是元素在 set 中的位置是有该元素的 HashCode 决定的，其位置其实是固定的） List 接口有三个实现类：LinkedList，ArrayList，Vector。Set 接口有两个实现类：HashSet(底层由 HashMap 实现)，LinkedHashSet  List 和 Map 区别 List 特点：元素有放入顺序，元素可重复; Map 特点：元素按键值对存储，无放入顺序 ; List 接口有三个实现类：LinkedList，ArrayList，Vector; LinkedList：底层基于链表实现，链表内存是散乱的，每一个元素存储本身内存地址的同时还存储下一个元素的地址。链表增删快，查找慢; Map 接口有三个实现类：HashMap，HashTable，LinkedHashMap Map 相当于和 Collection 一个级别的...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/02/28/%E6%8A%80%E6%9C%AF/Spring/Spring(1)%E6%B5%8B%E8%AF%95%E6%A1%88%E4%BE%8B/" title="Spring(一)-测试案例"><img class="cover" src="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-28</div><div class="info-item-2">Spring(一)-测试案例</div></div><div class="info-2"><div class="info-item-1">Spring测试案例Spring 百度百科:  ​		Spring框架是一个开放源代码的J2EE应用程序框架, 是针对bean的生命周期进行管理的轻量级容器(lightweight container). 提供了功能强大IOC,AOP及Web MVC等功能. Spring可以单独应用于构建应用程序,也可以和Struts、Webwork、Tapestry等众多Web框架组合使用，并且可以与 Swing等桌面应用程序AP组合。因此， Spring不仅仅能应用于J2EE应用程序之中，也可以应用于桌面应用程序以及小应用程序之中。Spring框架主要由七部分组成，分别是 Spring Core、 Spring AOP、 Spring ORM、 Spring DAO、Spring Context、 Spring Web和 Spring Web MVC ​		J2EE的全称是Java 2 Platform Enterprise Edition，它是由SUN公司领导、各厂家共同制定并得到广泛认可的工业标准，或者说，它是在SUN公司领导下，多家公司参与共同制定的企业级分布式应用程序开发规范。目前，...</div></div></div></a><a class="pagination-related" href="/2021/03/02/%E6%8A%80%E6%9C%AF/Spring/Spring(3)%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84IoC/" title="Spring(三)-注解IoC"><img class="cover" src="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-02</div><div class="info-item-2">Spring(三)-注解IoC</div></div><div class="info-2"><div class="info-item-1">IOC操作Bean管理(基于注解方式) 什么是注解? (1)注解是代码特殊标记,格式: @注解名称(属性名称&#x3D;属性值) (2)使用注解,注解作用在类上面 方法上面 属性上面  (3)目的: 为了简化xml配置  Spring针对Bean管理中创建对象提供注解Bean管理(创建对象) (1)@Component (2)@Service 业务层 (3)@Controller 表现层 (4)@Repository 持久层  上面四个注解功能是一样的 都可以用来创建bean实例   基于注解创建对象  引入依赖 spring-aop-5.2.6.RELEASE.jar  开启组件扫描   使用注解 123456789101112131415161718192021222324//在注解里面value属性值可以省略不写，//默认值是类名称，首字母小写//UserService -- userService//@Component(value = &quot;userService&quot;)  //&lt;bean id=&quot;userService&quot; clas...</div></div></div></a><a class="pagination-related" href="/2021/02/28/%E6%8A%80%E6%9C%AF/Spring/Spring(2)IOC/" title="Spring(二)-IoC"><img class="cover" src="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-28</div><div class="info-item-2">Spring(二)-IoC</div></div><div class="info-2"><div class="info-item-1">Spring-IoCIOC底层原理 什么是IoC?   百度百科:  控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI），还有一种方式叫“依赖查找”（Dependency Lookup）。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象中。   控制反转,把对象创建和对象之间的调用过程,交给Spring进行管理 使用IoC的目的: 为了耦合度降低   解耦：降低程序间的依赖关系 实际开发中应该做到: 编译期不依赖 实际开发才依赖   IoC底层原理   xml解析, 工厂模式, 反射   这种方式 耦合度太高 工厂模式 这种方式,降低了service和dao的耦合 IoC过程 xml配置文件, 配置创建的对象 有service类和dao类, 创建工厂类(进一步降低耦合度)   IOC接口 IoC思想基于IoC容器完成, Ioc容器底层就是...</div></div></div></a><a class="pagination-related" href="/2021/03/06/%E6%8A%80%E6%9C%AF/Spring/Spring(4)AOP/" title="Spring(四)-AOP"><img class="cover" src="https://gitee.com/xyingtao/blogimage/raw/master/Spring.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-06</div><div class="info-item-2">Spring(四)-AOP</div></div><div class="info-2"><div class="info-item-1">Spring(四)-AOP 什么是AOP? (1)面向切面编程(方面),利用AOP可以对业务逻辑的各个部分进行隔离,从而使得业务逻辑各部分之间的耦合度降低,提高程序的可重用性,同时提高开发效率 (2)不修改源代码方式,在主干功能里添加新功能  AOP底层使用动态代理 (1)有两种的动态代理  有接口的情况,使用JDK动态代理 没有接口的情况,使用CGLIB动态代理    AOP(JDK动态代理)使用JDK动态代理,使用Proxy类里面的方法创建代理对象  调用newProxyInstance方法 方法里面有三个参数: 第一参数,类加载器 第二参数,增强方法所在的类,这个类实现的接口,支持多个接口 第三参数,实现这个接口InnovationHandler,创建代理对象,写增强的方法  编写JDK动态代理代码 (1)创建接口,定义方法 1234public interface UserDao &#123;    public int add(int a,int b);    public String update(String id);&#125;  (2)创建接口实现类 1234...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.</span> <span class="toc-text">Spring Bean的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E6%A6%82%E8%A6%81%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">生命周期的概要流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%82%B9%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">扩展点的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Aware%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.2.1.</span> <span class="toc-text">Aware接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanPostProcessor"><span class="toc-number">1.2.2.</span> <span class="toc-text">BeanPostProcessor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InitializingBean-%E5%92%8C-init-method"><span class="toc-number">1.2.3.</span> <span class="toc-text">InitializingBean 和 init-method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/07/%E7%94%9F%E6%B4%BB/%E9%A1%BA%E5%BE%B7%E5%B0%8F%E8%81%9A/" title="顺德好友小聚">顺德好友小聚</a><time datetime="2023-05-07T13:56:00.000Z" title="Created 2023-05-07 21:56:00">2023-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/06/%E7%94%9F%E6%B4%BB/%E6%97%85%E6%B8%B8%E5%BD%92%E6%9D%A5%E7%9A%84%E5%91%A8%E6%9C%AB/" title="旅游归来的周末">旅游归来的周末</a><time datetime="2023-05-06T05:56:00.000Z" title="Created 2023-05-06 13:56:00">2023-05-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/02/%E7%94%9F%E6%B4%BB/%E5%B9%BF%E8%A5%BF%E4%B9%8B%E6%97%85/" title="与好友的广西之旅">与好友的广西之旅</a><time datetime="2023-05-02T04:30:00.000Z" title="Created 2023-05-02 12:30:00">2023-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/" title="项目管理笔记"><img src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/B%E7%AB%99%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AF%BE%E7%A8%8B/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="Created 2022-08-28 12:30:00">2022-08-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/28/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="Created 2022-08-28 12:30:00">2022-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
