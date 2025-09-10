@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>新的日期和时间类 | 樱桃先生</title><meta name="author" content="樱桃先生"><meta name="copyright" content="樱桃先生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="新的日期和时间类 LocalDate LocalTime LocalDateTime  都是不可变的对象 三者使用方式一样  12获取实例 用静态方法LocalDateTime.now()   Instant 时间戳 默认获取UTC 时区  1Instant.now.atOffset(ZoneOffset.ofHours(8))   Duration 计算两个时间之间的间隔 Period 计算两个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新的日期和时间类">
+<meta property="og:url" content="http://example.com/posts/fea7e8d3/index.html">
+<meta property="og:site_name" content="樱桃先生">
+<meta property="og:description" content="新的日期和时间类 LocalDate LocalTime LocalDateTime  都是不可变的对象 三者使用方式一样  12获取实例 用静态方法LocalDateTime.now()   Instant 时间戳 默认获取UTC 时区  1Instant.now.atOffset(ZoneOffset.ofHours(8))   Duration 计算两个时间之间的间隔 Period 计算两个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png">
+<meta property="article:published_time" content="2020-09-13T07:01:00.000Z">
+<meta property="article:modified_time" content="2022-08-27T09:47:47.470Z">
+<meta property="article:author" content="樱桃先生">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "新的日期和时间类",
+  "url": "http://example.com/posts/fea7e8d3/",
+  "image": "https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png",
+  "datePublished": "2020-09-13T07:01:00.000Z",
+  "dateModified": "2022-08-27T09:47:47.470Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "樱桃先生",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/fea7e8d3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '新的日期和时间类',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">樱桃先生</span></a><a class="nav-page-title" href="/"><span class="site-name">新的日期和时间类</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">新的日期和时间类</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-13T07:01:00.000Z" title="发表于 2020-09-13 15:01:00">2020-09-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-27T09:47:47.470Z" title="更新于 2022-08-27 17:47:47">2022-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="新的日期和时间类"><a href="#新的日期和时间类" class="headerlink" title="新的日期和时间类"></a>新的日期和时间类</h1><ul>
+<li>LocalDate</li>
+<li>LocalTime</li>
+<li>LocalDateTime</li>
+</ul>
+<p>都是不可变的对象 三者使用方式一样 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取实例 用静态方法</span><br><span class="line">LocalDateTime.now()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Instant 时间戳 默认获取UTC 时区</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Instant.now.atOffset(ZoneOffset.ofHours(<span class="number">8</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Duration 计算两个时间之间的间隔</li>
+<li>Period 计算两个日期之间的间隔</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Duration.between(ins1,ins2)</span><br><span class="line">Duration.between(lt1,lt2)</span><br><span class="line"></span><br><span class="line">Period.between(ins1,ins2)</span><br><span class="line">Period.between(lt1,lt2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>TeporalAdjuster 时间校正器 接口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ldt.withDayOfMonth(10)  指定月份</span><br><span class="line">//自定义</span><br><span class="line">ldt.with(()-&gt;&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DateTimeFormatter 格式化</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DateTimeFormatter dtf = DateTimeFormatter ISO_DATE_TIME;</span><br><span class="line">LocalDateTime ldt = LocalDateTime.now();</span><br><span class="line">ldt.format(dtf)</span><br><span class="line"></span><br><span class="line">DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd &quot;);</span><br><span class="line">ldt.parse()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ZonedDate ZonedTime ZonedDateTime</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ZoneId.getAvailable.ZoneIds();</span><br><span class="line">LocalDateTime.now(ZoneId.of(&quot;Europe/Tallinn&quot;))</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">樱桃先生</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/fea7e8d3/">http://example.com/posts/fea7e8d3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">樱桃先生</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div><div class="post-share"><div class="social-share" data-image="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/dd8469b9/" title="Java常见集合类型对比"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Java常见集合类型对比</div></div><div class="info-2"><div class="info-item-1">Java常见集合类型对比   List 和 Set 区别 List, Set 都是继承自 Collection 接口 List 特点：元素有放入顺序，元素可重复。Set 特点：元素无放入顺序，元素不可重复（注意：元素虽然无放入顺序，但是元素在 set 中的位置是有该元素的 HashCode 决定的，其位置其实是固定的） List 接口有三个实现类：LinkedList，ArrayList，Vector。Set 接口有两个实现类：HashSet(底层由 HashMap 实现)，LinkedHashSet  List 和 Map 区别 List 特点：元素有放入顺序，元素可重复; Map 特点：元素按键值对存储，无放入顺序 ; List 接口有三个实现类：LinkedList，ArrayList，Vector; LinkedList：底层基于链表实现，链表内存是散乱的，每一个元素存储本身内存地址的同时还存储下一个元素的地址。链表增删快，查找慢; Map 接口有三个实现类：HashMap，HashTable，LinkedHashMap Map 相当于和 Collection 一个级别的...</div></div></div></a><a class="pagination-related" href="/posts/da496cff/" title="Java易错知识点汇总"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java易错知识点汇总</div></div><div class="info-2"><div class="info-item-1">Java-易错知识点汇总 Math.round(11.5)等于多少?Math.round(-11.5)等于多少? 答: Math.round(-11.5)返回值是-11 ​      Math.round(11.5)返回值是12 四舍五入 的原理是在参数上加0.5然后向下取整  switch 是否能作用在byte 上，是否能作用在long 上，是否能作用在String上？ 答：在Java 5以前，switch(expr)中，expr只能是byte、short、char、int。 从Java  5开始，Java中引入了枚举类型，expr也可以是enum类型，从Java  7开始，expr还可以是字符串（String），但是长整型（long）在目前所有的版本中都是不可以的。  抽象类（abstract class）和接口（interface）有什么异同？ 答：  抽象类和接口都不能够实例化，但可以定义抽象类和接口类型的引用。 一个类如果继承了某个抽象类或者实现了某个接口都需要对其中的抽象方法全部进行实现，否则该类仍然需要被声明为抽象类。 接口比抽象类更加抽象，因为抽象类中可以定义构造...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/3d69f175/" title="Java基础小练习_分组"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/Java-cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-03</div><div class="info-item-2">Java基础小练习_分组</div></div><div class="info-2"><div class="info-item-1">Java小练习-英语学习小组分组事情起因 要在于Marin 让我把每天英语分组的名单 在早晨发到群里 然后 程序员的事情让程序解决吧 一动手就发现自己忘了好多东西 一开始还是想到不重复的集合 什么HashSet然后再remove出来 想了好久写了好久 又想用当天日期做个随机数 百度了一下 还学到一个新方法 最终代码如下 肯定不是最优解 1234567891011121314public class RandomGroup &#123;    public static void main(String[] args) &#123;        String[] s1 = &#123;&quot;Marin&quot;, &quot;Jade&quot;, &quot;Rorschach&quot;, &quot;Kinson&quot;, &quot;Eric&quot;, &quot;GlenZ&quot;, &quot;GlenY&quot;, &quot;Billy&quot;, &quot;Mark&quot;, &quot;Kyrie&quot;,          ...</div></div></div></a><a class="pagination-related" href="/posts/7cf8285b/" title="反编译案例集"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-06</div><div class="info-item-2">反编译案例集</div></div><div class="info-2"><div class="info-item-1">反编译11234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586public class Test1 &#123;    public static void main(String[] args) &#123;        int i=2;        int j=3;        int k=i+j;    &#125;&#125;//javap -vLast modified 2021年3月6日; size 476 bytes  SHA-256 checksum 8e654caa67ddc0bcfb09a7b96a365eab397bb819078361cb1b83261628e1c49f  Compiled from &quot;Test1.java&quot;public class com.atg...</div></div></div></a><a class="pagination-related" href="/posts/f5e26240/" title="什么是CAS?"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-16</div><div class="info-item-2">什么是CAS?</div></div><div class="info-2"><div class="info-item-1">什么是CAS?CompareAndSwapInt CAS乐观锁:多个线程使用CAS同时更新同一个变量时,只有一个线程更新变量的值其他线程被告知失败,可以再次尝试 CAS有可能带来ABA问题(1-&gt;8-&gt;1)如果在乎: AtomicStampedReference 每次改变都需要版本号 AtomicMarkableReference 不在乎改了多少次,只在乎改没改 如果在写回去的时候被打断了,怎么办? 写回去的时候必须保障原子性(硬件底层保证原子性) 并发编程3大特性 可见性 原子性 有序性 </div></div></div></a><a class="pagination-related" href="/posts/64feb91a/" title="Synchronized的实现原理和应用"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-13</div><div class="info-item-2">Synchronized的实现原理和应用</div></div><div class="info-2"><div class="info-item-1">Synchronized的实现原理和应用很多人称呼它为重量级锁.但是随着Java SE1.6对Synchronized进行优化后,有些情况下就没有那么重了. Java的每一对象都可以作为锁具体的实现方式:  对于普通的同步方法,锁是当前的实例对象 对于静态同步方法,锁是当前类的Class对象 对于同步方法块,锁是Synchronized括号里配置的对象  Java对象头Synchronized的用的锁是存在Java对象头里面的.如果对象是数组类型,则虚拟机用三个字宽(Word)存储对象头. 如果是非数组,则是2字宽存储对象头 在32位虚拟机中,1字宽等于4字节,即32bit,如下图 Java 对象头的长度    长度 内容 说明    32&#x2F;64bit Mark Word 存储对象的hashCode或锁信息   32&#x2F;64bit Class Metadata Address 存储到对象类型数据的指针   32&#x2F;32bit Array length 数组的长度(如果当前对象是数组)   Java对象头里的Mark Word里默认存储对象的Hash Co...</div></div></div></a><a class="pagination-related" href="/posts/73db57c3/" title="原子操作的实现原理"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-17</div><div class="info-item-2">原子操作的实现原理</div></div><div class="info-2"><div class="info-item-1">原子操作的实现原理原子(atomic)本意是”不能被进一步分割的最小粒子”,而原子操作(atomic operation)意为”不可被中断的一个或者一系列操作” 术语定义缓存行(Cache line);缓存的最小操作单位 比较并交换(Compare and swap)CAS操作需要输入两个数值,一个旧值(期望操作前的值)和一个新值,在操作期间先比较旧值有没有变化,如果没有发生变化,才交换成新值,发生了变化则不交换 CPU流水线(CPU pipeline)CPU流水线的工作方式就像工业生产上的装配流水线,在CPU中由56个不同功能的电路单元组成一条指令处理流水线,然后将一条x86指令分成56步再由这些电路单元分别执行,这样就能实现在一个CPU时钟周期完成一条指令,因此提高CPU的运算速度 内存顺序冲突(Memory order violation)内存顺序冲突一般是由假共享引起的,假共享是指多个CPU同时修改同一个缓存行的不同部分而引起其中一个CPU的操作无效,当出现这个内存顺序冲突时,CPU必须清空流水线 处理器如何实现原子操作使用总线锁保证原子性所谓总线锁就是使用处理器提供的一...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">樱桃先生</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typoraWechat.jpeg"><i class="fab fa-weixin"></i><span>加为好友</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临樱桃先生的博客🍒～</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E7%9A%84%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">新的日期和时间类</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4995/" title="顺德好友小聚"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="顺德好友小聚"/></a><div class="content"><a class="title" href="/posts/4995/" title="顺德好友小聚">顺德好友小聚</a><time datetime="2023-05-07T13:56:00.000Z" title="发表于 2023-05-07 21:56:00">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/51438/" title="旅游归来的周末"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="旅游归来的周末"/></a><div class="content"><a class="title" href="/posts/51438/" title="旅游归来的周末">旅游归来的周末</a><time datetime="2023-05-06T05:56:00.000Z" title="发表于 2023-05-06 13:56:00">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34851/" title="与好友的广西之旅"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="与好友的广西之旅"/></a><div class="content"><a class="title" href="/posts/34851/" title="与好友的广西之旅">与好友的广西之旅</a><time datetime="2023-05-02T04:30:00.000Z" title="发表于 2023-05-02 12:30:00">2023-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53652/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53652/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53653/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53653/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 樱桃先生</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div><div class="footer_custom_text">一切都是最好的安排</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="5225697049" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-mini="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><link rel="stylesheet" href="/css/utils.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

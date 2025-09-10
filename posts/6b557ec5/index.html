@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AS/400(二) | 樱桃先生</title><meta name="author" content="樱桃先生"><meta name="copyright" content="樱桃先生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AS400(二)DDS规则 A列在提示行 FMT PF 标记的，‘A’列，在一下任何一行记录，都要写 A，标记着这一行为有效记录。在‘A’后加*，表明此行为注释代码   T列类型项，此列有两种类型，R 说明定义了一个记录格式，如第 2 行的 T 列代码，紧跟其后边的是记录名，在描述字段时，此列不入力。如 3-11 行的代码。K 说明定义了一个键值。如 13 行代码标记。此表内将按照此字段排序。默认">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AS&#x2F;400(二)">
+<meta property="og:url" content="http://example.com/posts/6b557ec5/index.html">
+<meta property="og:site_name" content="樱桃先生">
+<meta property="og:description" content="AS400(二)DDS规则 A列在提示行 FMT PF 标记的，‘A’列，在一下任何一行记录，都要写 A，标记着这一行为有效记录。在‘A’后加*，表明此行为注释代码   T列类型项，此列有两种类型，R 说明定义了一个记录格式，如第 2 行的 T 列代码，紧跟其后边的是记录名，在描述字段时，此列不入力。如 3-11 行的代码。K 说明定义了一个键值。如 13 行代码标记。此表内将按照此字段排序。默认">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg">
+<meta property="article:published_time" content="2020-09-23T13:48:00.000Z">
+<meta property="article:modified_time" content="2022-08-27T09:39:47.170Z">
+<meta property="article:author" content="樱桃先生">
+<meta property="article:tag" content="AS&#x2F;400">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AS/400(二)",
+  "url": "http://example.com/posts/6b557ec5/",
+  "image": "https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg",
+  "datePublished": "2020-09-23T13:48:00.000Z",
+  "dateModified": "2022-08-27T09:39:47.170Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "樱桃先生",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/6b557ec5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AS/400(二)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">樱桃先生</span></a><a class="nav-page-title" href="/"><span class="site-name">AS/400(二)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AS/400(二)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-23T13:48:00.000Z" title="发表于 2020-09-23 21:48:00">2020-09-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-27T09:39:47.170Z" title="更新于 2022-08-27 17:39:47">2022-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/AS-400/">AS/400</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="AS400-二"><a href="#AS400-二" class="headerlink" title="AS400(二)"></a>AS400(二)</h1><h2 id="DDS规则"><a href="#DDS规则" class="headerlink" title="DDS规则"></a>DDS规则</h2><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20201008101934002.png" alt="image-20201008101934002"></p>
+<h3 id="A列"><a href="#A列" class="headerlink" title="A列"></a>A列</h3><p>在提示行 FMT PF 标记的，‘A’列，在一下任何一行记录，都要写 A，标记着这一行为有效记录。<br>在‘A’后加*，表明此行为注释代码  </p>
+<h3 id="T列"><a href="#T列" class="headerlink" title="T列"></a>T列</h3><p>类型项，此列有两种类型，R 说明定义了一个记录格式，如第 2 行的 T 列代码，紧跟其后边的<br>是记录名，在描述字段时，此列不入力。如 3-11 行的代码。K 说明定义了一个键值。如 13 行代码<br>标记。此表内将按照此字段排序。默认为升序。  </p>
+<h3 id="NAME列"><a href="#NAME列" class="headerlink" title="NAME列"></a>NAME列</h3><p>名前项：此列分三种情况，一种为记录格式名。如第 2 行代码，说明的是此表的记录格式名为<br>SYMASTR。第二种为字段名。如 3-11 行的代码，此处的含义为字段的定义名。字段名不可以重复。<br>最大长度为 10 位  </p>
+<h3 id="R项"><a href="#R项" class="headerlink" title="R项"></a>R项</h3><p>参照项：参照定义（R 表示只有当 T 列为空，NEME 列非空时有效，表示当前字段是一个参照字<br>段，BLANK&#x3D;当前字段非参照字段）  </p>
+<h3 id="LEN-项："><a href="#LEN-项：" class="headerlink" title="LEN 项："></a>LEN 项：</h3><p>长度项：字段长度  </p>
+<h3 id="数据类型T型"><a href="#数据类型T型" class="headerlink" title="数据类型T型"></a>数据类型T型</h3><p>​    常用的有效的数据类型有 A （字符）型，P（压缩十进制）型，S（区位十进制）型和 O（全<br>角半角混用）型。下表给出数据文件有效的数据类型  </p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含 意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>字符型</td>
+</tr>
+<tr>
+<td>P</td>
+<td>压缩十进制</td>
+</tr>
+<tr>
+<td>S</td>
+<td>区位十进制</td>
+</tr>
+<tr>
+<td>B</td>
+<td>二进制</td>
+</tr>
+<tr>
+<td>F</td>
+<td>浮点型</td>
+</tr>
+<tr>
+<td>H</td>
+<td>十六进制</td>
+</tr>
+<tr>
+<td>L</td>
+<td>日期型</td>
+</tr>
+<tr>
+<td>T</td>
+<td>时间型</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>时间标记</td>
+</tr>
+</tbody></table>
+<p>注意：</p>
+<ol>
+<li><p>O 型必须要偶数位。</p>
+</li>
+<li><p>AS&#x2F;400 系统做算术操作时，使用压缩十进制比区位十进制更有效。</p>
+</li>
+<li><p>某些高级语言不支持浮点数据。</p>
+</li>
+</ol>
+<p>如果没有指定数据类型，则小数位项通常用于确定数据类型。</p>
+<p>如果小数位为空，数据类型为字符型(A)；</p>
+<p>如果该位是 0 到 31 的数，则数据类型为压缩十进制(P)。</p>
+<p>如果一个高级语言程序使用了压缩十进制或区位十进制字段，字段长度必须限定在此高级语言所允许的长度，这个长度并不是存储区中字段的长度，而是在<strong>存储器外部</strong>指定的字符或数的位数，例如：一个 5 位数的压缩十进制字段在 DDS 中指定的长度为 5 位，但在存储区中只占用了 3 个字节  </p>
+<h3 id="FUNCTIONS-项"><a href="#FUNCTIONS-项" class="headerlink" title="FUNCTIONS 项"></a>FUNCTIONS 项</h3><p>功能定义，用于定义各种关键字<br>关键字的使用大大丰富了 DDS 的文件定义。分为</p>
+<ol>
+<li>文件级，位于记录名之前，主要包括<br><code>REF</code>：指定被参考文件<br><code>UNIQUE</code>：键值唯一 （如本实例代码的第 1 行），定义后，数据不能有重复的键值数据，否<br>则报错。<br><code>FIFO，FCFO，LIFO</code>：相同键值记录的排列规则，有 UNIQUE 时，就不能用。</li>
+<li>记录级，位于记录名和第一个字段名之间，主要有：<br><code>FORMAT</code>：共享其他文件的记录格式。<br><code>TEXT</code>：记录格式说明。</li>
+<li>字段级，关键字位于一个字段名和其下一个字段名或第一个关键字段名之间，包括：<br><code>COLHDG</code>：为数据库文件中字段显示和打印用。<br><code>REFFLD</code>：参考一个已定义的字段，允许字段长度和参考的字段不同，可用+N 或-N 来改变字<br>段长度。<br><code>VARLEN</code>: 可变长度字段定义。<br>关键字段级，关键字位于第一关键字段名和其下一个关键字段名或成员尾之间，主要包括：<br><code>DESCEND</code>：按降序排列，可用于字符或数值型键字字段。<br><code>ABSVAL</code>：按绝对值顺序排序</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>键字  ABSVAL</th>
+<th>简要功能说明  绝对值</th>
+<th>键字  EDTWRD</th>
+<th>简要功能说明 编辑字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALIAS</td>
+<td>替换名</td>
+<td>FCFO</td>
+<td>先修改先出</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>全部（仅限逻辑文件）</td>
+<td>FIFO</td>
+<td>先进先出</td>
+</tr>
+<tr>
+<td>ALTSEQ</td>
+<td>交替分配顺序</td>
+<td>FLTPCN</td>
+<td>浮点精度</td>
+</tr>
+<tr>
+<td>ALWNULL</td>
+<td>允许空值（仅限物理文件）</td>
+<td>FORMAT</td>
+<td>格式</td>
+</tr>
+<tr>
+<td>CCSID</td>
+<td>编码字符集标识（仅限物理文件）</td>
+<td>LIFO</td>
+<td>后进先出</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td>检查</td>
+<td>NOALTSEQ</td>
+<td>无交替顺序</td>
+</tr>
+<tr>
+<td>CHKMSGID</td>
+<td>检查信息标识</td>
+<td>RANGE</td>
+<td>范围</td>
+</tr>
+<tr>
+<td>CMP</td>
+<td>比较</td>
+<td>REF</td>
+<td>引用（仅限物理文件）</td>
+</tr>
+<tr>
+<td>COLHDG</td>
+<td>栏对象题</td>
+<td>REFFLD</td>
+<td>被引用字段（仅限物理文件）</td>
+</tr>
+<tr>
+<td>COMP</td>
+<td>比较</td>
+<td>REFSHIFT</td>
+<td>引用换档</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>连接（仅限逻辑文件）</td>
+<td>RENAME</td>
+<td>重命名（仅限逻辑文件）</td>
+</tr>
+<tr>
+<td>DATFMT</td>
+<td>日期格式</td>
+<td>SIGNED</td>
+<td>符号</td>
+</tr>
+<tr>
+<td>DATSEP</td>
+<td>日期分隔符</td>
+<td>SST</td>
+<td>子串（仅限逻辑文件）</td>
+</tr>
+<tr>
+<td>DESCEND</td>
+<td>降序</td>
+<td>TEXT</td>
+<td>正文</td>
+</tr>
+<tr>
+<td>DFT</td>
+<td>缺省值（仅限物理文件）</td>
+<td>TIMFMT</td>
+<td>时间格式</td>
+</tr>
+<tr>
+<td>DIGIT</td>
+<td>数字</td>
+<td>TIMSEP</td>
+<td>时间分隔符</td>
+</tr>
+<tr>
+<td>DYNSLT</td>
+<td>动态选择（仅限逻辑文件）</td>
+<td>TRNTBL</td>
+<td>转换表（仅限逻辑文件）</td>
+</tr>
+<tr>
+<td>EDTCDE</td>
+<td>编辑码</td>
+<td>UNIQUE</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>EDTWRD</td>
+<td>编辑字</td>
+<td>UNSIGNED</td>
+<td>无符号</td>
+</tr>
+<tr>
+<td>FCFO</td>
+<td>先修改先出</td>
+<td>VALUES</td>
+<td>值</td>
+</tr>
+<tr>
+<td>FIFO</td>
+<td>先进先出</td>
+<td>VARLEN</td>
+<td>变长字段</td>
+</tr>
+<tr>
+<td>FLTPCN</td>
+<td>浮点精度</td>
+<td>ZONE</td>
+<td>零</td>
+</tr>
+</tbody></table>
+<p>在定义表过程中，可以在上边的命令行，键入 SAVE，保存当前。也可键入 FILE 命令，保存当<br>前代码，退出  </p>
+<h3 id="PF引用"><a href="#PF引用" class="headerlink" title="PF引用"></a>PF引用</h3><p>REFFLD : 引用其它文件里面的字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A          R CSCUSTR1                  TEXT(&#x27;Customer Information&#x27;)</span><br><span class="line">A            C1CTNM         2A         TEXT(&#x27;Country Code&#x27;)</span><br><span class="line">A                                      COLHDG(&#x27;CTY&#x27; &#x27;CODE&#x27;)</span><br><span class="line">A            C1CSBK    R               COLHDG(&#x27;CSBK&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>R后面的字段 需要和 pf文件的R相同</p>
+<ol>
+<li>REFFLD（&amp;FMT&#x2F;&amp;FLD)</li>
+<li>REFFLD  (&amp;FLD &amp;FILE)</li>
+<li>REFFLD  (&amp;FLD &amp;LIB&#x2F;&amp;FILE)</li>
+<li>REFFLD  (&amp;FMT&#x2F;&amp;FLD &amp;LIB&#x2F;&amp;FILE)</li>
+<li>REFFLD  (&amp;FLD *SRC)</li>
+</ol>
+<h2 id="Logical-File"><a href="#Logical-File" class="headerlink" title="Logical File"></a><strong>Logical File</strong></h2><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20201008103254608.png" alt="image-20201008103254608"></p>
+<h3 id="T-列："><a href="#T-列：" class="headerlink" title="T 列："></a>T 列：</h3><p>类型项。不入力为在描述字段。有 4 种入力类型。<br>‘R’ 说明定义了一个记录格式，如第 1 行的 T 列代码，紧跟其后边的是记录名。<br>‘K’ 说明定义键值，如 2-3 行代码标记，此表内将按照此字段排序（默认为升序）。<br>‘S’ 说明定义筛选条件，如 4 行。同一个’S’下定义的是并关系。不同个’S’下定义的是或关系。<br>’O’ 说明对象外数据条件，符合其后边定义条件的数据为不抽出数据。比较越少，工作效率越<br>高，因此，当有几个选择&#x2F;省略比较要处理时，应首先指定选择或忽略记录最多的比较。<br>‘J’ 说明连接逻辑文件，使用连接逻辑文件，应用程序只做一个读操作(对连接逻辑文件的记<br>录格式）就可得到两个物理文件中所有数据  </p>
+<h3 id="FUNCTIONS-项："><a href="#FUNCTIONS-项：" class="headerlink" title="FUNCTIONS 项："></a>FUNCTIONS 项：</h3><p>功能定义，用于定义各种关键字</p>
+<ol>
+<li><p>文件级，位于记录名之前，主要包括:<br><code>UNIQUE</code>：键值唯一 （如本实例代码的第 1 行），定义后，数据（包括物理文件）不能有重复的<br>键值数据，否则报错。<br><code>JFILE</code>：联合物理文件用。<br><code>PFILE</code>：指定使用的物理文件  </p>
+</li>
+<li><p>记录级，位于记录名和第一个字段名之间，主要有<br><code>FORMAT</code>：共享其他文件的记录格式<br><code>TEXT</code>：记录格式说明<br><code>VALUE</code>：将字段的内容和表中值相匹配（最多 100 个）的作为选择或省略记录。</p>
+</li>
+<li><p>字段级，关键字位于一个字段名和其下一个字段名或第一个关键字段名之间，包括:<br><code>COLHDG</code>：为数据库文件中字段显示和打印用<br><code>SST</code> ：根据已定义字段，截取其数据位数定义。</p>
+</li>
+<li><p>关键字段级，关键字位于第一关键字段名和其下一个关键字段名或成员尾之间，主要包括:<br><code>DESCEND</code>：按降序排列，可用于字符或数值型键字字段<br><code>ABSVAL</code>：按绝对值顺序排序<br>更多键字，请参照物理文件 FUNCTIONS 项给出的数据文件有效键字表，也可以在代码处F4,然后光标定位到功能项处，F1 查看帮助说明。<br>在定义表过程中，可以在上边的命令行，键入 SAVE，保存当前。也可键入 FILE 命令，保存当前代码，退出。</p>
+</li>
+</ol>
+<h3 id="多格式逻辑文件"><a href="#多格式逻辑文件" class="headerlink" title="多格式逻辑文件"></a>多格式逻辑文件</h3><p>多格式逻辑文件既可以含有多个记录格式亦可在 PFILE 键字上指定多个文件。连接逻辑文件有<br>一个记录格式并有 JFILE 键字，可以最多指出 32 个文件。下面给出多格式逻辑文件编码的例子。  </p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20201008104002143.png" alt="image-20201008104002143"></p>
+<h3 id="连接逻辑文件"><a href="#连接逻辑文件" class="headerlink" title="连接逻辑文件"></a>连接逻辑文件</h3><p>连接逻辑文件是把多个物理文件中的数据字段连接到一个记录格式中。对连接逻辑文件必须在记录层指定 JFILE 键字。在一个连接逻辑文件中仅允许有一个记录格式，所以这些项只可以指定一次。下图给出一个逻辑文件编码的例子  </p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20201008104102256.png" alt="image-20201008104102256"></p>
+<h3 id="筛选字段"><a href="#筛选字段" class="headerlink" title="筛选字段"></a>筛选字段</h3><ol>
+<li><p><strong>Name Type</strong></p>
+<p>  blank-field,   R-record format,   K-key field</p>
+<p>  S-select, O-omit,  J-start a join</p>
+</li>
+<li><p><strong>Name</strong> valid &amp; meaningful name（&lt;10digits）</p>
+<p> *NONE-key field is not defined </p>
+</li>
+<li><p><strong>Usage</strong></p>
+<p>  blank&#x2F;B-Both input &amp; output</p>
+<p>  I-input only</p>
+<p>  N-Not display</p>
+<p>  VALUES(&amp;VAL1 &amp;VAL2 …)</p>
+<p>  COMP(XX &amp;VAL) XX-GT, GE, EQ, NE, LE, LT</p>
+<p>  RANGE（&amp;LOVAL &amp;HIVAL）</p>
+<p>  ALL</p>
+</li>
+</ol>
+<h4 id="Useful-keyword"><a href="#Useful-keyword" class="headerlink" title="Useful keyword"></a><strong>Useful keyword</strong></h4><ul>
+<li><p><strong>File level keyword</strong></p>
+<p>UNIQUE</p>
+</li>
+<li><p><strong>Record format level keyword</strong></p>
+<p>PFILE(&amp;PFL1 &amp;PFL2 …)-specify the referred physical files</p>
+<p>TEXT</p>
+</li>
+<li><p><strong>Selection level keyword</strong></p>
+<p>VALUES(&amp;VAL1 &amp;VAL2 …)</p>
+<p>COMP(XX &amp;VAL) XX-GT, GE, EQ, NE, LE, LT</p>
+<p>RANGE（&amp;LOVAL &amp;HIVAL）</p>
+<p>ALL</p>
+</li>
+</ul>
+<h4 id="Selection-level-keyword"><a href="#Selection-level-keyword" class="headerlink" title="Selection level keyword"></a><strong>Selection level keyword</strong></h4><ol>
+<li>records <strong>match both</strong> condition1 &amp; condition2</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">S  FLD1   CONDITION1</span><br><span class="line"></span><br><span class="line">   FLD2   CONDITION2</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>records <strong>match</strong> at least condition1 or condition2</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">S  FLD1   CONDITION1</span><br><span class="line"></span><br><span class="line">S  FLD2   CONDITION2</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>records <strong>do not match</strong> condition1(<strong>Omit</strong>)</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O FLD1   CONDITION1</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>More condition groups</li>
+</ol>
+<h4 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h4><p>  <strong>DSPDBR</strong> - enquiry related logical files for a physical file</p>
+<p>  <strong>DSPFD</strong> – enquiry file information, especially, we can enquiry </p>
+<p>  related Physical files for a Logical file via this command</p>
+<h2 id="RUNQRY查询"><a href="#RUNQRY查询" class="headerlink" title="RUNQRY查询"></a>RUNQRY查询</h2><p><code>RUNQRY *n LF01</code></p>
+<p>f4最后一项 改成yes 可以筛选</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200923142254106.png" alt="image-20200923142254106"></p>
+<h2 id="WRKSPLF-编译日志查询"><a href="#WRKSPLF-编译日志查询" class="headerlink" title="WRKSPLF 编译日志查询"></a>WRKSPLF 编译日志查询</h2><p><strong>shift+f6 到底端</strong></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200923170857559.png" alt="image-20200923170857559"></p>
+<h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><ol>
+<li><p>strsql</p>
+</li>
+<li><p>select * from xxx</p>
+</li>
+<li><p>shift + f1</p>
+</li>
+<li><p>change session attribute</p>
+</li>
+<li><p>select output  3</p>
+</li>
+<li><p>output file </p>
+<p>file导出名称 带上@ 后缀表示 备份文件</p>
+<p>library 备份所属的库名称</p>
+<p>回到sql页面</p>
+</li>
+<li><p>select * from 库名&#x2F;</p>
+<p>下次设置为1</p>
+</li>
+</ol>
+<h2 id="操作pf和lf"><a href="#操作pf和lf" class="headerlink" title="操作pf和lf"></a>操作pf和lf</h2><p><strong>Insert records</strong></p>
+<p>UPDDTA</p>
+<p>SQL</p>
+<p>Via program (RPGLE: WRITE)</p>
+<p><strong>Delete records</strong></p>
+<p>UPDDTA, CLRPFM</p>
+<p>SQL</p>
+<p>Via program (RPGLE: DELETE)</p>
+<p><strong>Enquiry records</strong></p>
+<p>DSPPFM,</p>
+<p>RUNQRY,WRKQRY</p>
+<p>SQL</p>
+<p>Via program (RPGLE: READ)</p>
+<p><strong>Change records</strong></p>
+<p>UPDDTA </p>
+<p>SQL</p>
+<p>Via program (RPGLE: UPDATE)</p>
+<p><strong>Change file attribute</strong></p>
+<p>CHGPF</p>
+<p>ADDPFM</p>
+<p>RMVM</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">樱桃先生</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/6b557ec5/">http://example.com/posts/6b557ec5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">樱桃先生</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AS-400/">AS/400</a></div><div class="post-share"><div class="social-share" data-image="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/6b2345a3/" title="RPG入门"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">RPG入门</div></div><div class="info-2"><div class="info-item-1">RPGPG 的全称：Report Program GeneratorIBM 的 AS&#x2F;400 小型机上的高级语言.REPORT PROGRAM GENERATOR,程序运行效率很高.RPG 起始是一个非常简单的面向事务处理的编程语言, 用被储存在系统 IBM709 和 360 型号的 20 针打孔卡中的数据而生成报表.系统 3 由于它的硬式磁盘而带来了 RPG 2, 使它变成中型的 IBM 机器的标准应用程序语言   HelloWorld使用132位 类型选择RPGLE 首行输入C   按F4 12345*************** Beginning of data *******************C     &#x27;HELLO&#x27;       DSPLY                            C     &#x27;WORLD!&#x27;      DSPLY                            C                   RETURN                           *****...</div></div></div></a><a class="pagination-related" href="/posts/a0ae3de1/" title="IBM_i的体系结构"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">IBM_i的体系结构</div></div><div class="info-2"><div class="info-item-1">IBM i的体系结构从IBM i的发展史可以看出 IBMi经历了很多次的技术演进和变化,IBM i这个名字也是经过多次修改得到的 而一直没有改变的就是IBM i的五大设计原则  技术独立性 基于对象的设计 单级存储 软件集成 硬件集成  技术独立性第一个原则,可能也是最重要的一个原则,是技术独立性.与其它计算机系统不同,IBM i系列服务器并不是由硬件定义的,而是软件定义的.这就意味着程序并不直接与硬件”对话”,与之”对话”的是一个超越于各种硬件技术的机器界面,即Technology Independent Machine Interface(TIMI),我们称它MI.正是这个特性,保证了IBM i系列服务器能在不影响用户使用的情况下改变底层 硬件构架,使IBM i系列服务器永远不会过时.当新的硬件功能和设计加入时,系统本身及用户开发的应用能够马上运行于新的硬件上,并且充分享受新硬件和新设计带来的好处. 在MI与实际硬件之间是由几百万行代码组成的操作系统软件,我们称之系统特许内码(System Licensed Internal  Code,SLIC).这个软件层将应用程序与底层...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/881792ef/" title="10.22笔记"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="info-item-2">10.22笔记</div></div><div class="info-2"><div class="info-item-1">10.22笔记UPDDTA输入负数最后一位可以输正负号  OVRDBF和DLTOVROVRDBF和DLTDBF使用时 注意有一个范围参数要对应 OVRDBF:  DLTOVR   正常选用job   ACTGRPDFN 是激活组的意思 nick哥之后会补充讲   如何插入上百条数据 (练SQL用 实际用不到)1.准备一个pf文件 2.插入5条数据输入一条数据 先复制再回车  粘贴把1 依次改成2345   使用STRSQL 输入  得到10条数据  重复使用相似语句 即可得到20 40 80 160…条数据  如何在PF文件中插入小写字母使用shift+F1  可以更改默认  WRKQRY保存QRYDFN文件(LF作业4)使用WRKQRY    连敲两次回车  F3保存  回车在库下生成文件  可以直接使用 RUNQRY CSQRY来执行QRY文件 F4可以修改record selection为*yes 可自由调整查询参数  PRTF 相关(ppt) 优质的代码应只使用SPACEA和SKIPB(SPACEB SKIPA)  打印行为原则: 只能从左到右 从上到下  例如: 如果指...</div></div></div></a><a class="pagination-related" href="/posts/b9ff8872/" title="10.21笔记"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="info-item-2">10.21笔记</div></div><div class="info-2"><div class="info-item-1">PF LF补充知识点 Nick哥说 下面这三种pdm的指令 加上strpdm 优先使用 wrkmbrpdm 在自己账号作业的时候 可以最快打开上次工作的lib WRKLIBPDM WRKMBRPDM WRKLIBPDM   PF文件中  下列位置输入F 可以快速显示 格式行      Nick哥说 在PF或者LF在引用文件的时候 尽量不要出现指定库名 因为工作的时候环境很多 不应写死在文件中  DSPFD: 查询主键和member record format**详细信息  DSPFFD:  查询PF文件字段详细信息  CRTPF 参数相关    这行如果选*none 生成空file 选*file则在file里生成同名member   Nick哥说这两行 优先填 *nomax 即不设上限  代码规范  Nick哥说 PF文件字段间用一行注释隔开代码会比较清晰   CHGPF 这个指令可以实现 更改原有的数据结构源码 而保留数据     RRN pf文件有类似sql里的自增主键字段 但是默认是不显示的 如果在没有unique的时候插入两条相同的数据 使用的时候就要根据这个RRN字段来...</div></div></div></a><a class="pagination-related" href="/posts/6e639b06/" title="AS400(一)"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="info-item-2">AS400(一)</div></div><div class="info-2"><div class="info-item-1">AS400(一)AS400简介&#x2F;特点&#x2F;存储结构AS400简介AS400（iSeries）是当今世界上最流行的中小型、多用户商业计算机系统（服务器系统），在多用户服务器领域里，始终保持着最畅销的地位。目前 AS400 在全球的装机量已超过 75 万套，覆盖 150 多个国家，支持 40 多种语言，有近 1 万个商业伙伴和独立软件商， 3 万多个商业应用。广泛应用于流通、金融证券、制造、运输等各个行业。 AS400系统支持的编程语言有DDS，RPG，CL，Cobol, C等，支持DB2等数据库 对数据的高效处理和极高的安全性是AS400的核心优势之一  AS400特点升级性 系统和硬件升级时，应用程序无需升级 安全性 无病毒，未被入侵过 集成性 高度集成的系统环境，除含有操作系统功能外还有网络通信功能，数据库管理功能，安全管理功能等 AS400存储结构 ASP(Auxiliary Storage Pools) 辅助存储池，是系统的可用空间 存储的均为Object 单级存储结构（自动存储）  **单级存储（Single-level store）**结构 将系统所有的...</div></div></div></a><a class="pagination-related" href="/posts/9421881e/" title="AS&#x2F;400事务和日志"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-12</div><div class="info-item-2">AS&#x2F;400事务和日志</div></div><div class="info-2"><div class="info-item-1">事务COMMIT 提交当前事务．所有事务的更改都将为其他事务可见，而且保证当崩溃发生时的可持续性。在程序中经常使用 COMMMIT 来控制事物处理的完整性，保证在发生异常的情况下数据的完整性和正确性。访问数据库文件时使用 COMMIT&#x2F;ROLBK，可以确保对数据库文件操作的一致性：全部数据库文件操作都是成功的 COMMIT 提交；全部数据库文件操作都是无效的 ROLBK 回滚. 用这种方法，从而保证了数据库文件的完整性；另外，可以把一组操作当作一个单元来处理。举个实际的例子，如果程序中，以修改的方式声明了四个文件 A、B、C、D，其中 A、B、C 都使用了 COMMIT 关键字，而 D 未使用 COMMIT 关键字；在程序执行过程中，首先更改了 A、B、D 的值在接下的处理中，如果业务流程判断，逻辑有误，不再执行，此时可以进行回滚操作，此时 A、B 的数据恢复成为修改之前的数值；D 的数据，因为在声明文件时未使用 COMMIT 关键字，所以回滚操作对它无效，即 D 的数据仍然保持修改之后的值；而如果业务流程判断正常，程序顺利执行完毕，此时需要进行一次确认操作（COMMI...</div></div></div></a><a class="pagination-related" href="/posts/a0ae3de1/" title="IBM_i的体系结构"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="info-item-2">IBM_i的体系结构</div></div><div class="info-2"><div class="info-item-1">IBM i的体系结构从IBM i的发展史可以看出 IBMi经历了很多次的技术演进和变化,IBM i这个名字也是经过多次修改得到的 而一直没有改变的就是IBM i的五大设计原则  技术独立性 基于对象的设计 单级存储 软件集成 硬件集成  技术独立性第一个原则,可能也是最重要的一个原则,是技术独立性.与其它计算机系统不同,IBM i系列服务器并不是由硬件定义的,而是软件定义的.这就意味着程序并不直接与硬件”对话”,与之”对话”的是一个超越于各种硬件技术的机器界面,即Technology Independent Machine Interface(TIMI),我们称它MI.正是这个特性,保证了IBM i系列服务器能在不影响用户使用的情况下改变底层 硬件构架,使IBM i系列服务器永远不会过时.当新的硬件功能和设计加入时,系统本身及用户开发的应用能够马上运行于新的硬件上,并且充分享受新硬件和新设计带来的好处. 在MI与实际硬件之间是由几百万行代码组成的操作系统软件,我们称之系统特许内码(System Licensed Internal  Code,SLIC).这个软件层将应用程序与底层...</div></div></div></a><a class="pagination-related" href="/posts/167fb41b/" title="AS&#x2F;400的历史"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-19</div><div class="info-item-2">AS&#x2F;400的历史</div></div><div class="info-2"><div class="info-item-1"> 以后要使用as&#x2F;400 先提前了解一下 做个准备 ,百度好难找到as&#x2F;400的资料  …  AS&#x2F;400的历史1.1. AS&#x2F;400的诞生背景在介绍AS&#x2F;400之前，先简单回顾一下AS&#x2F;400的发展历史。IBM AS&#x2F;400的创始人Frank G.Soltis  博士认为“历史”对设计新型计算机系统的影响力远胜于其他因素。同样，在设计一个新型计算机系统时，开发的场所和先前的产品也有着相当大的影响力。 60年代，位于美国东部（the EastCoast）的许多计算机公司，例如Digital，Data General页以及IBM的NewYork Lab.  等，占尽地利，不仅分享了诸如MIT等名校和研究所的研究成果，而且雇佣了大批东部高校的高材生。MIT当时曾为美国国防部开发了一个名为MULTICS的项目。东部的公司在设计计算机的结构和操作系统时，大量借鉴了MULTICS的思想。Bell Lab.的UNIX正是这一环境下的产物。   UNIX系统是一个分时系统。最早的UNIX系统于1970年问世。此前，只有面向批...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">樱桃先生</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typoraWechat.jpeg"><i class="fab fa-weixin"></i><span>加为好友</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临樱桃先生的博客🍒～</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AS400-%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">AS400(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DDS%E8%A7%84%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">DDS规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A%E5%88%97"><span class="toc-number">1.1.1.</span> <span class="toc-text">A列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#T%E5%88%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">T列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NAME%E5%88%97"><span class="toc-number">1.1.3.</span> <span class="toc-text">NAME列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R%E9%A1%B9"><span class="toc-number">1.1.4.</span> <span class="toc-text">R项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LEN-%E9%A1%B9%EF%BC%9A"><span class="toc-number">1.1.5.</span> <span class="toc-text">LEN 项：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8BT%E5%9E%8B"><span class="toc-number">1.1.6.</span> <span class="toc-text">数据类型T型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FUNCTIONS-%E9%A1%B9"><span class="toc-number">1.1.7.</span> <span class="toc-text">FUNCTIONS 项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PF%E5%BC%95%E7%94%A8"><span class="toc-number">1.1.8.</span> <span class="toc-text">PF引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logical-File"><span class="toc-number">1.2.</span> <span class="toc-text">Logical File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#T-%E5%88%97%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">T 列：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FUNCTIONS-%E9%A1%B9%EF%BC%9A"><span class="toc-number">1.2.2.</span> <span class="toc-text">FUNCTIONS 项：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A0%BC%E5%BC%8F%E9%80%BB%E8%BE%91%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">多格式逻辑文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E9%80%BB%E8%BE%91%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.4.</span> <span class="toc-text">连接逻辑文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89%E5%AD%97%E6%AE%B5"><span class="toc-number">1.2.5.</span> <span class="toc-text">筛选字段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Useful-keyword"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">Useful keyword</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Selection-level-keyword"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">Selection level keyword</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">相关命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RUNQRY%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.</span> <span class="toc-text">RUNQRY查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WRKSPLF-%E7%BC%96%E8%AF%91%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.4.</span> <span class="toc-text">WRKSPLF 编译日志查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE"><span class="toc-number">1.5.</span> <span class="toc-text">备份数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9Cpf%E5%92%8Clf"><span class="toc-number">1.6.</span> <span class="toc-text">操作pf和lf</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4995/" title="顺德好友小聚"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="顺德好友小聚"/></a><div class="content"><a class="title" href="/posts/4995/" title="顺德好友小聚">顺德好友小聚</a><time datetime="2023-05-07T13:56:00.000Z" title="发表于 2023-05-07 21:56:00">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/51438/" title="旅游归来的周末"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="旅游归来的周末"/></a><div class="content"><a class="title" href="/posts/51438/" title="旅游归来的周末">旅游归来的周末</a><time datetime="2023-05-06T05:56:00.000Z" title="发表于 2023-05-06 13:56:00">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34851/" title="与好友的广西之旅"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="与好友的广西之旅"/></a><div class="content"><a class="title" href="/posts/34851/" title="与好友的广西之旅">与好友的广西之旅</a><time datetime="2023-05-02T04:30:00.000Z" title="发表于 2023-05-02 12:30:00">2023-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53652/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53652/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53653/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53653/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 樱桃先生</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div><div class="footer_custom_text">一切都是最好的安排</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="5225697049" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-mini="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><link rel="stylesheet" href="/css/utils.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

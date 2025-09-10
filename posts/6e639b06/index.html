@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AS400(一) | 樱桃先生</title><meta name="author" content="樱桃先生"><meta name="copyright" content="樱桃先生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AS400(一)AS400简介&#x2F;特点&#x2F;存储结构AS400简介AS400（iSeries）是当今世界上最流行的中小型、多用户商业计算机系统（服务器系统），在多用户服务器领域里，始终保持着最畅销的地位。目前 AS400 在全球的装机量已超过 75 万套，覆盖 150 多个国家，支持 40 多种语言，有近 1 万个商业伙伴和独立软件商， 3 万多个商业应用。广泛应用于流通、金融证券、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AS400(一)">
+<meta property="og:url" content="http://example.com/posts/6e639b06/index.html">
+<meta property="og:site_name" content="樱桃先生">
+<meta property="og:description" content="AS400(一)AS400简介&#x2F;特点&#x2F;存储结构AS400简介AS400（iSeries）是当今世界上最流行的中小型、多用户商业计算机系统（服务器系统），在多用户服务器领域里，始终保持着最畅销的地位。目前 AS400 在全球的装机量已超过 75 万套，覆盖 150 多个国家，支持 40 多种语言，有近 1 万个商业伙伴和独立软件商， 3 万多个商业应用。广泛应用于流通、金融证券、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg">
+<meta property="article:published_time" content="2020-09-22T13:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-27T09:39:27.340Z">
+<meta property="article:author" content="樱桃先生">
+<meta property="article:tag" content="AS&#x2F;400">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AS400(一)",
+  "url": "http://example.com/posts/6e639b06/",
+  "image": "https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg",
+  "datePublished": "2020-09-22T13:00:00.000Z",
+  "dateModified": "2022-08-27T09:39:27.340Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "樱桃先生",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/6e639b06/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AS400(一)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">樱桃先生</span></a><a class="nav-page-title" href="/"><span class="site-name">AS400(一)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-camera"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AS400(一)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-22T13:00:00.000Z" title="发表于 2020-09-22 21:00:00">2020-09-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-27T09:39:27.340Z" title="更新于 2022-08-27 17:39:27">2022-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/AS-400/">AS/400</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="AS400-一"><a href="#AS400-一" class="headerlink" title="AS400(一)"></a>AS400(一)</h1><h2 id="AS400简介-特点-存储结构"><a href="#AS400简介-特点-存储结构" class="headerlink" title="AS400简介&#x2F;特点&#x2F;存储结构"></a><strong>AS400</strong>简介&#x2F;特点&#x2F;存储结构</h2><h3 id="AS400简介"><a href="#AS400简介" class="headerlink" title="AS400简介"></a><strong>AS400简介</strong></h3><p><code>AS400（iSeries）</code>是当今世界上最流行的中小型、多用户商业计算机系统（服务器系统），在多用户服务器领域里，始终保持着最畅销的地位。目前 AS400 在全球的装机量已超过 75 万套，覆盖 150 多个国家，支持 40 多种语言，有近 1 万个商业伙伴和独立软件商， 3 万多个商业应用。广泛应用于流通、金融证券、制造、运输等各个行业。</p>
+<p>AS400系统支持的编程语言有<strong>DDS</strong>，<strong>RPG</strong>，<strong>CL</strong>，<strong>Cobol</strong>, C等，支持DB2等数据库</p>
+<p>对数据的高效处理和极高的安全性是AS400的核心优势之一 </p>
+<h3 id="AS400特点"><a href="#AS400特点" class="headerlink" title="AS400特点"></a>AS400特点</h3><p><strong>升级性</strong></p>
+<p>系统和硬件升级时，应用程序无需升级</p>
+<p><strong>安全性</strong></p>
+<p>无病毒，未被入侵过</p>
+<p><strong>集成性</strong></p>
+<p>高度集成的系统环境，除含有操作系统功能外还有网络通信功能，数据库管理功能，安全管理功能等</p>
+<h3 id="AS400存储结构"><a href="#AS400存储结构" class="headerlink" title="AS400存储结构"></a>AS400存储结构</h3><ul>
+<li><p><strong>ASP(Auxiliary Storage Pools)</strong></p>
+<p>辅助存储池，是系统的可用空间</p>
+<p>存储的均为Object</p>
+<p>单级存储结构（自动存储）</p>
+</li>
+<li><p>**单级存储（Single-level store）**结构</p>
+<p>将系统所有的存储器看成是一个大的存储器</p>
+<p>可以将一个Object(对象)的内容分散存放到几个硬盘上以提高对象的访问效率</p>
+<p>用户不需要关心对象是存储在哪个盘上的，也不必考虑存储管理的问题</p>
+</li>
+</ul>
+<h2 id="命令库列表功能键选项"><a href="#命令库列表功能键选项" class="headerlink" title="命令库列表功能键选项"></a>命令库列表功能键选项</h2><h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p><strong>命令（Command）</strong>- 用户通过客户端软件和服务器交互的桥梁</p>
+<p>**在命令行（Command Line）**输入可用命令，命令行通常在客户端界面下方</p>
+<p>命令是什么- 系统可识别的字符组合，系统可根据命令的指示调用程序（Program）去操作对象（Object）或者文件成员（File Member），不区分大小写。</p>
+<p>命令为何能被执行-在400的运行环境（environment， library list is introduced for 400）存在名称与用户输入字符相同的对象（Object， with type *CMD)</p>
+<h3 id="Function-Key"><a href="#Function-Key" class="headerlink" title="Function Key"></a><strong>Function Key</strong></h3><p><strong>功能键（function Key）</strong>- 不是以输入字符为目的的功能输入，通常指F1-F24（Shift + F1 &#x3D; F13，shift代表F12以此类推）和Enter</p>
+<p>会话界面会有当前可用功能键的提示（回车和SHIFT+ESC不提示，只能使用当前界面可用的功能键）</p>
+<p>常用功能键：</p>
+<p><strong>Enter</strong> – 确认&#x2F;执行</p>
+<p><strong>F1</strong> – 帮助（Help）</p>
+<p><strong>F3</strong> - 退出（Exit）</p>
+<p><strong>F4</strong> - 提示（Prompt）(参数补齐)</p>
+<p><strong>F5</strong> – 刷新（Refresh）</p>
+<p><strong>F6</strong> – 新建（Create）</p>
+<p><strong>F9</strong> – 检索（Retrieve）(快速得到上一条执行的命令)</p>
+<p><strong>F11</strong> - （不）显示详细信息</p>
+<p><strong>F12</strong> - 返回（Cancel）</p>
+<p><strong>F16</strong> – 关键字查询（Find）</p>
+<p><strong>F23</strong> – 更多选项（ More options ）</p>
+<p><strong>F24</strong> – 更多功能键（More keys）</p>
+<p><strong>SHIFT + ESC</strong>: System request menu</p>
+<h3 id="Option"><a href="#Option" class="headerlink" title="Option"></a><strong>Option</strong></h3><p><strong>选项（Option）</strong>- 除了直接用命令与系统交互，在某些工具（Utility）帮助下也可以使用预定义选项（Option）交互</p>
+<p>会话界面会有当前可用选项的提示, 选项输入在对应操作对象前面的短线上</p>
+<p>选项交互实质是调用命令，输入选项按F4可查询对应命令，并填写相关参数，按Enter执行</p>
+<p>常用选项：</p>
+<p>2 – 修改&#x2F;编辑（Change&#x2F;Edit）</p>
+<p>3 – 复制（Copy）</p>
+<p>4 – 删除（Delete）</p>
+<p>5 – 浏览（Display）</p>
+<p>7 – 重命名（Rename）</p>
+<p>11 – 剪切（Move）</p>
+<p>13 – 修改文本（Change Text）</p>
+<p>14 – 编译（Compile）</p>
+<p>15 – 创建模块（Create Module ）</p>
+<p>16 – 运行Procedure（Run procedure）</p>
+<p>17 – 使用SDA修改（Change using SDA）</p>
+<p>19 – 使用RLU修改（Change using RLU）</p>
+<p>25 – 关键字查询（Find string）</p>
+<p>54 – 代码&#x2F;内容对比（Compare）</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/09/22/HhqPDJiNv7KpdMO.png" alt="image-20200922134726114"></p>
+<h2 id="对象-库-库列表-详解"><a href="#对象-库-库列表-详解" class="headerlink" title="对象&#x2F;库&#x2F;库列表(详解)"></a><strong>对象</strong>&#x2F;<strong>库</strong>&#x2F;<strong>库列表</strong>(<strong>详解</strong>)</h2><h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a><strong>Object</strong></h3><p><code>对象（Object）</code>- 系统中可被独立操作存储的一种存在（文件，程序，命令等都是对象的一种）</p>
+<p>注意区分windows系统上的文件和400上所指文件的不同：Windows上文件是所有电子存储的代称，400上的文件是指 object type为*<strong>file</strong>的对象</p>
+<p>以Q开头的Object是系统的Object</p>
+<p><strong>三个因素确定唯一Object</strong></p>
+<p><code>Object Name</code>(对象名)</p>
+<p><code>Library</code>(库容器)</p>
+<p><code>Object Type</code>(对象类型)</p>
+<p><strong>对象类型Object Type</strong></p>
+<p>*FILE</p>
+<p>*PGM</p>
+<p>*LIB</p>
+<p>*CMD</p>
+<p>…</p>
+<p><strong>对象描述Object Description</strong></p>
+<p>Library, Object Name</p>
+<p>Attribute, Size, Text, etc..</p>
+<p><strong>对象功能部分Object Functional Part</strong></p>
+<p>Physical File Members(Data Records)</p>
+<p>Logical File Members(Access Paths)</p>
+<p>Program Code</p>
+<p><strong>对象的相关命令</strong></p>
+<p><strong>WRKOBJ</strong>: Work with Object</p>
+<p><strong>DSPOBJD</strong>: Display Object Description</p>
+<h3 id="Library"><a href="#Library" class="headerlink" title="Library"></a>Library</h3><p><strong>库（Library）</strong>- 除了QSYS以外的library是一种特殊的Object，用于存放Object。</p>
+<p><strong>Library中不能再有Library</strong></p>
+<p>特例：QSYS系统库中可存放Library，创建的Library必须存放在QSYS下， QSYS不是Object</p>
+<p><strong>QTEMP</strong>: 系统临时库，用于存放Temporary Object。系统会为每一个job分配一个QTEMP的临时库，不同job的QTEMP library不能共享，QTEMP及其存储的Object的生命周期随着job结束而结束,如果链接断开也会清空qtemp.</p>
+<p><strong>Library类型</strong>：*PROD, *TEST</p>
+<p>*PROD: 生产库，Debug时文件中的数据不能被修改</p>
+<p><strong>相关命令</strong></p>
+<p><strong>CRTLIB</strong>: Create Library</p>
+<p><strong>DLTLIB</strong>: Delete Library</p>
+<p><strong>DSPLIB</strong>: Display Library(查看Library中的Object)</p>
+<p>chgcurlib 库名</p>
+<h3 id="Library-List"><a href="#Library-List" class="headerlink" title="Library List"></a><strong>Library List</strong></h3><p>库列表（*LIBL）- 用户定义的Library顺序排列列表</p>
+<p>为未指定Library的对象提供检索顺序，类似于JAVA的环境变量</p>
+<p>Library类型和优先顺序为 <strong>SYS</strong> &gt; <strong>PRD</strong> &gt; <strong>CUR</strong> &gt; <strong>USR</strong></p>
+<p>以上类型与*PROD， *TEST的区分标准不同</p>
+<p>用户可以修改CUR library，和USR类型Library的顺序</p>
+<p>SYS: System Library</p>
+<p>PRD: Production Library</p>
+<p>CUR: Current Library</p>
+<p>USR: User library</p>
+<p>相关命令</p>
+<p><strong>DSPLIBL</strong>: Display Library List</p>
+<p><strong>EDTLIBL</strong>: Edit Library List(Screen)</p>
+<p><strong>CHGLIBL</strong>: Change Library List</p>
+<p><strong>ADDLIBLE</strong>: Add Library List Entry</p>
+<p><strong>RMVLIBLE</strong>: Remove Library List Entry</p>
+<p><strong>CHGCURLIB</strong>: Change Current Library</p>
+<h3 id="Unqualified-Object-Qualified-Object"><a href="#Unqualified-Object-Qualified-Object" class="headerlink" title="Unqualified Object &amp; Qualified Object"></a><strong>Unqualified Object &amp; Qualified Object</strong></h3><p>Unqualified Object</p>
+<p>未指定Library的Object</p>
+<p>查找时对Library List自上而下进行搜索，直到找到第一个名字相同的Object为止，若已指定Object Type，则要找到同名同类型的Object为止</p>
+<p>Qualified Object</p>
+<p>已指定Library, 可忽略Library List</p>
+<h2 id="文件与成员"><a href="#文件与成员" class="headerlink" title="文件与成员"></a><strong>文件与成员</strong></h2><h3 id="File-Member"><a href="#File-Member" class="headerlink" title="File&amp;Member"></a><strong>File&amp;Member</strong></h3><p>文件（File）- Object的一种，Object Type为*FILE</p>
+<p><strong>文件类型</strong></p>
+<p>物理文件：Physical File，其成员（Member）用于保存数据或源代码</p>
+<p>逻辑文件：Logical File，其成员（Member）不存储数据而存储访问路径，类似SQL视图</p>
+<p>报表文件：Printer File，定义报表格式， 用于打印报表</p>
+<p>显示文件：Display File，定义显示格式，用于显示用户界面</p>
+<p>每种file对应的source member类型分别是PF, LF, PRTF, DSPF</p>
+<p>文件需要编写代码并编译后方可生成。</p>
+<p><code>DDS(Data Description Specification)</code></p>
+<p>编写文件的语言，里面定义了文件的<code>格式(format)</code>，各<code>字段(field)</code>的属性，<code>键值(Key)</code>等</p>
+<p>文件相关命令</p>
+<p><strong>DLTF</strong>: Delete File</p>
+<p><strong>DSPFD</strong>: Display File Description</p>
+<p><strong>DSPFFD</strong>: Display File Field Description</p>
+<p><strong>DSPOBJD</strong>: Display Object Description (可用于查看文件源代码)</p>
+<h3 id="Physical-File"><a href="#Physical-File" class="headerlink" title="Physical File"></a><strong>Physical File</strong></h3><p><code>物理文件（Physical File，此处指PF-DTA属性的物理文件）</code>，file的一种，用于保存数据，只允许有一个记录格式（Record Format），若有键值(Key，Optional)，则可以按照键值升&#x2F;降序访问其中的数据。</p>
+<p>Object Functional Part</p>
+<p>Format: 由其DDS代码决定</p>
+<p>Access Path: 访问路径</p>
+<p>Member: 存储数据，一个PF可以有0个或多个Member</p>
+<p>编译PF-DTA源文件</p>
+<p>CRTPF: 需指定其DDS代码，若文件已存在，重新编译会造成文件数据丢失</p>
+<p>修改PF-DTA文件</p>
+<p>CHGPF: 若修改DDS代码，可用此命令重新编译而不使数据丢失</p>
+<h4 id="编译器中的操作"><a href="#编译器中的操作" class="headerlink" title="编译器中的操作"></a>编译器中的操作</h4><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/image-20200923002453175.png" alt="image-20200923002453175"></p>
+<p><strong>相关命令</strong></p>
+<p>CRTPF: Create Physical File(编译物理文件)</p>
+<p>CPYF: Copy File</p>
+<p>DSPPFM: Display Physical File Member (查看物理文件数据)</p>
+<p>CLRPFM: Clear Physical File Member (清除物理文件数据)</p>
+<p>ADDPFM: Add Physical File Member</p>
+<p>RMVM: Remove Member</p>
+<p>CHGPF: Change Physical File</p>
+<p>UPDDTA: Update File Data(更新物理文件数据)</p>
+<p>STRSQL: Start SQL</p>
+<h3 id="Source-File"><a href="#Source-File" class="headerlink" title="Source File"></a><strong>Source File</strong></h3><p><code>源物理文件（Source File）</code>，物理文件的一种，属性为（PF-SRC）,用于保存Source Code(源代码)</p>
+<p>Object Functional Part</p>
+<p>Format: 系统定义，不需要DDS</p>
+<p>Member: 存放源代码，有member类型，可编译得到对应的Object</p>
+<p>创建PF-SRC</p>
+<p>CRTSRCPF: Create Source File,创建时指定<strong>长度</strong>,规范为：<br> 92位 : 用于存储PF, LF, DSPF, PRTF, CLP, RPG类型的member<br> 132位: 用于存储RPGLE, SQLRPGLE类型的member</p>
+<h3 id="Logical-File"><a href="#Logical-File" class="headerlink" title="Logical File"></a><strong>Logical File</strong></h3><p>逻辑文件（Logical File）- Physical File的一个视图，不存储数据，按定义的Key(Mandatory)对Physical File的数据进行排序,也可以定义筛选条件(Optional)对数据进行筛选，可以有多个Record Format，一个Record Format对应一个Physical File.</p>
+<p>Join Logical File，a logical file that join two or more physical files in one record format.(进阶内容，不讲)</p>
+<p>-Logical File与Physical File的关系<br> 一个Logical File必须关联至少一个Physical File，一个Physical File可以有0个或多个Logical File.</p>
+<p><strong>删除Physical File(DLTF)前必须先删除所有与其相关联的Logical File（AS400没有级联删除的机制）</strong></p>
+<p>Object Functional Part</p>
+<p>Member: Access Path，一个LF可以有多个Member</p>
+<p><strong>编译LF源文件</strong></p>
+<p>CRTLF: 需指定其DDS，若文件已存在，重新编译不会造成Physical File数据丢失</p>
+<p><strong>相关命令</strong></p>
+<p>CRTLF: Create Logical File(编译逻辑文件)</p>
+<p>CPYF: Copy File</p>
+<p>ADDLFM: Add Logical File Member</p>
+<p>DSPFFD: Display File Field Description</p>
+<p>RMVM: Remove Member</p>
+<p>DSPFD: Display File Description<br>    (查看与LF相关联的PF， 关键字‘PFILE’)</p>
+<p>DSPDBR: Display Database Relationship<br>     (查看与PF相关联的LF)</p>
+<h3 id="Printer-File-Display-File"><a href="#Printer-File-Display-File" class="headerlink" title="Printer File &amp; Display File"></a><strong>Printer File &amp; Display</strong> <strong>File</strong></h3><p><strong>Printer File</strong>，报表文件，用于生成报表(report)的模板</p>
+<p><strong>Display File</strong>，显示文件，用于显示用户界面(User Screen)的模板</p>
+<p>相关命令：</p>
+<p>CRTPRTF: Create Printer File 生成报表文件</p>
+<p>CRTDSPF: Create Display File 生成显示文件</p>
+<p>R cscusir (标志一个表名)</p>
+<h3 id="查错"><a href="#查错" class="headerlink" title="查错:"></a>查错:</h3><p>shift+esc 调出 &#x3D;&gt;3&#x3D;&gt;4&#x3D;&gt;5</p>
+<p>如果没有文件可能是断了链接,临时文件都是存在Qtemp 一断即失</p>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看:"></a>查看:</h3><p><strong>editlibl</strong> : 把自己个人库放到第一位</p>
+<p>如果不加 在表名前面增加库名 否则可能出现 not found问题</p>
+<ol>
+<li><p>STRSQL</p>
+</li>
+<li><p>输入sql语句(F4 选择参数 )回车</p>
+</li>
+</ol>
+<h3 id="添加数据："><a href="#添加数据：" class="headerlink" title="添加数据："></a>添加数据：</h3><p>在data文件前 按18</p>
+<p>F9:插入数据</p>
+<p>F11: 改变数据</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/gLnRqy1CQbA6cVz.png" alt="image-20200922165403531"></p>
+<p>换行 shift+f3</p>
+<p>如果只想显示 部分字段</p>
+<p>在原语句f4 修改* 处内容</p>
+<h4 id="UPDDTA"><a href="#UPDDTA" class="headerlink" title="UPDDTA"></a>UPDDTA</h4><h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据:"></a>删除数据:</h3><p>CLRPFM:清空</p>
+<p>先select 确认是否是要删的数据</p>
+<p>再将select改成delete </p>
+<h2 id="程序与命令"><a href="#程序与命令" class="headerlink" title="程序与命令"></a><strong>程序与命令</strong></h2><h3 id="Program"><a href="#Program" class="headerlink" title="Program"></a><strong>Program</strong></h3><p>程序（Program）- 400上可以被调用的object，类似于windows的可执行文件</p>
+<p>集成语言环境integrated language environment当中使用优化后的CL和RPG编程语言</p>
+<p>CL程序</p>
+<p>1.属性为CLLE，由CCLE类型的member编译生成</p>
+<p>2.编程语言对应为CL（Control Language）</p>
+<p>3.脚本程序，一系列命令的条件组合（类似于.bat,但是需要编译）</p>
+<p>RPG程序</p>
+<p>1.属性为RPGLE，由RPGLE&#x2F;SQLRPGLE类型的member编译生成</p>
+<p>2.编程语言对应为RPG（Report Programming Generator）</p>
+<p>3.优势是对file的处理</p>
+<h3 id="Command-1"><a href="#Command-1" class="headerlink" title="Command"></a><strong>Command</strong></h3><h4 id="命令（Command）补充讲解"><a href="#命令（Command）补充讲解" class="headerlink" title="命令（Command）补充讲解"></a><strong>命令（Command）补充讲解</strong></h4><p>此处所指命令是指存放在400上面的Object，不是指‘用户输入的字符组合’</p>
+<p>命令需要编程编译生成，其对应的source member类型为CMD</p>
+<p>命名规范：通常为3位动词缩写+名词缩写（e.g CRTPGM）</p>
+<p>命令查询：</p>
+<p>1.如要查询有哪些CRT开头的命令，在命令行输入CRT*，按Enter查询</p>
+<p>2.可以用menu查询，如在命令行输入 GO CMDCRT(去到CRT相关菜单)， GO CMDOBJ(去到OBJ相关菜单)</p>
+<h3 id="PDM"><a href="#PDM" class="headerlink" title="PDM"></a><strong>PDM</strong></h3><h4 id="PDM-Programming-Development-Manager编程开发管理器"><a href="#PDM-Programming-Development-Manager编程开发管理器" class="headerlink" title="PDM - Programming Development Manager编程开发管理器"></a><strong>PDM - Programming Development Manager编程开发管理器</strong></h4><p>可以用来处理源代码、对象和库。为AS400用户建立源文件成员、访问SEU(Source Entry Utility)和许多其他有用的工具提供方便。</p>
+<p>相关命令</p>
+<p>STRPDM: 打开PDM，可以选择以下三个命令</p>
+<p>WRKLIBPDM: Work with Library PDM(查看Library)</p>
+<p>WRKOBJPDM: Work with Object PDM(查看Object)</p>
+<p>WRKMBRPDM: Work with Member PDM(查看Member)</p>
+<h4 id="Object和source-member的关系"><a href="#Object和source-member的关系" class="headerlink" title="Object和source member的关系"></a>Object和source member的关系</h4><p>在<strong>library HTLEO1</strong>下的<strong>source file HTSRCDBF</strong>中<strong>1</strong>个名为<strong>CSCUSTP</strong>的<strong>source member</strong>经过编译生成了</p>
+<p>在<strong>library HTLEO2</strong>下的名为<strong>CSCUSTP,</strong> 类型为***FILE,** 属性为<strong>PF-DTA</strong>的<strong>object</strong>。</p>
+<h3 id="CRTPF-F4-编译"><a href="#CRTPF-F4-编译" class="headerlink" title="CRTPF  F4 编译"></a>CRTPF  F4 编译</h3><p><code>File</code>: 自定义生成的文件名</p>
+<p><code>Library</code>: 生成到指定的库</p>
+<p><code>Source file</code>:   pf所在文件夹</p>
+<p><code>Library</code>: 源码库</p>
+<p><code>Source member</code> pf文件名</p>
+<p>源码必须进入到源码目录之后 编译成功才会到obj级别</p>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><p>进入库底下</p>
+<ol>
+<li>wrkobj 名字(可以是库 可以是obj)</li>
+<li>选2 回车 edit authority</li>
+<li>*all</li>
+</ol>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/eKZBb5hQMqrLvyA.png" alt="image-20200922172306641"></p>
+<h1 id="用处理用户定义的选项"><a href="#用处理用户定义的选项" class="headerlink" title="用处理用户定义的选项"></a>用处理用户定义的选项</h1><p>可从 PDM 任何显示中调用用户自已的命令，这个选项能很容易的执行经常要做的操作，因此可以就写一个选项而不必写出整个命令。<br>下面给出 PDM 原有的用户定义的选项样版：</p>
+<table>
+<thead>
+<tr>
+<th>选项名</th>
+<th>调用的命令</th>
+<th>解 释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C</td>
+<td>CALL &amp;O&#x2F;&amp;N</td>
+<td>允许在 PDM 处理成员显示中运行一个程序</td>
+</tr>
+<tr>
+<td>CC</td>
+<td>CHGCURLIB CURLIB(&amp;L)</td>
+<td>允许在 PDM 处理成员或对象显示中把此库做为当前 库</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>STRDFU OPTION(2)</td>
+<td>允许生成一个 DFU 程序</td>
+</tr>
+<tr>
+<td>CL</td>
+<td>CHGCURLIB CURLIB(&amp;N)</td>
+<td>允许在用 PDM 处理库的显示中把此库做为当前库</td>
+</tr>
+<tr>
+<td>CM</td>
+<td>STRSDA OPTION(2) SRCFILE(&amp;L&#x2F;&amp;F) ??SRCMBR()</td>
+<td>允许用 SDA 生成成员（菜单）</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>STRSDA OPTION(1) SRCFILE(&amp;L&#x2F;&amp;F) ??SRCMBR()</td>
+<td>允许用 SDA 生成成员（显示）</td>
+</tr>
+<tr>
+<td>DM</td>
+<td>DSPMSG</td>
+<td>显示信息</td>
+</tr>
+<tr>
+<td>EA</td>
+<td>EDTOBJAUT OBJ(&amp;L&#x2F;&amp;N) OBJTYPE(&amp;T)</td>
+<td>在 PDM 处理对象中编辑对象授权</td>
+</tr>
+<tr>
+<td>GO</td>
+<td>GO &amp;L&#x2F;&amp;N</td>
+<td>显示菜单</td>
+</tr>
+<tr>
+<td>JL</td>
+<td>DSPJOBLOG</td>
+<td>显示作业日志</td>
+</tr>
+<tr>
+<td>SL</td>
+<td>SBMJOB ??CMD(SAVLIB LIB(&amp;N))</td>
+<td>在 PDM 处理库中用批处理保存库</td>
+</tr>
+<tr>
+<td>SM</td>
+<td>SBMJOB ??CMD(SAVOBJ OBJ(&amp;F) LIB(&amp;L) OBJTYPE(*FILE) FILEMBR((&amp;F(&amp;N))))</td>
+<td>在 PDM 处理成员中用批处理保存成员</td>
+</tr>
+<tr>
+<td>SO</td>
+<td>SBMJOB ??CMD(SAVOBJ OBJ(&amp;N) LIB(&amp;L))</td>
+<td>在 PDM 处理成员中用批处理保存对象</td>
+</tr>
+<tr>
+<td>SP</td>
+<td>WRKSPLF</td>
+<td>允许处理假脱机文件</td>
+</tr>
+<tr>
+<td>WS</td>
+<td>WRKSBMJOB</td>
+<td>允许处理批作业</td>
+</tr>
+</tbody></table>
+<p><strong>生成用户定义选项</strong><br>		在 PDM 主菜单选 9，按执行键，出现规定处理选项文件的显示，显示中的提示都缺省为活动的用户定义选项文件；执行；用 F6 键，出现生成用户定义选项的显示；<br>		在 options 提示中给出表示命令的字符，第一个字符必须是字母，第二个字符可以是任何字母数字。在 command 提示中给出 CF 要调用的相应命令，按执行键。如果不记得命令的正确格式，用F4 键，给出命令参数的提示。此时在显示底部有信息指出 CF 已生成好，新的选项保存在文件 QAUOOPT中。  </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">樱桃先生</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/6e639b06/">http://example.com/posts/6e639b06/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">樱桃先生</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AS-400/">AS/400</a></div><div class="post-share"><div class="social-share" data-image="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" target="_blank"><img class="post-qr-code-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/21/Ay5sujrkH1nLTwW.jpg" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/a0ae3de1/" title="IBM_i的体系结构"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">IBM_i的体系结构</div></div><div class="info-2"><div class="info-item-1">IBM i的体系结构从IBM i的发展史可以看出 IBMi经历了很多次的技术演进和变化,IBM i这个名字也是经过多次修改得到的 而一直没有改变的就是IBM i的五大设计原则  技术独立性 基于对象的设计 单级存储 软件集成 硬件集成  技术独立性第一个原则,可能也是最重要的一个原则,是技术独立性.与其它计算机系统不同,IBM i系列服务器并不是由硬件定义的,而是软件定义的.这就意味着程序并不直接与硬件”对话”,与之”对话”的是一个超越于各种硬件技术的机器界面,即Technology Independent Machine Interface(TIMI),我们称它MI.正是这个特性,保证了IBM i系列服务器能在不影响用户使用的情况下改变底层 硬件构架,使IBM i系列服务器永远不会过时.当新的硬件功能和设计加入时,系统本身及用户开发的应用能够马上运行于新的硬件上,并且充分享受新硬件和新设计带来的好处. 在MI与实际硬件之间是由几百万行代码组成的操作系统软件,我们称之系统特许内码(System Licensed Internal  Code,SLIC).这个软件层将应用程序与底层...</div></div></div></a><a class="pagination-related" href="/posts/167fb41b/" title="AS/400的历史"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">AS/400的历史</div></div><div class="info-2"><div class="info-item-1"> 以后要使用as&#x2F;400 先提前了解一下 做个准备 ,百度好难找到as&#x2F;400的资料  …  AS&#x2F;400的历史1.1. AS&#x2F;400的诞生背景在介绍AS&#x2F;400之前，先简单回顾一下AS&#x2F;400的发展历史。IBM AS&#x2F;400的创始人Frank G.Soltis  博士认为“历史”对设计新型计算机系统的影响力远胜于其他因素。同样，在设计一个新型计算机系统时，开发的场所和先前的产品也有着相当大的影响力。 60年代，位于美国东部（the EastCoast）的许多计算机公司，例如Digital，Data General页以及IBM的NewYork Lab.  等，占尽地利，不仅分享了诸如MIT等名校和研究所的研究成果，而且雇佣了大批东部高校的高材生。MIT当时曾为美国国防部开发了一个名为MULTICS的项目。东部的公司在设计计算机的结构和操作系统时，大量借鉴了MULTICS的思想。Bell Lab.的UNIX正是这一环境下的产物。   UNIX系统是一个分时系统。最早的UNIX系统于1970年问世。此前，只有面向批...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/881792ef/" title="10.22笔记"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="info-item-2">10.22笔记</div></div><div class="info-2"><div class="info-item-1">10.22笔记UPDDTA输入负数最后一位可以输正负号  OVRDBF和DLTOVROVRDBF和DLTDBF使用时 注意有一个范围参数要对应 OVRDBF:  DLTOVR   正常选用job   ACTGRPDFN 是激活组的意思 nick哥之后会补充讲   如何插入上百条数据 (练SQL用 实际用不到)1.准备一个pf文件 2.插入5条数据输入一条数据 先复制再回车  粘贴把1 依次改成2345   使用STRSQL 输入  得到10条数据  重复使用相似语句 即可得到20 40 80 160…条数据  如何在PF文件中插入小写字母使用shift+F1  可以更改默认  WRKQRY保存QRYDFN文件(LF作业4)使用WRKQRY    连敲两次回车  F3保存  回车在库下生成文件  可以直接使用 RUNQRY CSQRY来执行QRY文件 F4可以修改record selection为*yes 可自由调整查询参数  PRTF 相关(ppt) 优质的代码应只使用SPACEA和SKIPB(SPACEB SKIPA)  打印行为原则: 只能从左到右 从上到下  例如: 如果指...</div></div></div></a><a class="pagination-related" href="/posts/b9ff8872/" title="10.21笔记"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="info-item-2">10.21笔记</div></div><div class="info-2"><div class="info-item-1">PF LF补充知识点 Nick哥说 下面这三种pdm的指令 加上strpdm 优先使用 wrkmbrpdm 在自己账号作业的时候 可以最快打开上次工作的lib WRKLIBPDM WRKMBRPDM WRKLIBPDM   PF文件中  下列位置输入F 可以快速显示 格式行      Nick哥说 在PF或者LF在引用文件的时候 尽量不要出现指定库名 因为工作的时候环境很多 不应写死在文件中  DSPFD: 查询主键和member record format**详细信息  DSPFFD:  查询PF文件字段详细信息  CRTPF 参数相关    这行如果选*none 生成空file 选*file则在file里生成同名member   Nick哥说这两行 优先填 *nomax 即不设上限  代码规范  Nick哥说 PF文件字段间用一行注释隔开代码会比较清晰   CHGPF 这个指令可以实现 更改原有的数据结构源码 而保留数据     RRN pf文件有类似sql里的自增主键字段 但是默认是不显示的 如果在没有unique的时候插入两条相同的数据 使用的时候就要根据这个RRN字段来...</div></div></div></a><a class="pagination-related" href="/posts/6b557ec5/" title="AS&#x2F;400(二)"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-23</div><div class="info-item-2">AS&#x2F;400(二)</div></div><div class="info-2"><div class="info-item-1">AS400(二)DDS规则 A列在提示行 FMT PF 标记的，‘A’列，在一下任何一行记录，都要写 A，标记着这一行为有效记录。在‘A’后加*，表明此行为注释代码   T列类型项，此列有两种类型，R 说明定义了一个记录格式，如第 2 行的 T 列代码，紧跟其后边的是记录名，在描述字段时，此列不入力。如 3-11 行的代码。K 说明定义了一个键值。如 13 行代码标记。此表内将按照此字段排序。默认为升序。   NAME列名前项：此列分三种情况，一种为记录格式名。如第 2 行代码，说明的是此表的记录格式名为SYMASTR。第二种为字段名。如 3-11 行的代码，此处的含义为字段的定义名。字段名不可以重复。最大长度为 10 位   R项参照项：参照定义（R 表示只有当 T 列为空，NEME 列非空时有效，表示当前字段是一个参照字段，BLANK&#x3D;当前字段非参照字段）   LEN 项：长度项：字段长度   数据类型T型​    常用的有效的数据类型有 A （字符）型，P（压缩十进制）型，S（区位十进制）型和 O（全角半角混用）型。下表给出数据文件有效的数据类型      字符 ...</div></div></div></a><a class="pagination-related" href="/posts/9421881e/" title="AS&#x2F;400事务和日志"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-12</div><div class="info-item-2">AS&#x2F;400事务和日志</div></div><div class="info-2"><div class="info-item-1">事务COMMIT 提交当前事务．所有事务的更改都将为其他事务可见，而且保证当崩溃发生时的可持续性。在程序中经常使用 COMMMIT 来控制事物处理的完整性，保证在发生异常的情况下数据的完整性和正确性。访问数据库文件时使用 COMMIT&#x2F;ROLBK，可以确保对数据库文件操作的一致性：全部数据库文件操作都是成功的 COMMIT 提交；全部数据库文件操作都是无效的 ROLBK 回滚. 用这种方法，从而保证了数据库文件的完整性；另外，可以把一组操作当作一个单元来处理。举个实际的例子，如果程序中，以修改的方式声明了四个文件 A、B、C、D，其中 A、B、C 都使用了 COMMIT 关键字，而 D 未使用 COMMIT 关键字；在程序执行过程中，首先更改了 A、B、D 的值在接下的处理中，如果业务流程判断，逻辑有误，不再执行，此时可以进行回滚操作，此时 A、B 的数据恢复成为修改之前的数值；D 的数据，因为在声明文件时未使用 COMMIT 关键字，所以回滚操作对它无效，即 D 的数据仍然保持修改之后的值；而如果业务流程判断正常，程序顺利执行完毕，此时需要进行一次确认操作（COMMI...</div></div></div></a><a class="pagination-related" href="/posts/a0ae3de1/" title="IBM_i的体系结构"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="info-item-2">IBM_i的体系结构</div></div><div class="info-2"><div class="info-item-1">IBM i的体系结构从IBM i的发展史可以看出 IBMi经历了很多次的技术演进和变化,IBM i这个名字也是经过多次修改得到的 而一直没有改变的就是IBM i的五大设计原则  技术独立性 基于对象的设计 单级存储 软件集成 硬件集成  技术独立性第一个原则,可能也是最重要的一个原则,是技术独立性.与其它计算机系统不同,IBM i系列服务器并不是由硬件定义的,而是软件定义的.这就意味着程序并不直接与硬件”对话”,与之”对话”的是一个超越于各种硬件技术的机器界面,即Technology Independent Machine Interface(TIMI),我们称它MI.正是这个特性,保证了IBM i系列服务器能在不影响用户使用的情况下改变底层 硬件构架,使IBM i系列服务器永远不会过时.当新的硬件功能和设计加入时,系统本身及用户开发的应用能够马上运行于新的硬件上,并且充分享受新硬件和新设计带来的好处. 在MI与实际硬件之间是由几百万行代码组成的操作系统软件,我们称之系统特许内码(System Licensed Internal  Code,SLIC).这个软件层将应用程序与底层...</div></div></div></a><a class="pagination-related" href="/posts/167fb41b/" title="AS&#x2F;400的历史"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://gitee.com/Xyingtao/blogimage/raw/master/img/AS400.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-19</div><div class="info-item-2">AS&#x2F;400的历史</div></div><div class="info-2"><div class="info-item-1"> 以后要使用as&#x2F;400 先提前了解一下 做个准备 ,百度好难找到as&#x2F;400的资料  …  AS&#x2F;400的历史1.1. AS&#x2F;400的诞生背景在介绍AS&#x2F;400之前，先简单回顾一下AS&#x2F;400的发展历史。IBM AS&#x2F;400的创始人Frank G.Soltis  博士认为“历史”对设计新型计算机系统的影响力远胜于其他因素。同样，在设计一个新型计算机系统时，开发的场所和先前的产品也有着相当大的影响力。 60年代，位于美国东部（the EastCoast）的许多计算机公司，例如Digital，Data General页以及IBM的NewYork Lab.  等，占尽地利，不仅分享了诸如MIT等名校和研究所的研究成果，而且雇佣了大批东部高校的高材生。MIT当时曾为美国国防部开发了一个名为MULTICS的项目。东部的公司在设计计算机的结构和操作系统时，大量借鉴了MULTICS的思想。Bell Lab.的UNIX正是这一环境下的产物。   UNIX系统是一个分时系统。最早的UNIX系统于1970年问世。此前，只有面向批...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2022/08/20/hk9Zvq4YRsIcnrw.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">樱桃先生</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">65</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typoraWechat.jpeg"><i class="fab fa-weixin"></i><span>加为好友</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎光临樱桃先生的博客🍒～</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AS400-%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">AS400(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AS400%E7%AE%80%E4%BB%8B-%E7%89%B9%E7%82%B9-%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">AS400简介&#x2F;特点&#x2F;存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AS400%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">AS400简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS400%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">AS400特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS400%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">AS400存储结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%BA%93%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD%E9%94%AE%E9%80%89%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">命令库列表功能键选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Command"><span class="toc-number">1.2.1.</span> <span class="toc-text">Command</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-Key"><span class="toc-number">1.2.2.</span> <span class="toc-text">Function Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Option"><span class="toc-number">1.2.3.</span> <span class="toc-text">Option</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1-%E5%BA%93-%E5%BA%93%E5%88%97%E8%A1%A8-%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">对象&#x2F;库&#x2F;库列表(详解)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-number">1.3.1.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Library"><span class="toc-number">1.3.2.</span> <span class="toc-text">Library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Library-List"><span class="toc-number">1.3.3.</span> <span class="toc-text">Library List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unqualified-Object-Qualified-Object"><span class="toc-number">1.3.4.</span> <span class="toc-text">Unqualified Object &amp; Qualified Object</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E6%88%90%E5%91%98"><span class="toc-number">1.4.</span> <span class="toc-text">文件与成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Member"><span class="toc-number">1.4.1.</span> <span class="toc-text">File&amp;Member</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Physical-File"><span class="toc-number">1.4.2.</span> <span class="toc-text">Physical File</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%AD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">编译器中的操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-File"><span class="toc-number">1.4.3.</span> <span class="toc-text">Source File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logical-File"><span class="toc-number">1.4.4.</span> <span class="toc-text">Logical File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Printer-File-Display-File"><span class="toc-number">1.4.5.</span> <span class="toc-text">Printer File &amp; Display File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E9%94%99"><span class="toc-number">1.4.6.</span> <span class="toc-text">查错:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.4.7.</span> <span class="toc-text">查看:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">1.4.8.</span> <span class="toc-text">添加数据：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UPDDTA"><span class="toc-number">1.4.8.1.</span> <span class="toc-text">UPDDTA</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.4.9.</span> <span class="toc-text">删除数据:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">程序与命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Program"><span class="toc-number">1.5.1.</span> <span class="toc-text">Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command-1"><span class="toc-number">1.5.2.</span> <span class="toc-text">Command</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%88Command%EF%BC%89%E8%A1%A5%E5%85%85%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">命令（Command）补充讲解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PDM"><span class="toc-number">1.5.3.</span> <span class="toc-text">PDM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PDM-Programming-Development-Manager%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">PDM - Programming Development Manager编程开发管理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object%E5%92%8Csource-member%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">Object和source member的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CRTPF-F4-%E7%BC%96%E8%AF%91"><span class="toc-number">1.5.4.</span> <span class="toc-text">CRTPF  F4 编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90"><span class="toc-number">1.6.</span> <span class="toc-text">权限</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">用处理用户定义的选项</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4995/" title="顺德好友小聚"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="顺德好友小聚"/></a><div class="content"><a class="title" href="/posts/4995/" title="顺德好友小聚">顺德好友小聚</a><time datetime="2023-05-07T13:56:00.000Z" title="发表于 2023-05-07 21:56:00">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/51438/" title="旅游归来的周末"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="旅游归来的周末"/></a><div class="content"><a class="title" href="/posts/51438/" title="旅游归来的周末">旅游归来的周末</a><time datetime="2023-05-06T05:56:00.000Z" title="发表于 2023-05-06 13:56:00">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34851/" title="与好友的广西之旅"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="与好友的广西之旅"/></a><div class="content"><a class="title" href="/posts/34851/" title="与好友的广西之旅">与好友的广西之旅</a><time datetime="2023-05-02T04:30:00.000Z" title="发表于 2023-05-02 12:30:00">2023-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53652/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/blog-common.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53652/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/53653/" title="项目管理笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ytblogpic.oss-cn-guangzhou.aliyuncs.com/typora%E6%88%AA%E5%B1%8F2022-08-27%2000.25.25.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目管理笔记"/></a><div class="content"><a class="title" href="/posts/53653/" title="项目管理笔记">项目管理笔记</a><time datetime="2022-08-28T04:30:00.000Z" title="发表于 2022-08-28 12:30:00">2022-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 樱桃先生</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div><div class="footer_custom_text">一切都是最好的安排</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="5225697049" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-mini="true" data-lrctype="-1"> </div><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><link rel="stylesheet" href="/css/utils.css"><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
